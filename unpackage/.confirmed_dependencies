@@ -1,0 +1,454 @@
+{
+  "index.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "fonts/mui.ttf",
+      "fonts/iconfont.css",
+      "js/nav.js",
+      "js/jquery-1.11.0.min.js",
+      "css/default.css",
+      "css/app.css",
+      "css/mui.css",
+      "js/Director/dashboard.js",
+      "css/morris/morris.css",
+      "js/jquery.min.js",
+      "img/avatar.png",
+      "css/iCheck/line/_all.css",
+      "js/Director/app.js",
+      "js/jquery-ui-1.10.3.min.js",
+      "js/plugins/iCheck/icheck.min.js",
+      "img/26115.jpg",
+      "css/jvectormap/jquery-jvectormap-1.2.2.css",
+      "css/style.css",
+      "js/plugins/fullcalendar/fullcalendar.js",
+      "js/plugins/daterangepicker/daterangepicker.js",
+      "css/bootstrap.min.css",
+      "css/iCheck/flat/_all.css",
+      "css/ionicons.min.css",
+      "css/iCheck/futurico/futurico.css",
+      "css/daterangepicker/daterangepicker-bs3.css",
+      "js/plugins/chart.js",
+      "css/iCheck/flat/grey@2x.png",
+      "css/iCheck/polaris/polaris.css",
+      "css/iCheck/square/_all.css",
+      "css/font-awesome.min.css",
+      "js/bootstrap.min.js",
+      "css/datepicker/datepicker3.css",
+      "fonts/fontawesome-webfont.woff",
+      "css/iCheck/all.css",
+      "css/iCheck/minimal/_all.css",
+      "general.html",
+      "fonts/fontawesome-webfont.ttf",
+      "css/hui.css",
+      "js/jquery-2.1.1.min.js",
+      "news.html",
+      "css/fonts/iconfont.woff",
+      "js/hui-refresh-load-more.js",
+      "js/hui-water-fall.js",
+      "js/hui.js",
+      "fonts/glyphicons-halflings-regular.woff",
+      "js/hui-swipe.js",
+      "exam.html",
+      "personal.html",
+      "login.html",
+      "fuyao.html",
+      "disease_seach.html",
+      "search_symptom.html",
+      "js/libs/laya.ui.js",
+      "js/libs/laya.webgl.js",
+      "js/libs/laya.core.js",
+      "js/libs/laya.d3.js",
+      "js/libs/laya.tiledmap.js",
+      "js/libs/laya.ani.js",
+      "js/libs/laya.html.js",
+      "js/test/LayaAir3D.js",
+      "js/libs/laya.filter.js",
+      "js/libs/laya.particle.js"
+    ],
+    "refer": [
+      "general.html"
+    ]
+  },
+  "general.html": {
+    "resources": [
+      "img/avatar2.png",
+      "img/avatar3.png",
+      "index.html",
+      "basic_form.html"
+    ],
+    "refer": [
+      "index.html",
+      "basic_form.html"
+    ]
+  },
+  "basic_form.html": {
+    "resources": [
+      "simple.html"
+    ],
+    "refer": [
+      "simple.html"
+    ]
+  },
+  "test.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "fonts/mui.ttf",
+      "js/jquery-2.1.1.min.js",
+      "css/bootstrap.min.css",
+      "fonts/glyphicons-halflings-regular.woff",
+      "css/hui.css",
+      "js/hui.js",
+      "js/hui-refresh-load-more.js",
+      "css/fonts/iconfont.woff",
+      "js/hui-water-fall.js",
+      "js/hui-swipe.js",
+      "img/2.jpg",
+      "img/1.jpg",
+      "img/4.jpg",
+      "img/3.jpg",
+      "img/5.jpg"
+    ],
+    "refer": []
+  },
+  "news.html": {
+    "resources": [
+      "css/hui.css",
+      "js/jquery-2.1.1.min.js",
+      "img/2.jpg",
+      "css/fonts/iconfont.woff",
+      "js/hui-refresh-load-more.js",
+      "js/hui-water-fall.js",
+      "img/1.jpg",
+      "img/4.jpg",
+      "js/hui.js",
+      "fonts/glyphicons-halflings-regular.woff",
+      "img/3.jpg",
+      "js/hui-swipe.js",
+      "img/5.jpg",
+      "css/bootstrap.min.css",
+      "css/custom.css",
+      "skins/square/_all.css",
+      "css/montserrat-regular.woff",
+      "skins/all.css",
+      "js/custom.min.js",
+      "skins/flat/_all.css",
+      "js/jquery.js",
+      "css/montserrat-bold.woff",
+      "skins/futurico/futurico.css",
+      "icheck.js",
+      "skins/polaris/polaris.css",
+      "skins/line/_all.css",
+      "skins/minimal/_all.css",
+      "css/normalize.css",
+      "fuyao.html",
+      "login.html",
+      "personal.html",
+      "index.html",
+      "exam.html",
+      "search_symptom.html",
+      "disease_seach.html",
+      "disease_seach2.html"
+    ],
+    "refer": []
+  },
+  "fuyao_tip.html": {
+    "resources": [
+      "css/hui.css",
+      "js/jquery-2.1.1.min.js",
+      "css/fonts/iconfont.woff",
+      "js/hui-refresh-load-more.js",
+      "js/hui-water-fall.js",
+      "js/hui.js",
+      "fonts/glyphicons-halflings-regular.woff",
+      "js/hui-swipe.js",
+      "css/bootstrap.min.css"
+    ],
+    "refer": []
+  },
+  "fuyao.html": {
+    "resources": [
+      "css/hui.css",
+      "js/jquery-2.1.1.min.js",
+      "css/fonts/iconfont.woff",
+      "js/hui-refresh-load-more.js",
+      "js/hui-water-fall.js",
+      "js/hui.js",
+      "fonts/glyphicons-halflings-regular.woff",
+      "js/hui-swipe.js",
+      "css/bootstrap.min.css",
+      "news.html",
+      "edit_clock.html",
+      "login.html",
+      "personal.html",
+      "exam.html",
+      "index.html",
+      "disease_seach.html"
+    ],
+    "refer": []
+  },
+  "edit_clock.html": {
+    "resources": [
+      "css/hui.css",
+      "js/jquery-2.1.1.min.js",
+      "css/fonts/iconfont.woff",
+      "js/hui-refresh-load-more.js",
+      "js/hui-water-fall.js",
+      "js/hui.js",
+      "fonts/glyphicons-halflings-regular.woff",
+      "js/hui-swipe.js",
+      "css/bootstrap.min.css",
+      "js/hui-picker.js",
+      "js/hui-form.js",
+      "fuyao.html",
+      "js/bootstrap-datetimepicker.min.js",
+      "css/bootstrap-combined.min.css",
+      "css/bs-datetimepicker/bootstrap-datetimepicker.css",
+      "js/bootstrap.min.js",
+      "img/glyphicons-halflings.png",
+      "personal.html",
+      "search_symptom.html"
+    ],
+    "refer": []
+  },
+  "login.html": {
+    "resources": [
+      "css/hui.css",
+      "js/jquery-2.1.1.min.js",
+      "css/fonts/iconfont.woff",
+      "js/hui-refresh-load-more.js",
+      "js/hui-water-fall.js",
+      "js/hui.js",
+      "fonts/glyphicons-halflings-regular.woff",
+      "js/hui-swipe.js",
+      "css/bootstrap.min.css",
+      "fuyao.html",
+      "js/hui-form.js",
+      "news.html",
+      "register.html",
+      "personal.html",
+      "exam.html",
+      "index.html",
+      "disease_seach.html",
+      "search_symptom.html"
+    ],
+    "refer": []
+  },
+  "register.html": {
+    "resources": [
+      "css/hui.css",
+      "js/jquery-2.1.1.min.js",
+      "css/fonts/iconfont.woff",
+      "js/hui-refresh-load-more.js",
+      "js/hui-water-fall.js",
+      "js/hui-form.js",
+      "js/hui.js",
+      "fonts/glyphicons-halflings-regular.woff",
+      "js/hui-swipe.js",
+      "css/bootstrap.min.css",
+      "fuyao.html",
+      "news.html",
+      "login.html",
+      "css/style1.css",
+      "js/jquery.particleground.min.js",
+      "js/jquery-1.11.1.min.js",
+      "js/demo.js",
+      "js/jquery.min.js",
+      "personal.html",
+      "exam.html",
+      "index.html"
+    ],
+    "refer": []
+  },
+  "personal.html": {
+    "resources": [
+      "js/hui-picker.js",
+      "login.html",
+      "js/bootstrap.min.js",
+      "fuyao.html",
+      "news.html",
+      "css/hui.css",
+      "js/jquery-2.1.1.min.js",
+      "css/fonts/iconfont.woff",
+      "js/hui-refresh-load-more.js",
+      "js/hui-water-fall.js",
+      "js/hui-form.js",
+      "js/hui.js",
+      "fonts/glyphicons-halflings-regular.woff",
+      "js/hui-swipe.js",
+      "css/bootstrap.min.css",
+      "img/touxiang.jpg",
+      "modify.html",
+      "exam.html",
+      "index.html"
+    ],
+    "refer": [
+      "login.html"
+    ]
+  },
+  "modify.html": {
+    "resources": [
+      "css/hui.css",
+      "js/jquery-2.1.1.min.js",
+      "css/fonts/iconfont.woff",
+      "js/hui-refresh-load-more.js",
+      "js/hui-water-fall.js",
+      "js/hui-form.js",
+      "js/hui.js",
+      "fonts/glyphicons-halflings-regular.woff",
+      "js/hui-swipe.js",
+      "css/bootstrap.min.css",
+      "personal.html",
+      "fuyao.html",
+      "login.html",
+      "index.html",
+      "disease_seach.html"
+    ],
+    "refer": []
+  },
+  "exam.html": {
+    "resources": [
+      "css/hui.css",
+      "js/jquery-2.1.1.min.js",
+      "css/fonts/iconfont.woff",
+      "js/hui-refresh-load-more.js",
+      "js/hui-water-fall.js",
+      "login.html",
+      "js/hui.js",
+      "fonts/glyphicons-halflings-regular.woff",
+      "js/hui-swipe.js",
+      "css/bootstrap.min.css",
+      "fuyao.html",
+      "js/Chart.js",
+      "personal.html",
+      "js/Chart.bundle.js",
+      "js/utils.js",
+      "index.html",
+      "add_exam.html",
+      "css/bootstrap-table.css",
+      "js/bootstrap-table.js",
+      "modify_exam.html",
+      "news.html",
+      "disease_seach.html",
+      "search_symptom.html"
+    ],
+    "refer": [
+      "login.html"
+    ]
+  },
+  "add_exam.html": {
+    "resources": [
+      "exam.html",
+      "css/hui.css",
+      "js/jquery-2.1.1.min.js",
+      "css/fonts/iconfont.woff",
+      "js/hui-refresh-load-more.js",
+      "js/hui-water-fall.js",
+      "css/style.css",
+      "js/hui.js",
+      "fonts/glyphicons-halflings-regular.woff",
+      "js/hui-swipe.js",
+      "css/bootstrap.min.css",
+      "js/in01.js",
+      "personal.html",
+      "js/jquery.min.js",
+      "news.html",
+      "img/ruler_height.png",
+      "img/ruler_weight.png",
+      "img/ruler_xuetang.png",
+      "index.html",
+      "fuyao.html"
+    ],
+    "refer": [
+      "exam.html"
+    ]
+  },
+  "modify_exam.html": {
+    "resources": [
+      "exam.html"
+    ],
+    "refer": [
+      "exam.html"
+    ]
+  },
+  "disease_seach.html": {
+    "resources": [
+      "fuyao.html",
+      "css/hui.css",
+      "js/jquery-2.1.1.min.js",
+      "css/fonts/iconfont.woff",
+      "js/hui-water-fall.js",
+      "personal.html",
+      "js/hui.js",
+      "fonts/glyphicons-halflings-regular.woff",
+      "js/hui-swipe.js",
+      "css/bootstrap.min.css",
+      "search_symptom.html",
+      "index.html",
+      "exam.html",
+      "css/style10.css",
+      "css/demo.css",
+      "login.html",
+      "js/hui-refresh-load-more.js",
+      "js/demo10.js",
+      "disease_seach2.html",
+      "news.html",
+      "img/5.jpg",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "fonts/mui.ttf"
+    ],
+    "refer": [
+      "fuyao.html"
+    ]
+  },
+  "search_symptom.html": {
+    "resources": [
+      "css/hui.css",
+      "js/jquery-2.1.1.min.js",
+      "css/fonts/iconfont.woff",
+      "js/hui-refresh-load-more.js",
+      "js/hui-water-fall.js",
+      "js/hui.js",
+      "fonts/glyphicons-halflings-regular.woff",
+      "css/symptom.css",
+      "js/hui-swipe.js",
+      "css/bootstrap.min.css",
+      "js/symptom.js",
+      "img/right_arm.jpg",
+      "img/lower_body.jpg",
+      "img/left_arm.jpg",
+      "img/belly.jpg",
+      "img/head.jpg",
+      "img/brest.jpg",
+      "exam.html",
+      "disease_seach.html",
+      "news.html",
+      "personal.html",
+      "login.html",
+      "index.html",
+      "fuyao.html"
+    ],
+    "refer": []
+  },
+  "disease_seach2.html": {
+    "resources": [
+      "css/hui.css",
+      "js/jquery-2.1.1.min.js",
+      "css/fonts/iconfont.woff",
+      "js/hui-water-fall.js",
+      "js/hui.js",
+      "fonts/glyphicons-halflings-regular.woff",
+      "js/hui-swipe.js",
+      "css/bootstrap.min.css",
+      "personal.html",
+      "search_symptom.html",
+      "fuyao.html",
+      "disease_seach.html",
+      "login.html",
+      "index.html"
+    ],
+    "refer": []
+  }
+}

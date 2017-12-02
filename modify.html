@@ -1,0 +1,473 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>修改个人信息</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/hui.css" />
+		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+		<style type="text/css">
+			body,
+			html {
+				margin: 0;
+				padding: 0;
+				height: 100%;
+				background-color: #158dd2;
+			}
+			
+			.checkbox-wrap {
+				width: 100%;
+				position: relative;
+				margin: 0 auto;
+				top: 30%;
+				height: 40%;
+				background-color: white;
+			}
+			
+			input[type="checkbox"][name="check"] {
+				/* width: 40px; */
+				/* height: 40px; */
+				/* -webkit-border-radius: 50%; */
+				display: none;
+			}
+			
+			input[type="checkbox"][name="check"]+label {
+				display: inline-block;
+				width: 48%;
+				margin-top: 10px;
+				margin-left: 5px;
+				text-align: left;
+				-webkit-box-sizing: border-box;
+			}
+			
+			input[type="checkbox"][name="check"]+label::before {
+				content: "";
+				display: inline-block;
+				width: 30px;
+				height: 30px;
+				background: #EEE;
+				vertical-align: middle;
+				-webkit-border-radius: 50%;
+				margin-right: 5px;
+				-webkit-box-sizing: border-box;
+				-webkit-transition: background ease-in .5s
+			}
+			
+			input[type="checkbox"][name="check"]:checked+label::before {
+				background-color: rgb(203, 58, 58);
+				border: 5px #EEEEEE solid;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<div style="float:left;height:100%;width: 13%;">
+			<div style="width:98%;">
+				<a style="text-decoration: none;" href="index.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-clone" id="btn1">&nbsp;主页</button></a>
+				<a style="text-decoration: none;" href="news.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-news" id="btn2">&nbsp;知识</button></a>
+				<a style="text-decoration: none;" href="search_symptom.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-search" id="btn3">&nbsp;症状</button></a>
+				<a style="text-decoration: none;" href="disease_seach.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-progress" id="btn7">&nbsp;疾病</button></a>
+				<a style="text-decoration: none;" href="fuyao.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-check" id="btn4">&nbsp;服药</button></a>
+				<a style="text-decoration: none;" href="personal.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-my" id="btn5">&nbsp;我的</button></a>
+				<a style="text-decoration: none;" href="exam.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-like" id="btn6">&nbsp;体检</button></a>
+			</div>
+		</div>
+
+		<div style="float:left;height:100%;width: 87%;background-color:#fff ;">
+			<div style="height:10%;background-color:#00c6ff ;">
+				<div style="height: 100%;width: 10%;float: left;">
+					<center>
+						<div style="color: #fff;align-self: center;font-size: larger;margin-top: 8px;">健康老年</div>
+					</center>
+				</div>
+
+				<div style="height: 100%;width: 15%;float: right;background-color: #CD0A0A;">
+					<center>
+						<div id="yijianhujiu" style="color: #fff;align-self: center;font-size: larger;margin-top: 8px;"><span class="glyphicon glyphicon-earphone" style="color: #fff;"></span> 一键呼救</div>
+					</center>
+				</div>
+
+			</div>
+			<div style="display:flex;justify-content:center;background:#F4F5F6;height:90%;overflow:scroll;">
+				<!--这里面是主要界面-->
+
+				<div style="width: 65%;" class="hui-wrap">
+					<div class="hui-center-title" style="height:40px;margin-top:0px;">
+						<h1 style="border:0px;">修改个人信息</h1>
+					</div>
+					<div style="height:310px;display:flex;justify-content:space-around;margin:0px; margin-bottom:5px;" class="hui-form" id="form1">
+
+						<div style="display: flex;justify-content: space-between;flex-direction: column;width: 45%;">
+							<div class="hui-form-items">
+								<input type="password" name="User_password" class="hui-input hui-pwd-eye" placeholder="新密码" checkType="string" id="pwd" checkData="6,20" checkMsg="密码应为6-20个字符" />
+							</div>
+							<div class="hui-form-items">
+								<input type="password" class="hui-input hui-pwd-eye" placeholder="确认密码" checkType="sameWithId" checkData="pwd" checkMsg="两次密码不一致" />
+							</div>
+							<div class="hui-form-items" style="display: flex;justify-content: space-between;align-items: center;">
+								<div style="font-weight:normal;color: rgba(153, 153, 153, 1);">年龄段</div>
+								<div class="hui-form-select">
+									<select name="User_age" id='age_select'>
+										<option value="50">小于60岁</option>
+										<option value="60">60到65岁</option>
+										<option value="65">65到70岁</option>
+										<option value="70">70到75岁</option>
+										<option value="75">75到80岁</option>
+										<option value="80">80到85岁</option>
+										<option value="85">85到90岁</option>
+										<option value="90">90到95岁</option>
+										<option value="95">95到100岁</option>
+										<option value="100">100岁以上</option>
+									</select>
+								</div>
+								<!--<input type="number" class="hui-input" placeholder="年龄" name="age"/>-->
+							</div>
+							<div class="hui-form-items">
+								<input type="text" id="User_email" name="User_email" class="hui-input hui-input-clear" placeholder="紧急联系人的电子邮箱" />
+							</div>
+							<div class="hui-form-items">
+								<input type="text" id="User_phone" name="User_phone" class="hui-input hui-input-clear" placeholder="紧急联系人的联系方式" />
+							</div>
+
+						</div>
+						<div style="align-self: stretch;background-color: #f4f5f6;width: 1%;">&nbsp;</div>
+						<div style="display: flex;justify-content:flex-start;flex-direction: column;align-content:flex-start;width: 45%;">
+							<div class="hui-form-items">
+								<div style="display: flex;justify-content: space-around;align-items: center;">
+									<div class="hui-form-items-title">性别</div>
+									<div class="hui-form-radios">
+										<input type="radio" value="1" checked="true" name="User_sex" id="g1" /><label for="g1" style="font-weight:normal;color: rgba(153, 153, 153, 1);">男</label>
+									</div>
+									<div class="hui-form-radios">
+										<input type="radio" value="2" name="User_sex" id="g2" /><label for="g2" style="font-weight:normal;color: rgba(153, 153, 153, 1);">女</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="hui-form-items">
+								<div style="display: flex;justify-content: flex-start;flex-wrap:wrap;align-items: center;align-content:flex-start;padding: 0px;" class="hui-form-radios">
+
+									<input type="checkbox" value="1" name="Disease_id[]" id="c1" /><label for="c1" style="font-weight:normal;color: rgba(153, 153, 153, 1);">心律失常</label>
+									<input type="checkbox" value="2" name="Disease_id[]" id="c2" /><label for="c2" style="font-weight:normal;color: rgba(153, 153, 153, 1);">垂体瘤</label>
+									<input type="checkbox" value="3" name="Disease_id[]" id="c3" /><label for="c3" style="font-weight:normal;color: rgba(153, 153, 153, 1);">糖尿病</label>
+									<input type="checkbox" value="4" name="Disease_id[]" id="c4" /><label for="c4" style="font-weight:normal;color: rgba(153, 153, 153, 1);">甲状腺结节</label>
+									<input type="checkbox" value="5" name="Disease_id[]" id="c5" /><label for="c5" style="font-weight:normal;color: rgba(153, 153, 153, 1);">冠心病</label>
+									<input type="checkbox" value="6" name="Disease_id[]" id="c6" /><label for="c6" style="font-weight:normal;color: rgba(153, 153, 153, 1);">甲状腺癌</label>
+									<input type="checkbox" value="7" name="Disease_id[]" id="c7" /><label for="c7" style="font-weight:normal;color: rgba(153, 153, 153, 1);">甲状腺炎</label>
+									<input type="checkbox" value="8" name="Disease_id[]" id="c8" /><label for="c8" style="font-weight:normal;color: rgba(153, 153, 153, 1);">高血压</label>
+									<input type="checkbox" value="9" name="Disease_id[]" id="c9" /><label for="c9" style="font-weight:normal;color: rgba(153, 153, 153, 1);">垂体功能衰退</label>
+									<input type="checkbox" value="10" name="Disease_id[]" id="c10" /><label for="c10" style="font-weight:normal;color: rgba(153, 153, 153, 1);">肾上腺皮质功能减退</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div style="display: flex;justify-content:space-around;padding:28px; padding-top:0px;">
+						<button type="button" id="quxiao" class="hui-button hui-primary hui-fl" style="width: 40%;">取消</button>
+						<button type="button" id="submitBtn" class="hui-button hui-primary hui-fl" style="width: 40%;">确认修改</button>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+		<script type="text/javascript" src="js/hui.js" charset="UTF-8"></script>
+		<script src="js/hui-swipe.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/hui-form.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/hui-water-fall.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/hui-refresh-load-more.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery-2.1.1.min.js"></script>
+		<script src="http://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.js"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=thgDCOh7o3yI3xxQG8YmGi8toA9GCjhk"></script>
+		<script type="text/javascript">
+			hui.formInit();
+			var isReady = false;
+			hui.plusReady(function() {
+				isReady = true;
+				//信息回填
+				var userid = {
+					User_id: plus.storage.getItem('userid')
+				};
+				var url = "http://120.25.67.15/getUserById";
+				$.post(url, userid, function(text) {
+					var obj =text;
+
+					if(obj.success == 'true') {
+						//"User_email":"String", "User_phone":"String", "User_sex":"String",//1(男)或者2(女) "Disease_id":"String","User_age":"String"
+						$("#User_email").val(obj.User_email);
+						$("#User_phone").val(obj.User_phone);
+						if(obj.User_sex == '1') {
+							$('#g1').attr("checked", true);
+							$('#g2').removeAttr("checked");
+						} else {
+							$('#g2').attr("checked", true);
+							$('#g1').removeAttr("checked");
+						}
+						if(obj.Disease_id==null)obj.Disease_id='';
+						var dis_arry = (obj.Disease_id).split('|');
+						for(var i in dis_arry) {
+							switch(dis_arry[i]) {
+								case '1':
+									$('#c1').attr("checked", true);
+									break;
+								case '2':
+									$('#c2').attr("checked", true);
+									break;
+								case '3':
+									$('#c3').attr("checked", true);
+									break;
+								case '4':
+									$('#c4').attr("checked", true);
+									break;
+								case '5':
+									$('#c5').attr("checked", true);
+									break;
+								case '6':
+									$('#c6').attr("checked", true);
+									break;
+								case '7':
+									$('#c7').attr("checked", true);
+									break;
+								case '8':
+									$('#c8').attr("checked", true);
+									break;
+								case '9':
+									$('#c9').attr("checked", true);
+									break;
+								case '10':
+									$('#c10').attr("checked", true);
+									break;
+							}
+						}
+						switch(obj.User_age) {
+							case '50':
+								$("#age_select option").eq(0).attr("selected", true);
+								break;
+							case '60':
+								$("#age_select option").eq(1).attr("selected", true);
+								break;
+							case '65':
+								$("#age_select option").eq(2).attr("selected", true);
+								break;
+							case '70':
+								$("#age_select option").eq(3).attr("selected", true);
+								break;
+							case '75':
+								$("#age_select option").eq(4).attr("selected", true);
+								break;
+							case '80':
+								$("#age_select option").eq(5).attr("selected", true);
+								break;
+							case '85':
+								$("#age_select option").eq(6).attr("selected", true);
+								break;
+							case '90':
+								$("#age_select option").eq(7).attr("selected", true);
+								break;
+							case '95':
+								$("#age_select option").eq(8).attr("selected", true);
+								break;
+							case '100':
+								$("#age_select option").eq(9).attr("selected", true);
+								break;
+						}
+						return true;
+					} else {
+						hui.toast('无该用户!');
+						plus.storage.removeItem('userid');
+						window.open('login.html');
+						return false;
+					}
+				}).error(function() {
+					hui.toast('响应错误!');
+					plus.storage.removeItem('userid');
+					window.open('login.html');
+					return false;
+				});
+			});
+
+			hui('#quxiao').click(function() {
+				window.open("personal.html");
+			});
+
+			hui('#submitBtn').click(function() {
+				if(!isReady) return false;
+				if(huiFormCheck('#form1') !== true) {
+					return false;
+				}
+				var reg = hui.getFormData('#form1');
+				var userid = plus.storage.getItem('userid');
+				reg.User_id = userid;
+				if(reg.Disease_id == undefined) {
+					reg.Disease_id = '';
+				}
+				var arry = reg.Disease_id.split(',');
+				var temp = '';
+				for(var i = 0; i < arry.length; i++) {
+					if(i != arry.length - 1)
+						temp = temp + arry[i] + '|';
+					else
+						temp = temp + arry[i];
+				}
+				reg.Disease_id = temp;
+				reg.User_password = md5(reg.User_password);
+				var reg_email_zz = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+				if(!reg_email_zz.test(reg.User_email)) {
+					hui.toast("邮箱填写错误！");
+					return false;
+				}
+				var reg_phone_zz = /^1[3|4|5|8][0-9]\d{4,8}$/;
+				if(!reg_phone_zz.test(reg.User_phone)) {
+					hui.toast("联系方式填写错误错误！");
+					return false;
+				}
+				console.log(JSON.stringify(reg));
+				if(reg != null) {
+					var url = "http://120.25.67.15/modify";
+					$.post(url, reg, function(text) {
+						var obj = $.parseJSON(text);
+						console.log(text);
+						if(obj.success == 'true') {
+							hui.toast('修改成功！');
+							window.open('personal.html');
+							return true;
+						} else {
+							hui.toast('修改失败！请检查无误后再确认！');
+							return false;
+						}
+					}).error(function() {
+						hui.toast('响应错误!');
+						return false;
+					});
+
+				}
+			});
+
+			var meuns = ['一键呼救'];
+			var cancel = '关闭菜单';
+			var _str = '';
+
+			function getstr() {
+				return _str;
+			}
+
+			function setstr(str) {
+				_str = str;
+			}
+
+			function check_user() {
+				var userid = plus.storage.getItem('userid');
+				if(userid == null) return false;
+				else return true;
+			}
+
+			hui('#yijianhujiu').click(function() {
+				if(!check_user()) {
+					hui.toast("请先登录！");
+					window.open('login.html');
+					return;
+				}
+				hui.actionSheet(meuns, cancel, function(e) {
+					if(e.index != -1)
+						hui.confirm('<div class="checkbox-wrap"><form id="form"> 您若出现以下症状，请点击该症状！<br /><br /> <input id="xiongmen" name="check" type="checkbox" value="0" /><label for="xiongmen">胸闷</label> <input id="huxi" name="check" type="checkbox" value="1" /><label for="huxi">呼吸不畅 </label> <input name="check" type="checkbox" id="shoushang" value="2" /><label for="shoushang">受伤 </label> <input name="check" type="checkbox" id="qichuan" value="3" /><label for="qichuan">气喘 </label> <input id="xinhuang" name="check" type="checkbox" value="4" /><label for="xinhuang">心慌 </label></form></div> ', ['取消', '确定'], function() {
+							var userid = {
+								User_id: plus.storage.getItem('userid')
+							};
+							setstr($('#form').serialize());
+							console.log("id:" + JSON.stringify(userid));
+							var url = "http://120.25.67.15/getUserById";
+							$.post(url, userid, function(text) {
+								var obj =text;
+								if(obj.success == 'true') {
+									hui.toast("发送中。。。");
+									var address = Array();
+									var geolocation = new BMap.Geolocation();
+									geolocation.getCurrentPosition(function(r) {
+										if(this.getStatus() == BMAP_STATUS_SUCCESS) {
+											var gc = new BMap.Geocoder();
+											gc.getLocation(r.point, function(rs) {
+												var addComp = rs.addressComponents;
+												address[0] = addComp.province;
+												address[1] = addComp.city;
+												address[2] = addComp.district + addComp.street + addComp.streetNumber; //获取地址
+												var arry = (getstr()).split('&');
+												var strarry = [];
+												var arryobj = {};
+												for(var i = 0; i < arry.length; i++) {
+													switch((arry[i].split('='))[1]) {
+														case '0':
+															strarry.push("胸闷")
+															break;
+														case '1':
+															strarry.push("呼吸不畅")
+															break;
+														case '2':
+															strarry.push("受伤")
+															break;
+														case '3':
+															strarry.push("气喘")
+															break;
+														case '4':
+															strarry.push("心慌")
+															break;
+													}
+												}
+												var disease = '';
+												for(var i = 0; i < strarry.length; i++) {
+													disease += strarry[i];
+												}
+												var ph_obj = {};
+												var content = address[0]; //省
+												var content1 = address[1]; //市
+												var content2 = address[2]; //地区
+												ph_obj.mobile = obj.User_phone;
+												ph_obj.text = "【健康老年APP】您家老人于" + content + "省" + content1 + "市" + content2 + "地区出现紧急情况：" + disease;
+												var em_obj = {};
+												em_obj.address = obj.User_email;
+												em_obj.title = '【健康老年APP】';
+												em_obj.content = ph_obj.text;
+												console.log("phone:" + JSON.stringify(ph_obj));
+												console.log("email:" + JSON.stringify(em_obj));
+
+												var url1 = "http://120.25.67.15/smsFunc";
+												$.post(url1, ph_obj, function(text) {
+													hui.toast("短信已发送!");
+												}).error(function() {
+													hui.toast('响应错误!');
+												});
+
+												var url2 = "http://120.25.67.15/emailFunc";
+												$.post(url2, em_obj, function(text) {
+													hui.toast("邮件已发送!");
+												}).error(function() {
+													hui.toast('响应错误!');
+												});
+
+												return true;
+											});
+										} else {
+											hui.toast('失败' + this.getStatus());
+										}
+									});
+								} else {
+									hui.toast('无该用户!');
+									plus.storage.removeItem('userid');
+									window.open('login.html');
+									return false;
+								}
+							}).error(function() {
+								hui.toast('响应错误!');
+								plus.storage.removeItem('userid');
+								window.open('login.html');
+								return false;
+							});
+						});
+				});
+			});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>体检数据</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/hui.css" />
+		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<script src="js/jquery-2.1.1.min.js"></script>
+		<script src="js/Chart.bundle.js"></script>
+		<script src="js/utils.js"></script>
+		<style type="text/css">
+			body,
+			html {
+				margin: 0;
+				padding: 0;
+				height: 100%;
+				background-color: #158dd2;
+			}
+			
+			.checkbox-wrap {
+				width: 100%;
+				position: relative;
+				margin: 0 auto;
+				top: 30%;
+				height: 40%;
+				background-color: white;
+			}
+			
+			input[type="checkbox"] {
+				/* width: 40px; */
+				/* height: 40px; */
+				/* -webkit-border-radius: 50%; */
+				display: none;
+			}
+			
+			input[type="checkbox"]+label {
+				display: inline-block;
+				width: 48%;
+				margin-top: 10px;
+				margin-left: 5px;
+				text-align: left;
+				-webkit-box-sizing: border-box;
+			}
+			
+			label::before {
+				content: "";
+				display: inline-block;
+				width: 30px;
+				height: 30px;
+				background: #EEE;
+				vertical-align: middle;
+				-webkit-border-radius: 50%;
+				margin-right: 5px;
+				-webkit-box-sizing: border-box;
+				-webkit-transition: background ease-in .5s
+			}
+			
+			input[type="checkbox"]:checked+label::before {
+				background-color: rgb(203, 58, 58);
+				border: 5px #EEEEEE solid;
+			}
+			
+			.whitebackground {
+				background-color: #fff;
+				margin: 5px;
+				border: 1px solid #595959;
+				margin-top: 10px;
+				padding: 5px;
+				display: flex;
+				border-radius: 8px;
+				justify-content: space-between;
+				flex-wrap: wrap;
+				align-items: center;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<div style="float:left;height:100%;width: 13%;">
+			<div style="width:98%;">
+				<a style="text-decoration: none;" href="index.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-clone" id="btn1">&nbsp;主页</button></a>
+				<a style="text-decoration: none;" href="news.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-news" id="btn2">&nbsp;知识</button></a>
+				<a style="text-decoration: none;" href="search_symptom.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-search" id="btn3">&nbsp;症状</button></a>
+				<a style="text-decoration: none;" href="disease_seach.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-progress" id="btn7">&nbsp;疾病</button></a>
+				<a style="text-decoration: none;" href="fuyao.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-check" id="btn4">&nbsp;服药</button></a>
+				<a style="text-decoration: none;" href="personal.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-my" id="btn5">&nbsp;我的</button></a>
+				<a style="text-decoration: none;" href=""><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-like" id="btn6">&nbsp;体检</button></a>
+			</div>
+		</div>
+
+		<div style="float:left;height:100%;width: 87%;background-color:#fff ;">
+			<div style="height:10%;background-color:#00c6ff ;">
+				<div style="height: 100%;width: 10%;float: left;">
+					<center>
+						<div style="color: #fff;align-self: center;font-size: larger;margin-top: 8px;">健康老年</div>
+					</center>
+				</div>
+
+				<div style="height: 100%;width: 15%;float: right;background-color: #CD0A0A;">
+					<center>
+						<div id="yijianhujiu" style="color: #fff;align-self: center;font-size: larger;margin-top: 8px;"><span class="glyphicon glyphicon-earphone" style="color: #fff;"></span> 一键呼救</div>
+					</center>
+				</div>
+
+			</div>
+			<div style="background:#F4F5F6;height:90%;overflow:scroll;">
+				<!--这里面是主要界面-->
+				<div class="hui-wrap">
+					<div class="whitebackground" style="height: 60px;">
+						<h3 style="margin: 0px;">体检数据</h3>
+						<button type="button" style="height: 70%;border:1px solid #595959;" class="hui-button hui-footer-icons hui-icons-edit" onclick="openpage()">添加体检表</button>
+					</div>
+					<hr style="background-color: #000000;" />
+
+					<div class="whitebackground" style="width:98.5%;">
+						<canvas id="canvas1"></canvas>
+						<div style='flex-basis: 100%;display: flex;justify-content: center;'>
+							<div style="display: flex;flex-basis: 80%;justify-content: space-between;align-items: center;">
+								<span id='avg1' style="font-size: 20px;">七天平均值：100</span>
+								<button type="button" id="addData1" class="hui-button hui-primary hui-fl" style="width: 30%;">切换为30天数据</button>
+							</div>
+						</div>
+					</div>
+					<div class="whitebackground" style="width:98.5%;">
+						<canvas id="canvas2"></canvas>
+						<div style='flex-basis: 100%;display: flex;justify-content: center;'>
+							<div style="display: flex;flex-basis: 80%;justify-content: space-between;align-items: center;">
+								<span id='avg2' style="font-size: 20px;">七天平均值：100</span>
+								<button type="button" id="addData2" class="hui-button hui-primary hui-fl" style="width: 30%;">切换为30天数据</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="whitebackground" style="width:98.5%;">
+						<canvas id="canvas3"></canvas>
+						<div style='flex-basis: 100%;display: flex;justify-content: center;'>
+							<div style="display: flex;flex-basis: 80%;justify-content: space-between;align-items: center;">
+								<span id='avg3' style="font-size: 20px;">七天平均值：100</span>
+								<button type="button" id="addData3" class="hui-button hui-primary hui-fl" style="width: 30%;">切换为30天数据</button>
+							</div>
+						</div>
+					</div>
+					<div class="whitebackground" style="width:98.5%;">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>时间</th>
+									<th>血糖</th>
+									<th>心跳</th>
+									<th>高压</th>
+									<th>低压</th>
+									<th>状态</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>清晨</td>
+									<td>6</td>
+									<td>80</td>
+									<td>130</td>
+									<td>80</td>
+									<td style="color: green;">正常</td>
+								</tr>
+								<tr>
+									<td>早饭前</td>
+									<td>6</td>
+									<td>80</td>
+									<td>130</td>
+									<td>80</td>
+									<td style="color: green;">正常</td>
+								</tr>
+								<tr>
+									<td>早饭后</td>
+									<td>6</td>
+									<td>80</td>
+									<td>130</td>
+									<td>80</td>
+									<td style="color: green;">正常</td>
+								</tr>
+								<tr>
+									<td>午餐前</td>
+									<td>6</td>
+									<td>80</td>
+									<td>130</td>
+									<td>80</td>
+									<td style="color: green;">正常</td>
+								</tr>
+								<tr>
+									<td>午餐后</td>
+									<td>6</td>
+									<td>80</td>
+									<td>130</td>
+									<td>80</td>
+									<td style="color: green;">正常</td>
+								</tr>
+								<tr>
+									<td>晚餐前</td>
+									<td>6</td>
+									<td>80</td>
+									<td>130</td>
+									<td>80</td>
+									<td style="color: green;">正常</td>
+								</tr>
+								<tr>
+									<td>晚餐后</td>
+									<td>6</td>
+									<td>80</td>
+									<td>130</td>
+									<td>80</td>
+									<td style="color: green;">正常</td>
+								</tr>
+								<tr>
+									<td>睡前</td>
+									<td>6</td>
+									<td>80</td>
+									<td>130</td>
+									<td>80</td>
+									<td style="color: green;">正常</td>
+								</tr>
+							</tbody>
+						</table>
+						<div style="display: flex;justify-content: center;flex-basis:100%">
+							<ul class="pagination">
+								<li>
+									<a href="#">&laquo;</a>
+								</li>
+								<li class="active">
+									<a href="#">2017-12-12</a>
+								</li>
+								<li>
+									<a href="#">2017-12-13</a>
+								</li>
+								<li>
+									<a href="#">2017-12-14</a>
+								</li>
+								<li>
+									<a href="#">2017-12-15</a>
+								</li>
+								<li>
+									<a href="#">2017-12-16</a>
+								</li>
+
+								<li>
+									<a href="#">&raquo;</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="whitebackground" style="width:98.5%;">
+						<div style='flex-basis: 100%;display: flex;justify-content: center;'>
+							<div style="display: flex;flex-basis: 95%;justify-content: flex-start;align-items: center;">
+								<button type="button" onclick="javascript:$('.allData').show();" class="hui-button hui-primary hui-fl" style="width: 20%;">显示全部数据</button>
+								<button type="button" onclick="javascript:$('.allData').hide();" class="hui-button hui-primary hui-fl" style="width: 20%;">折叠全部数据</button>
+							</div>
+						</div>
+						<div class='allData' style='flex-basis: 100%;display: none;flex;height:1px;background-color:#777;justify-content: center;margin: 10px 0px;'></div>
+						<table class="table table-striped allData" style="display: none;">
+							<thead>
+								<tr>
+									<th>日期</th>
+									<th>时间</th>
+									<th>血糖</th>
+									<th>心跳</th>
+									<th>高压</th>
+									<th>低压</th>
+									<th>状态</th>
+									<th>修改/删除</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>2017-12-12</td>
+									<td>清晨</td>
+									<td>6</td>
+									<td>80</td>
+									<td>130</td>
+									<td>80</td>
+									<td style="color: green;">正常</td>
+									<td>
+										<div style="display: flex;justify-content: center;align-items: center;flex-wrap: nowrap;">
+											<button type="button"  onclick="modify(this)" class="hui-button hui-primary hui-fl" style="height:25px;width: 50%;vertical-align:middle ; line-height:5px;">修改</button>
+											<button type="button" id='button0'onclick="delet(this)" class="hui-button hui-primary hui-fl" style="height:25px;width: 50%;vertical-align:middle ; line-height:5px;">删除</button>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>2017-12-12</td>
+									<td>早饭前</td>
+									<td>6</td>
+									<td>80</td>
+									<td>130</td>
+									<td>80</td>
+									<td style="color: green;">正常</td>
+									<td>
+										<div style="display: flex;justify-content: center;align-items: center;flex-wrap: nowrap;">
+											<button type="button"  onclick="modify(this)" class="hui-button hui-primary hui-fl" style="height:25px;width: 50%;vertical-align:middle ; line-height:5px;">修改</button>
+											<button type="button"id='button1' onclick="delet(this)" class="hui-button hui-primary hui-fl" style="height:25px;width: 50%;vertical-align:middle ; line-height:5px;">删除</button>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>2017-12-12</td>
+									<td>早饭后</td>
+									<td>6</td>
+									<td>80</td>
+									<td>130</td>
+									<td>80</td>
+									<td style="color: green;">正常</td>
+									<td>
+										<div style="display: flex;justify-content: center;align-items: center;flex-wrap: nowrap;">
+											<button type="button"  onclick="modify(this)" class="hui-button hui-primary hui-fl" style="height:25px;width: 50%;vertical-align:middle ; line-height:5px;">修改</button>
+											<button type="button" id='button2'onclick="delet(this)" class="hui-button hui-primary hui-fl" style="height:25px;width: 50%;vertical-align:middle ; line-height:5px;">删除</button>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>2017-12-13</td>
+									<td>清晨</td>
+									<td>6</td>
+									<td>80</td>
+									<td>130</td>
+									<td>80</td>
+									<td style="color: green;">正常</td>
+									<td>
+										<div style="display: flex;justify-content: center;align-items: center;flex-wrap: nowrap;">
+											<button type="button"  onclick="modify(this)" class="hui-button hui-primary hui-fl" style="height:25px;width: 50%;vertical-align:middle ; line-height:5px;">修改</button>
+											<button type="button" id='button3'onclick="delet(this)" class="hui-button hui-primary hui-fl" style="height:25px;width: 50%;vertical-align:middle ; line-height:5px;">删除</button>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+		<script type="text/javascript" src="js/hui.js" charset="UTF-8"></script>
+		<script src="js/hui-swipe.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/hui-water-fall.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/hui-refresh-load-more.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=thgDCOh7o3yI3xxQG8YmGi8toA9GCjhk"></script>
+		<script src="js/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript">
+			function delet(obj){
+				location.reload();
+			}
+			function modify(obj){
+				var data=$(obj).attr('id');
+				window.open('modify_exam.html'+"?msg="+data);
+			}
+			function openpage() {
+				window.open('add_exam.html');
+			}
+
+			var MONTHS = ["2017-12-12", "2017-12-13", "2017-12-14", "2017-12-15", "2017-12-16", "2017-12-17", "2017-12-18"];
+			var config1 = {
+				type: 'line',
+				data: {
+					labels: ["2017-12-12", "2017-12-13", "2017-12-14", "2017-12-15", "2017-12-16", "2017-12-17", "2017-12-18"],
+					datasets: [{
+						label: "高压",
+						backgroundColor: window.chartColors.red,
+						borderColor: window.chartColors.red,
+						data: [
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor()
+						],
+						fill: false,
+					}, {
+						label: "低压",
+						fill: false,
+						backgroundColor: window.chartColors.blue,
+						borderColor: window.chartColors.blue,
+						data: [
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor()
+						],
+					}]
+				},
+				options: {
+					responsive: true,
+					title: {
+						display: true,
+						text: '七天每日高低血压平均值'
+					},
+					tooltips: {
+						mode: 'index',
+						intersect: false,
+					},
+					hover: {
+						mode: 'nearest',
+						intersect: true
+					},
+					scales: {
+						xAxes: [{
+							display: true,
+							scaleLabel: {
+								display: true,
+								labelString: '每天'
+							}
+						}],
+						yAxes: [{
+							display: true,
+							scaleLabel: {
+								display: true,
+								labelString: '千帕'
+							}
+						}]
+					}
+				}
+			};
+			var config2 = {
+				type: 'line',
+				data: {
+					labels: ["2017-12-12", "2017-12-13", "2017-12-14", "2017-12-15", "2017-12-16", "2017-12-17", "2017-12-18"],
+					datasets: [{
+						label: "心跳",
+						backgroundColor: window.chartColors.yellow,
+						borderColor: window.chartColors.yellow,
+						data: [
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor()
+						],
+						fill: false,
+					}]
+				},
+				options: {
+					responsive: true,
+					title: {
+						display: true,
+						text: '七天每日心跳平均值'
+					},
+					tooltips: {
+						mode: 'index',
+						intersect: false,
+					},
+					hover: {
+						mode: 'nearest',
+						intersect: true
+					},
+					scales: {
+						xAxes: [{
+							display: true,
+							scaleLabel: {
+								display: true,
+								labelString: '每天'
+							}
+						}],
+						yAxes: [{
+							display: true,
+							scaleLabel: {
+								display: true,
+								labelString: '次数'
+							}
+						}]
+					}
+				}
+			};
+			var config3 = {
+				type: 'line',
+				data: {
+					labels: ["2017-12-12", "2017-12-13", "2017-12-14", "2017-12-15", "2017-12-16", "2017-12-17", "2017-12-18"],
+					datasets: [{
+						label: "血糖",
+						backgroundColor: window.chartColors.purple,
+						borderColor: window.chartColors.purple,
+						data: [
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor(),
+							randomScalingFactor()
+						],
+						fill: false,
+					}]
+				},
+				options: {
+					responsive: true,
+					title: {
+						display: true,
+						text: '七天每日血糖平均值'
+					},
+					tooltips: {
+						mode: 'index',
+						intersect: false,
+					},
+					hover: {
+						mode: 'nearest',
+						intersect: true
+					},
+					scales: {
+						xAxes: [{
+							display: true,
+							scaleLabel: {
+								display: true,
+								labelString: '每天'
+							}
+						}],
+						yAxes: [{
+							display: true,
+							scaleLabel: {
+								display: true,
+								labelString: '毫摩尔/升'
+							}
+						}]
+					}
+				}
+			};
+			var Chart1;
+			var Chart2;
+			var Chart3;
+			window.onload = function() {
+				var ctx1 = document.getElementById("canvas1").getContext("2d");
+				Chart1 = new Chart(ctx1, config1);
+				window.myLine = Chart1;
+				var ctx2 = document.getElementById("canvas2").getContext("2d");
+				Chart2 = new Chart(ctx2, config2);
+				window.myLine = Chart2
+				var ctx3 = document.getElementById("canvas3").getContext("2d");
+				Chart3 = new Chart(ctx3, config3);
+				window.myLine = Chart3;
+			};
+
+			var addData1_7 = true;
+			document.getElementById('addData1').addEventListener('click', function() {
+				if(addData1_7) {
+					$('#addData1').html('切换为7天数据');
+					for(var i = 0; i < 23; i++)
+						if(config1.data.datasets.length > 0) {
+							var month = MONTHS[config1.data.labels.length % MONTHS.length];
+							config1.data.labels.push(month);
+
+							config1.data.datasets.forEach(function(dataset) {
+								dataset.data.push(randomScalingFactor());
+								dataset.data.color = window.chartColors['blue'];
+							});
+							window.myLine = Chart1;
+							window.myLine.update();
+						}
+					addData1_7 = false;
+				} else {
+					$('#addData1').html('切换为30天数据');
+					for(var i = 0; i < 23; i++)
+						if(config1.data.datasets.length > 0) {
+							var month = MONTHS[config1.data.labels.length % MONTHS.length];
+							config1.data.labels.pop();
+
+							config1.data.datasets.forEach(function(dataset) {
+								dataset.data.pop();
+							});
+							window.myLine = Chart1;
+							window.myLine.update();
+						}
+					addData1_7 = true;
+				}
+			});
+
+			var addData2_7 = true;
+			document.getElementById('addData2').addEventListener('click', function() {
+				if(addData2_7) {
+					$('#addData2').html('切换为7天数据');
+					for(var i = 0; i < 23; i++)
+						if(config2.data.datasets.length > 0) {
+							var month = MONTHS[config2.data.labels.length % MONTHS.length];
+							config2.data.labels.push(month);
+
+							config2.data.datasets.forEach(function(dataset) {
+								dataset.data.push(randomScalingFactor());
+								dataset.data.color = window.chartColors['yellow'];
+							});
+							window.myLine = Chart2;
+							window.myLine.update();
+						}
+					addData2_7 = false;
+				} else {
+					$('#addData2').html('切换为30天数据');
+					for(var i = 0; i < 23; i++)
+						if(config2.data.datasets.length > 0) {
+							var month = MONTHS[config2.data.labels.length % MONTHS.length];
+							config2.data.labels.pop();
+
+							config2.data.datasets.forEach(function(dataset) {
+								dataset.data.pop();
+							});
+							window.myLine = Chart2;
+							window.myLine.update();
+						}
+					addData2_7 = true;
+				}
+
+			});
+
+			var addData3_7 = true;
+			document.getElementById('addData3').addEventListener('click', function() {
+				if(addData3_7) {
+					$('#addData3').html('切换为7天数据');
+					for(var i = 0; i < 23; i++)
+						if(config3.data.datasets.length > 0) {
+							var month = MONTHS[config3.data.labels.length % MONTHS.length];
+							config3.data.labels.push(month);
+
+							config3.data.datasets.forEach(function(dataset) {
+								dataset.data.push(randomScalingFactor());
+								dataset.data.color = window.chartColors['purple'];
+							});
+							window.myLine = Chart3;
+							window.myLine.update();
+						}
+					addData3_7 = false;
+				} else {
+					$('#addData3').html('切换为30天数据');
+					for(var i = 0; i < 23; i++)
+						if(config3.data.datasets.length > 0) {
+							var month = MONTHS[config3.data.labels.length % MONTHS.length];
+							config3.data.labels.pop();
+
+							config3.data.datasets.forEach(function(dataset) {
+								dataset.data.pop();
+							});
+							window.myLine = Chart3;
+							window.myLine.update();
+						}
+					addData3_7 = true;
+				}
+			});
+			var haveUser = false;
+
+			hui.plusReady(function() {
+				haveUser = check_user();
+				if(!haveUser) {
+					hui.toast('请先登录!');
+					window.open('login.html');
+				} else //在内存中有user_id
+				{
+					main();
+				}
+			});
+
+			function main() {
+
+			}
+
+			var meuns = ['一键呼救'];
+			var cancel = '关闭菜单';
+			var _str = '';
+
+			function getstr() {
+				return _str;
+			}
+
+			function setstr(str) {
+				_str = str;
+			}
+
+			function check_user() {
+				var userid = plus.storage.getItem('userid');
+				if(userid == null) return false;
+				else return true;
+				//return true;
+			}
+
+			hui('#yijianhujiu').click(function() {
+				if(!check_user()) {
+					hui.toast("请先登录！");
+					window.open('login.html');
+					return;
+				}
+				hui.actionSheet(meuns, cancel, function(e) {
+					if(e.index != -1)
+						hui.confirm('<div class="checkbox-wrap"><form id="form"> 您若出现以下症状，请点击该症状！<br /><br /> <input id="xiongmen" name="check" type="checkbox" value="0" /><label for="xiongmen">胸闷</label> <input id="huxi" name="check" type="checkbox" value="1" /><label for="huxi">呼吸不畅 </label> <input name="check" type="checkbox" id="shoushang" value="2" /><label for="shoushang">受伤 </label> <input name="check" type="checkbox" id="qichuan" value="3" /><label for="qichuan">气喘 </label> <input id="xinhuang" name="check" type="checkbox" value="4" /><label for="xinhuang">心慌 </label></form></div> ', ['取消', '确定'], function() {
+							var userid = {
+								User_id: plus.storage.getItem('userid')
+							};
+							setstr($('#form').serialize());
+							console.log("id:" + JSON.stringify(userid));
+							var url = "http://120.25.67.15/getUserById";
+							$.post(url, userid, function(text) {
+								var obj = text;
+								if(obj.success == 'true') {
+									hui.toast("发送中。。。");
+									var address = Array();
+									var geolocation = new BMap.Geolocation();
+									geolocation.getCurrentPosition(function(r) {
+										if(this.getStatus() == BMAP_STATUS_SUCCESS) {
+											var gc = new BMap.Geocoder();
+											gc.getLocation(r.point, function(rs) {
+												var addComp = rs.addressComponents;
+												address[0] = addComp.province;
+												address[1] = addComp.city;
+												address[2] = addComp.district + addComp.street + addComp.streetNumber; //获取地址
+												var arry = (getstr()).split('&');
+												var strarry = [];
+												var arryobj = {};
+												for(var i = 0; i < arry.length; i++) {
+													switch((arry[i].split('='))[1]) {
+														case '0':
+															strarry.push("胸闷")
+															break;
+														case '1':
+															strarry.push("呼吸不畅")
+															break;
+														case '2':
+															strarry.push("受伤")
+															break;
+														case '3':
+															strarry.push("气喘")
+															break;
+														case '4':
+															strarry.push("心慌")
+															break;
+													}
+												}
+												var disease = '';
+												for(var i = 0; i < strarry.length; i++) {
+													disease += strarry[i];
+												}
+												var ph_obj = {};
+												var content = address[0]; //省
+												var content1 = address[1]; //市
+												var content2 = address[2]; //地区
+												ph_obj.mobile = obj.User_phone;
+												ph_obj.text = "【健康老年APP】您家老人于" + content + "省" + content1 + "市" + content2 + "地区出现紧急情况：" + disease;
+												var em_obj = {};
+												em_obj.address = obj.User_email;
+												em_obj.title = '【健康老年APP】';
+												em_obj.content = ph_obj.text;
+												console.log("phone:" + JSON.stringify(ph_obj));
+												console.log("email:" + JSON.stringify(em_obj));
+
+												var url1 = "http://120.25.67.15/smsFunc";
+												$.post(url1, ph_obj, function(text) {
+													hui.toast("短信已发送!");
+												}).error(function() {
+													hui.toast('响应错误!');
+												});
+
+												var url2 = "http://120.25.67.15/emailFunc";
+												$.post(url2, em_obj, function(text) {
+													hui.toast("邮件已发送!");
+												}).error(function() {
+													hui.toast('响应错误!');
+												});
+
+												return true;
+											});
+										} else {
+											hui.toast('失败' + this.getStatus());
+										}
+									});
+								} else {
+									hui.toast('无该用户!');
+									plus.storage.removeItem('userid');
+									window.open('login.html');
+									return false;
+								}
+							}).error(function() {
+								hui.toast('响应错误!');
+								plus.storage.removeItem('userid');
+								window.open('login.html');
+								return false;
+							});
+						});
+				});
+			});
+		</script>
+	</body>
+
+</html>

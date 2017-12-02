@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>服药测试</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/hui.css" />
+		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+		<style type="text/css">
+			body,
+			html {
+				margin: 0;
+				padding: 0;
+				height: 100%;
+				background-color: #158dd2;
+			}
+			
+			.checkbox-wrap {
+				width: 100%;
+				position: relative;
+				margin: 0 auto;
+				top: 30%;
+				height: 40%;
+				background-color: white;
+			}
+			
+			input[type="checkbox"] {
+				/* width: 40px; */
+				/* height: 40px; */
+				/* -webkit-border-radius: 50%; */
+				display: none;
+			}
+			
+			input[type="checkbox"]+label {
+				display: inline-block;
+				width: 48%;
+				margin-top: 10px;
+				margin-left: 5px;
+				text-align: left;
+				-webkit-box-sizing: border-box;
+			}
+			
+			label::before {
+				content: "";
+				display: inline-block;
+				width: 30px;
+				height: 30px;
+				background: #EEE;
+				vertical-align: middle;
+				-webkit-border-radius: 50%;
+				margin-right: 5px;
+				-webkit-box-sizing: border-box;
+				-webkit-transition: background ease-in .5s
+			}
+			
+			input[type="checkbox"]:checked+label::before {
+				background-color: rgb(203, 58, 58);
+				border: 5px #EEEEEE solid;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<div style="float:left;height:100%;width: 13%;">
+			<div style="width:98%;">
+				<a style="text-decoration: none;" href="index.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-clone" id="btn1">&nbsp;主页</button></a>
+				<a style="text-decoration: none;" href="news.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-news" id="btn2">&nbsp;知识</button></a>
+				<a style="text-decoration: none;" href="search_symptom.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-search" id="btn3">&nbsp;症状</button></a>
+				<a style="text-decoration: none;" href="disease_seach.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-progress" id="btn7">&nbsp;疾病</button></a>
+				<a style="text-decoration: none;" href="fuyao.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-check" id="btn4">&nbsp;服药</button></a>
+				<a style="text-decoration: none;" href="personal.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-my" id="btn5">&nbsp;我的</button></a>
+				<a style="text-decoration: none;" href="exam.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-like" id="btn6">&nbsp;体检</button></a>
+			</div>
+		</div>
+
+		<div style="float:left;height:100%;width: 87%;background-color:#fff ;">
+			<div style="height:10%;background-color:#00c6ff ;">
+				<div style="height: 100%;width: 10%;float: left;">
+					<center>
+						<div style="color: #fff;align-self: center;font-size: larger;margin-top: 8px;">健康老年</div>
+					</center>
+				</div>
+
+				<div style="height: 100%;width: 15%;float: right;background-color: #CD0A0A;">
+					<center>
+						<div id="yijianhujiu" style="color: #fff;align-self: center;font-size: larger;margin-top: 8px;"><span class="glyphicon glyphicon-earphone" style="color: #fff;"></span> 一键呼救</div>
+					</center>
+				</div>
+
+			</div>
+			<div style="background:#F4F5F6;height:90%;overflow:scroll;">
+				<!--这里面是主要界面-->
+
+			</div>
+
+		</div>
+
+		<script type="text/javascript" src="js/hui.js" charset="UTF-8"></script>
+		<script src="js/hui-swipe.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/hui-water-fall.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/hui-refresh-load-more.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=thgDCOh7o3yI3xxQG8YmGi8toA9GCjhk"></script>
+		<script type="text/javascript">
+			
+			
+			
+			
+			function test_tip() {//测试函数
+				var str_username = '1';//用户名
+				var clockid_arry = [0, 1];//1,2号闹钟
+				fuyao_tip(str_username, clockid_arry);
+			}
+
+			function back(ret) {
+				console.log("fuyao_tip函数返回值:"+ret);
+			}
+
+			function fuyao_tip(username, clockid_arry) {
+				var json_obj_input = {};
+				if(!username) {
+					username = 'null';
+					json_obj_input = {
+						"User_id": username
+					};
+				} else
+					json_obj_input = {
+						"User_id": username
+					};
+				var url = "http://120.25.67.15/getClocks";
+				$.post(url, json_obj_input, function(text) {
+					var obj_arry = eval($.parseJSON(text));
+					var str_html = '';
+					try {
+						if(obj_arry.length == 0) throw "未查询到相关信息";
+						if(clockid_arry.length <= obj_arry.length) {
+							for(var i = 0; i < clockid_arry.length; i++) {
+								str_html += '<a style="color:#158dd2;">闹钟编号：' + obj_arry[clockid_arry[i]].clock_id + '</a>&nbsp;&nbsp;' + '<a style="color:#d33939;">药名：' + obj_arry[clockid_arry[i]].dName + '</a>&nbsp;&nbsp;<a style="color:#39d36f;">剂量：' + obj_arry[clockid_arry[i]].dDose + '</a><br>';
+							}
+						} else {
+							throw "越界";
+						}
+						hui.alert(str_html, '确认已服药', function() {
+							var ret = true;
+							back(ret);
+						});
+					} catch(err) {
+						if(err.toString().indexOf('undefined') >= 0) err = '数据未定义';
+						hui.alert('发生错误：' + err, '关闭', function() {
+							console.log(err);
+							var ret = false;
+							back(ret);
+						});
+					}
+				}).error(function(){hui.toast('响应错误!');});
+			}
+
+
+
+
+
+
+			var meuns = ['一键呼救'];
+			var cancel = '关闭菜单';
+			var _str = '';
+			
+			function getstr() {
+				return _str;
+			}
+
+			function setstr(str) {
+				_str = str;
+			}
+
+			function check_user() {
+				var userid = plus.storage.getItem('userid');
+				if(userid == null) return false;
+				else return true;
+			}
+
+			hui('#yijianhujiu').click(function() {
+				if(!check_user()) {
+					hui.toast("请先登录！");
+					window.open('login.html');
+					return;
+				}
+				hui.actionSheet(meuns, cancel, function(e) {
+					if(e.index != -1)
+						hui.confirm('<div class="checkbox-wrap"><form id="form"> 您若出现以下症状，请点击该症状！<br /><br /> <input id="xiongmen" name="check" type="checkbox" value="0" /><label for="xiongmen">胸闷</label> <input id="huxi" name="check" type="checkbox" value="1" /><label for="huxi">呼吸不畅 </label> <input name="check" type="checkbox" id="shoushang" value="2" /><label for="shoushang">受伤 </label> <input name="check" type="checkbox" id="qichuan" value="3" /><label for="qichuan">气喘 </label> <input id="xinhuang" name="check" type="checkbox" value="4" /><label for="xinhuang">心慌 </label></form></div> ', ['取消', '确定'], function() {
+							var userid = {
+								User_id: plus.storage.getItem('userid')
+							};
+							setstr($('#form').serialize());
+							console.log("id:" + JSON.stringify(userid));
+							var url = "http://120.25.67.15/getUserById";
+							$.post(url, userid, function(text) {
+								var obj =text;
+								if(obj.success == 'true') {
+									hui.toast("发送中。。。");
+									var address = Array();
+									var geolocation = new BMap.Geolocation();
+									geolocation.getCurrentPosition(function(r) {
+										if(this.getStatus() == BMAP_STATUS_SUCCESS) {
+											var gc = new BMap.Geocoder();
+											gc.getLocation(r.point, function(rs) {
+												var addComp = rs.addressComponents;
+												address[0] = addComp.province;
+												address[1] = addComp.city;
+												address[2] = addComp.district + addComp.street + addComp.streetNumber; //获取地址
+												var arry = (getstr()).split('&');
+												var strarry = [];
+												var arryobj = {};
+												for(var i = 0; i < arry.length; i++) {
+													switch((arry[i].split('='))[1]) {
+														case '0':
+															strarry.push("胸闷")
+															break;
+														case '1':
+															strarry.push("呼吸不畅")
+															break;
+														case '2':
+															strarry.push("受伤")
+															break;
+														case '3':
+															strarry.push("气喘")
+															break;
+														case '4':
+															strarry.push("心慌")
+															break;
+													}
+												}
+												var disease = '';
+												for(var i = 0; i < strarry.length; i++) {
+													disease += strarry[i];
+												}
+												var ph_obj = {};
+												var content = address[0]; //省
+												var content1 = address[1]; //市
+												var content2 = address[2]; //地区
+												ph_obj.mobile = obj.User_phone;
+												ph_obj.text = "【健康老年APP】您家老人于" + content + "省" + content1 + "市" + content2 + "地区出现紧急情况：" + disease;
+												var em_obj = {};
+												em_obj.address = obj.User_email;
+												em_obj.title = '【健康老年APP】';
+												em_obj.content = ph_obj.text;
+												console.log("phone:" + JSON.stringify(ph_obj));
+												console.log("email:" + JSON.stringify(em_obj));
+
+												var url1 = "http://120.25.67.15/smsFunc";
+												$.post(url1, ph_obj, function(text) {
+													hui.toast("短信已发送!");
+												}).error(function() {
+													hui.toast('响应错误!');
+												});
+
+												var url2 = "http://120.25.67.15/emailFunc";
+												$.post(url2, em_obj, function(text) {
+													hui.toast("邮件已发送!");
+												}).error(function() {
+													hui.toast('响应错误!');
+												});
+
+												return true;
+											});
+										} else {
+											hui.toast('失败' + this.getStatus());
+										}
+									});
+								} else {
+									hui.toast('无该用户!');
+									plus.storage.removeItem('userid');
+									window.open('login.html');
+									return false;
+								}
+							}).error(function() {
+								hui.toast('响应错误!');
+								plus.storage.removeItem('userid');
+								window.open('login.html');
+								return false;
+							});
+						});
+				});
+			});
+		</script>
+	</body>
+
+</html>
