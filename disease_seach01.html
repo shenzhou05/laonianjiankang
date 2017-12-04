@@ -8,7 +8,7 @@
 		<link rel="stylesheet" type="text/css" href="css/hui.css" />
 		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 		<script src="js/mui.min.js"></script>
-    	<link href="css/mui.min.css" rel="stylesheet"/>
+		<link href="css/mui.min.css" rel="stylesheet" />
 		<style type="text/css">
 			body,
 			html {
@@ -157,32 +157,36 @@
 			</div>
 			<div style="background:#F4F5F6;height:90%;overflow:scroll;">
 				<div class="hui-form-items" style="display: flex;justify-content: space-between;align-items: center;background-color: #fff;">
-					<div class="mui-input-row" style="margin-top:10px;" >
+					<div class="mui-input-row" style="margin-top:10px;">
 						<!--<input type="text" id="speek" class="mui-input-speech mui-input-clear" placeholder="bbbb">-->
-						<input class="mui-input-speech mui-input-clear" onblur="showfoot()" onclick="hidefoot()" type="search" id="searchKey" placeholder="请输入疾病关键字" width: 150%;background-color:#e7e7e7;height: 40px;border-radius: 5px;border: 1px solid #444;"/>
+						<input class="mui-input-speech mui-input-clear" onblur="showfoot()" onclick="hidefoot()" type="search" id="searchKey" placeholder="请输入疾病关键字" width: 150%;background-color:#e7e7e7;height: 40px;border-radius: 5px;border: 1px solid #444; "/>
 					</div>
-					<button onclick="searchNow()" type="button" id="submitBtn" class="hui-button hui-primary hui-fl" style="width: 30%;">搜索</button>
+					<button onclick="searchNow() " type="button " id="submitBtn " class="hui-button hui-primary hui-fl " style="width: 30%; ">搜索</button>
 				</div>
-				<div class="hui-wrap">
-					<div id="hui-hot-sreach">
-						<div id="hui-hot-sreach-title">热门搜索</div>
-						<div id="hui-hot-sreach-keys">
-							<a style="font-size: 20px;" href="javascript:hotSearch('糖尿病');">糖尿病</a>
-							<a style="font-size: 20px;" href="javascript:hotSearch('心律失常');">心律失常</a>
-							<a style="font-size: 20px;" href="javascript:hotSearch('垂体瘤');">垂体瘤</a>
-							<a style="font-size: 20px;" href="javascript:hotSearch('甲状腺结节');">甲状腺结节</a>
-							<a style="font-size: 20px;" href="javascript:hotSearch('冠心病');">冠心病</a>
-							<a style="font-size: 20px;" href="javascript:hotSearch('甲状腺癌');">甲状腺癌</a>
-							<a style="font-size: 20px;" href="javascript:hotSearch('甲状腺炎');">甲状腺炎</a>
-							<a style="font-size: 20px;" href="javascript:hotSearch('高血压');">高血压</a>
-							<a style="font-size: 20px;" href="javascript:hotSearch('垂体功能衰退');">垂体功能衰退</a>
-							<a style="font-size: 20px;" href="javascript:hotSearch('肾上腺皮质功能衰退');">肾上腺皮质功能衰退</a>
+				<div class="hui-wrap ">
+
+					<div id="hui-hot-sreach ">
+						<div id="hui-hot-sreach-title ">热门搜索</div>
+						<div id="hui-hot-sreach-keys ">
+							<a style="font-size: 20px; " href="javascript:hotSearch( '糖尿病'); ">糖尿病</a>
+							<a style="font-size: 20px; " href="javascript:hotSearch( '高血压'); ">高血压</a>
+							<a style="font-size: 20px; " href="javascript:hotSearch( '心动过缓'); ">心动过缓</a>
+							<a style="font-size: 20px; " href="javascript:hotSearch( '甲状腺结节'); ">甲状腺结节</a>
+							<a style="font-size: 20px; " href="javascript:hotSearch( '冠心病'); ">冠心病</a>
+							<a style="font-size: 20px; " href="javascript:hotSearch( '甲状腺癌'); ">甲状腺癌</a>
+							<a style="font-size: 20px; " href="javascript:hotSearch( '甲状腺炎'); ">甲状腺炎</a>
+							<a style="font-size: 20px; " href="javascript:hotSearch( '高血压'); ">高血压</a>
+							<a style="font-size: 20px; " href="javascript:hotSearch( '垂体功能衰退'); ">垂体功能衰退</a>
+							<a style="font-size: 20px; " href="javascript:hotSearch( '肾上腺皮质功能衰退'); ">肾上腺皮质功能衰退</a>
 						</div>
 					</div>
 				</div>
-				<div class="hui-content">
+				<div class="hui-content ">
+
 					<div id='jieguo'>
-						<div class="hui-center-title" style="margin-top:15px;">
+
+						<div class="hui-center-title " style="margin-top:15px; ">
+
 							<h1>搜索结果</h1></div>
 						<style>
 							#list2 li {
@@ -200,46 +204,56 @@
 								font-size: 14px;
 							}
 						</style>
-						<div class="hui-img-list" id="list2">
-							<ul id="list2UL">
+
+						<div class="hui-img-list " id="list2 ">
+							<ul id="list2UL ">
 							</ul>
 						</div>
-						<div style="height:50px;"></div>
+						<div style="height:50px; "></div>
 					</div>
+
 				</div>
+
 			</div>
 		</div>
 		</div>
-		<script type="text/javascript" src="js/hui.js" charset="UTF-8"></script>
-		<script src="js/hui-swipe.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/hui-water-fall.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/hui-refresh-load-more.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/jquery-2.1.1.min.js"></script>
-		<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=thgDCOh7o3yI3xxQG8YmGi8toA9GCjhk"></script>
-		<script type="text/javascript">
-			document.getElementById("searchKey").addEventListener('recognized',function (e){
-			this.value=e.detail.value.replace("。","");
-			this.value=e.detail.value.replace("？","");
+
+		<script type="text/javascript " src="js/hui.js " charset="UTF-8 "></script>
+		<script src="js/hui-swipe.js " type="text/javascript " charset="utf-8 "></script>
+		<script src="js/hui-water-fall.js " type="text/javascript " charset="utf-8 "></script>
+		<script src="js/hui-refresh-load-more.js " type="text/javascript " charset="utf-8 "></script>
+		<script src="js/jquery-2.1.1.min.js "></script>
+		<script type="text/javascript " src="http://api.map.baidu.com/getscript?v=2.0&ak=thgDCOh7o3yI3xxQG8YmGi8toA9GCjhk "></script>
+		<script type="text/javascript ">
+			document.getElementById('searchKey').addEventListener('recognized',function (e){
+			this.value=e.detail.value.replace("。 "," ");
+			this.value=e.detail.value.replace("？ "," ");
 			});
 			function change() {
-				hui.toast("施工中");
+				hui.toast("施工中 ");
 			}
+
 			function showfoot() {
 				hui('#hui-footer').show();
 			}
+
 			function hidefoot() {
+
 				hui('#hui-footer').hide();
 			}
+
 			document.getElementById('searchKey').addEventListener('keyup', function(e) {
 				if(e.keyCode == 13) {
+
 					searchNow();
 				}
 			});
+
 			function hotSearch(k) {
 				hui('#searchKey').val(k);
 				searchNow();
 			}
-			
+
 			function searchNow() {
 				document.activeElement.blur();
 				var kwd = hui('#searchKey').val();
@@ -249,9 +263,10 @@
 					return false;
 				}
 				hui.toast('搜索 ' + kwd);
-				var url = "http://120.25.67.15/getDieasesInfoByName";
-				$.post(url,{"Disease_name":kwd}, function(text) {
-				
+				var url = "http://120.25.67.15/getDieasesInfoByName ";
+				$.post(url,{
+						"Disease_name ": kwd
+					}, function(text) {
 					var dis_arry = eval($.parseJSON(text));
 					
 					try{
@@ -259,7 +274,7 @@
 					}catch(err){
 						hui.toast(err.toString());
 					}
-					var li=document.getElementById("list2UL");
+					var li=document.getElementById("list2UL ");
 					for(var i = 0; i < dis_arry.length; i++) {
 					li.innerHTML = '<div onclick="tiaozhuan() "><img lazySrc="img/ '+2+'.jpg " style="height=200px; " src="img/ '+2+'.jpg " class="hui-lazy " /><div class="hui-img-list-content "><h1>' + kwd + '</h1><p>'+dis_arry[i].Disease_cure+'</p></div></div>';
 					 hui(li).appendTo('#list2UL');
@@ -270,48 +285,61 @@
 				$('#list2UL').empty();
 				
 			}
+
 			function tiaozhuan() {
 				var kwd = hui('#searchKey').val();
 				var targetId = kwd;
                 var baseUrl = 'disease_seach2.html';
-                localStorage.setItem("targetId",kwd);
-                window.open('disease_seach2.html');
+
+                var url = mui.os.plus?baseUrl:baseUrl+'?targetId=' + targetId;  
+                 mui.openWindow({
+                 url: url,
+                  extras: {
+                  targetId: targetId
+                      }
+                    })
 				console.log('aa');
+				
 			}
+
 			var meuns = ['一键呼救'];
 			var cancel = '关闭菜单';
 			var _str = '';
+
 			function getstr() {
 				return _str;
 			}
+
 			function setstr(str) {
 				_str = str;
 			}
+
 			function check_user() {
 				var userid = plus.storage.getItem('userid');
 				if(userid == null) return false;
 				else return true;
 				//return true;
 			}
+
 			hui('#yijianhujiu').click(function() {
 				if(!check_user()) {
-					hui.toast("请先登录！");
+					hui.toast("请先登录！ ");
 					window.open('login.html');
 					return;
 				}
 				hui.actionSheet(meuns, cancel, function(e) {
 					if(e.index != -1)
-						hui.confirm('<div class="checkbox-wrap"><form id="form"> 您若出现以下症状，请点击该症状！<br /><br /> <input id="xiongmen" name="check" type="checkbox" value="0" /><label for="xiongmen">胸闷</label> <input id="huxi" name="check" type="checkbox" value="1" /><label for="huxi">呼吸不畅 </label> <input name="check" type="checkbox" id="shoushang" value="2" /><label for="shoushang">受伤 </label> <input name="check" type="checkbox" id="qichuan" value="3" /><label for="qichuan">气喘 </label> <input id="xinhuang" name="check" type="checkbox" value="4" /><label for="xinhuang">心慌 </label></form></div> ', ['取消', '确定'], function() {
+						hui.confirm('<div class="checkbox-wrap "><form id="form "> 您若出现以下症状，请点击该症状！<br /><br /> <input id="xiongmen " name="check " type="checkbox " value="0 " /><label for="xiongmen ">胸闷</label> <input id="huxi " name="check " type="checkbox " value="1 " /><label for="huxi ">呼吸不畅 </label> <input name="check " type="checkbox " id="shoushang " value="2 " /><label for="shoushang ">受伤 </label> <input name="check " type="checkbox " id="qichuan " value="3 " /><label for="qichuan ">气喘 </label> <input id="xinhuang " name="check " type="checkbox " value="4 " /><label for="xinhuang ">心慌 </label></form></div> ', ['取消', '确定'], function() {
 							var userid = {
 								User_id: plus.storage.getItem('userid')
 							};
 							setstr($('#form').serialize());
-							console.log("id:" + JSON.stringify(userid));
-							var url = "http://120.25.67.15/getUserById";
+							console.log("id: " + JSON.stringify(userid));
+							var url = "http://120.25.67.15/getUserById ";
 							$.post(url, userid, function(text) {
 								var obj = text;
 								if(obj.success == 'true') {
-									hui.toast("发送中。。。");
+									hui.toast("发送中。。。 ");
 									var address = Array();
 									var geolocation = new BMap.Geolocation();
 									geolocation.getCurrentPosition(function(r) {
@@ -328,19 +356,19 @@
 												for(var i = 0; i < arry.length; i++) {
 													switch((arry[i].split('='))[1]) {
 														case '0':
-															strarry.push("胸闷")
+															strarry.push("胸闷 ")
 															break;
 														case '1':
-															strarry.push("呼吸不畅")
+															strarry.push("呼吸不畅 ")
 															break;
 														case '2':
-															strarry.push("受伤")
+															strarry.push("受伤 ")
 															break;
 														case '3':
-															strarry.push("气喘")
+															strarry.push("气喘 ")
 															break;
 														case '4':
-															strarry.push("心慌")
+															strarry.push("心慌 ")
 															break;
 													}
 												}
@@ -353,25 +381,28 @@
 												var content1 = address[1]; //市
 												var content2 = address[2]; //地区
 												ph_obj.mobile = obj.User_phone;
-												ph_obj.text = "【健康老年APP】您家老人于" + content + "省" + content1 + "市" + content2 + "地区出现紧急情况：" + disease;
+												ph_obj.text = "【健康老年APP】您家老人于 " + content + "省 " + content1 + "市 " + content2 + "地区出现紧急情况： " + disease;
 												var em_obj = {};
 												em_obj.address = obj.User_email;
 												em_obj.title = '【健康老年APP】';
 												em_obj.content = ph_obj.text;
-												console.log("phone:" + JSON.stringify(ph_obj));
-												console.log("email:" + JSON.stringify(em_obj));
-												var url1 = "http://120.25.67.15/smsFunc";
+												console.log("phone: " + JSON.stringify(ph_obj));
+												console.log("email: " + JSON.stringify(em_obj));
+
+												var url1 = "http://120.25.67.15/smsFunc ";
 												$.post(url1, ph_obj, function(text) {
-													hui.toast("短信已发送!");
+													hui.toast("短信已发送! ");
 												}).error(function() {
 													hui.toast('响应错误!');
 												});
-												var url2 = "http://120.25.67.15/emailFunc";
+
+												var url2 = "http://120.25.67.15/emailFunc ";
 												$.post(url2, em_obj, function(text) {
-													hui.toast("邮件已发送!");
+													hui.toast("邮件已发送! ");
 												}).error(function() {
 													hui.toast('响应错误!');
 												});
+
 												return true;
 											});
 										} else {
@@ -395,4 +426,5 @@
 			});
 		</script>
 	</body>
+
 </html>

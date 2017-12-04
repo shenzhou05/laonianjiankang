@@ -413,7 +413,8 @@
 					"personal.html",
 					"exam.html",
 					"index.html",
-					"disease_seach.html"
+					"disease_seach.html",
+					"search_symptom.html"
 				],
 				"refer": [],
 				"priority": 0
@@ -627,7 +628,8 @@
 					"img/5.jpg",
 					"js/mui.min.js",
 					"css/mui.min.css",
-					"fonts/mui.ttf"
+					"fonts/mui.ttf",
+					"img/2.jpg"
 				],
 				"refer": [],
 				"priority": 0
