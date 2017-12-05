@@ -426,6 +426,28 @@
 				function selectSyptom(objj) {
 
 					//这里填剩下的数据交互
+					var targetId = objj.innerHTML;
+                var baseUrl = 'sym_search.html';
+                localStorage.setItem("targetId",objj.innerHTML);
+                window.open('sym_search.html');
+					console.log(objj.innerHTML);
+					var sym = objj.innerHTML;
+					var url = "http://120.25.67.15/getDieasesInfoBySym";
+				    $.post(url,{"Disease_symptom": sym }, function(text) {
+				
+					var dis_arry = eval($.parseJSON(text));
+					
+					try{
+						if(dis_arry.length == 0) throw "未查询到相关信息 ";
+						else window.open('sym_search.html');
+					}catch(err){
+						hui.toast(err.toString());
+					}
+					
+					
+				}).error(function() {
+					hui.toast('发生错误!');
+				});
 				}
 
 				function changeAllSymptom(SyptomArray) {

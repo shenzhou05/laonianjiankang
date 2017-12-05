@@ -659,7 +659,9 @@
 					"personal.html",
 					"login.html",
 					"index.html",
-					"fuyao.html"
+					"fuyao.html",
+					"disease_seach2.html",
+					"sym_search.html"
 				],
 				"refer": [],
 				"priority": 0
@@ -680,6 +682,22 @@
 					"disease_seach.html",
 					"login.html",
 					"index.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"sym_search.html": {
+				"resources": [
+					"disease_seach.html",
+					"search_symptom.html",
+					"css/hui.css",
+					"js/jquery-2.1.1.min.js",
+					"css/fonts/iconfont.woff",
+					"js/hui-water-fall.js",
+					"js/hui.js",
+					"fonts/glyphicons-halflings-regular.woff",
+					"js/hui-swipe.js",
+					"css/bootstrap.min.css"
 				],
 				"refer": [],
 				"priority": 0
