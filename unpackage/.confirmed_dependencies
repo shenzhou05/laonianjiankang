@@ -164,7 +164,10 @@
 			"img/4.12.jpg",
 			"css/slider.css",
 			"js/slider.js",
-			"css/htmleaf-demo.css"
+			"css/htmleaf-demo.css",
+			"img/b3.png",
+			"img/b6.png",
+			"img/b1.png"
 		],
 		"refer": [
 			"search_symptom.html",
@@ -215,7 +218,8 @@
 			"disease_seach.html",
 			"search_symptom.html",
 			"news.html",
-			"login.html"
+			"login.html",
+			"personal.html"
 		]
 	},
 	"edit_clock.html": {
@@ -300,7 +304,8 @@
 		],
 		"refer": [
 			"personal.html",
-			"index.html"
+			"index.html",
+			"news.html"
 		]
 	},
 	"personal.html": {
@@ -455,7 +460,9 @@
 			"fuyao.html",
 			"disease_seach2.html",
 			"search_symptom.html",
-			"news.html"
+			"news.html",
+			"personal.html",
+			"index.html"
 		]
 	},
 	"search_symptom.html": {
@@ -492,7 +499,8 @@
 			"disease_seach2.html",
 			"sym_search.html",
 			"news.html",
-			"fuyao.html"
+			"fuyao.html",
+			"personal.html"
 		]
 	},
 	"disease_seach2.html": {
