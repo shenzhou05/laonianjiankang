@@ -112,4 +112,3 @@ function huiSwipe(selector){
 	}
 }
 //补充一个函数解决旧版本的命名错误，使用 huiSwipe 可以删除本行
-function huiSwpie(selector){return new huiSwipe(selector);}

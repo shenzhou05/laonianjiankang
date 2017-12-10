@@ -70,7 +70,10 @@
 			"general.html",
 			"disease_seach.html",
 			"fuyao.html",
-			"search_symptom.html"
+			"search_symptom.html",
+			"news.html",
+			"personal.html",
+			"exam.html"
 		]
 	},
 	"general.html": {
@@ -152,9 +155,27 @@
 			"exam.html",
 			"search_symptom.html",
 			"disease_seach.html",
-			"disease_seach2.html"
+			"disease_seach2.html",
+			"img/1.12.jpg",
+			"img/6.12.jpg",
+			"img/5.12.jpg",
+			"img/3.12.jpg",
+			"img/2.12.jpg",
+			"img/4.12.jpg",
+			"css/slider.css",
+			"js/slider.js",
+			"css/htmleaf-demo.css"
 		],
-		"refer": []
+		"refer": [
+			"search_symptom.html",
+			"personal.html",
+			"login.html",
+			"disease_seach2.html",
+			"index.html",
+			"fuyao.html",
+			"exam.html",
+			"disease_seach.html"
+		]
 	},
 	"fuyao_tip.html": {
 		"resources": [
@@ -192,7 +213,9 @@
 		],
 		"refer": [
 			"disease_seach.html",
-			"search_symptom.html"
+			"search_symptom.html",
+			"news.html",
+			"login.html"
 		]
 	},
 	"edit_clock.html": {
@@ -240,7 +263,16 @@
 			"disease_seach.html",
 			"search_symptom.html"
 		],
-		"refer": []
+		"refer": [
+			"index.html",
+			"register.html",
+			"news.html",
+			"personal.html",
+			"search_symptom.html",
+			"exam.html",
+			"fuyao.html",
+			"disease_seach.html"
+		]
 	},
 	"register.html": {
 		"resources": [
@@ -266,7 +298,10 @@
 			"exam.html",
 			"index.html"
 		],
-		"refer": []
+		"refer": [
+			"personal.html",
+			"index.html"
+		]
 	},
 	"personal.html": {
 		"resources": [
@@ -291,7 +326,10 @@
 			"index.html"
 		],
 		"refer": [
-			"login.html"
+			"login.html",
+			"modify.html",
+			"index.html",
+			"news.html"
 		]
 	},
 	"modify.html": {
@@ -310,9 +348,14 @@
 			"fuyao.html",
 			"login.html",
 			"index.html",
-			"disease_seach.html"
+			"disease_seach.html",
+			"news.html"
 		],
-		"refer": []
+		"refer": [
+			"login.html",
+			"news.html",
+			"personal.html"
+		]
 	},
 	"exam.html": {
 		"resources": [
@@ -341,7 +384,8 @@
 			"search_symptom.html"
 		],
 		"refer": [
-			"login.html"
+			"login.html",
+			"personal.html"
 		]
 	},
 	"add_exam.html": {
@@ -410,7 +454,8 @@
 		"refer": [
 			"fuyao.html",
 			"disease_seach2.html",
-			"search_symptom.html"
+			"search_symptom.html",
+			"news.html"
 		]
 	},
 	"search_symptom.html": {
@@ -445,7 +490,9 @@
 		"refer": [
 			"disease_seach.html",
 			"disease_seach2.html",
-			"sym_search.html"
+			"sym_search.html",
+			"news.html",
+			"fuyao.html"
 		]
 	},
 	"disease_seach2.html": {
@@ -463,12 +510,14 @@
 			"fuyao.html",
 			"disease_seach.html",
 			"login.html",
-			"index.html"
+			"index.html",
+			"news.html"
 		],
 		"refer": [
 			"disease_seach.html",
 			"search_symptom.html",
-			"fuyao.html"
+			"fuyao.html",
+			"news.html"
 		]
 	},
 	"sym_search.html": {
@@ -482,11 +531,13 @@
 			"js/hui.js",
 			"fonts/glyphicons-halflings-regular.woff",
 			"js/hui-swipe.js",
-			"css/bootstrap.min.css"
+			"css/bootstrap.min.css",
+			"news.html"
 		],
 		"refer": [
 			"disease_seach.html",
-			"search_symptom.html"
+			"search_symptom.html",
+			"news.html"
 		]
 	}
 }

@@ -376,7 +376,16 @@
 					"exam.html",
 					"search_symptom.html",
 					"disease_seach.html",
-					"disease_seach2.html"
+					"disease_seach2.html",
+					"img/1.12.jpg",
+					"img/6.12.jpg",
+					"img/5.12.jpg",
+					"img/3.12.jpg",
+					"img/2.12.jpg",
+					"img/4.12.jpg",
+					"css/slider.css",
+					"js/slider.js",
+					"css/htmleaf-demo.css"
 				],
 				"refer": [],
 				"priority": 0
@@ -536,7 +545,8 @@
 					"fuyao.html",
 					"login.html",
 					"index.html",
-					"disease_seach.html"
+					"disease_seach.html",
+					"news.html"
 				],
 				"refer": [],
 				"priority": 0
@@ -681,7 +691,8 @@
 					"fuyao.html",
 					"disease_seach.html",
 					"login.html",
-					"index.html"
+					"index.html",
+					"news.html"
 				],
 				"refer": [],
 				"priority": 0
@@ -697,7 +708,8 @@
 					"js/hui.js",
 					"fonts/glyphicons-halflings-regular.woff",
 					"js/hui-swipe.js",
-					"css/bootstrap.min.css"
+					"css/bootstrap.min.css",
+					"news.html"
 				],
 				"refer": [],
 				"priority": 0
