@@ -404,7 +404,8 @@
 			"personal.html",
 			"index.html",
 			"news.html",
-			"disease_seach.html"
+			"disease_seach.html",
+			"add_exam.html"
 		]
 	},
 	"add_exam.html": {
@@ -431,7 +432,10 @@
 			"fuyao.html"
 		],
 		"refer": [
-			"exam.html"
+			"exam.html",
+			"news.html",
+			"fuyao.html",
+			"personal.html"
 		]
 	},
 	"modify_exam.html": {

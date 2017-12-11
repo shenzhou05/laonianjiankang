@@ -125,7 +125,7 @@
 						<div class="page-main whitebackground" style="padding: 0px;">
 							<input type="hidden" name="first_screen" value="30##150##50">
 							<div class="row" style="height: 104px;">
-								<label for="" class="label">您的心跳 <span class="number height-num" initial-value="10" value="50">88</span><span class="letter">下</span></label>
+								<label for="" class="label">您的心跳 <span id="heartBeat" class="number height-num" initial-value="10" value="50">88</span><span class="letter">下</span></label>
 								<div class="ruler ruler-height">
 									<div class="main" value="1">
 										<ul data-initial='true'>
@@ -151,7 +151,7 @@
 						<div class="page-main whitebackground" style="padding: 0px;">
 							<input type="hidden" name="first_screen" value="30##150##50">
 							<div class="row" style="height: 104px;">
-								<label for="" class="label">您的血糖 <span class="number width-num" initial-value="30" value="6" style="color: #9bd5a7;">6.0</span><span class="letter">毫摩尔/升</span></label>
+								<label for="" class="label">您的血糖 <span id="bloodSugar" class="number width-num" initial-value="30" value="6" style="color: #9bd5a7;">6.0</span><span class="letter">毫摩尔/升</span></label>
 								<div class="ruler ruler-xuetang" style="border-color: #9bd5a7;">
 									<div class="main" value="0" style="border-color: #9bd5a7;">
 										<ul data-initial='true' style="border-color: #9bd5a7;">
@@ -182,7 +182,7 @@
 							<input type="hidden" name="first_screen" value="30##150##50">
 
 							<div class="row">
-								<label for="" class="label">您的高压 <span class="number width-num" initial-value="8" value="120">120</span><span class="letter">千帕</span></label>
+								<label for="" class="label">您的高压 <span id="pressureHigh" class="number width-num" initial-value="8" value="120">120</span><span class="letter">千帕</span></label>
 								<div class="ruler ruler-weight">
 									<div class="main" value="0">
 										<ul data-initial='true'>
@@ -208,7 +208,7 @@
 							</div>
 
 							<div class="row">
-								<label for="" class="label">您的低压 <span class="number width-num" initial-value="8" value="70">70</span><span class="letter">千帕</span></label>
+								<label for="" class="label">您的低压 <span id="pressureLow" class="number width-num" initial-value="8" value="70">70</span><span class="letter">千帕</span></label>
 								<div class="ruler ruler-weight">
 									<div class="main" value="1">
 										<ul data-initial='true'>
@@ -268,8 +268,8 @@
 					<div style="display: flex;justify-content: flex-start;font-size: 20px;">提交数据：</div>
 					<div class="whitebackground">
 						<!--<div style="display: flex;justify-content:space-around;padding:28px; padding-top:0px;">-->
-							<button type="button" onclick="javascript:window.open('exam.html');" id="quxiao" class="hui-button hui-primary hui-fl" style="width: 30%;">取消</button>
-							<button type="button" id="submitBtn" class="hui-button hui-primary hui-fl" style="width: 30%;">确认提交</button>
+						<button type="button" onclick="javascript:window.open('exam.html');" id="quxiao" class="hui-button hui-primary hui-fl" style="width: 30%;">取消</button>
+						<button type="button" id="submitBtn" class="hui-button hui-primary hui-fl" style="width: 30%;">确认提交</button>
 						<!--</div>-->
 					</div>
 				</div>
@@ -283,6 +283,166 @@
 		<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=thgDCOh7o3yI3xxQG8YmGi8toA9GCjhk"></script>
 
 		<script type="text/javascript">
+			hui.plusReady(function() {
+				haveUser = check_user();
+				if(!haveUser) {
+					hui.toast('请先登录!');
+					window.open('login.html');
+				}
+			});
+
+			function CheckData() {
+				var bloodSugar = parseFloat($("#bloodSugar").text());
+				var heartBeat = parseInt($("#heartBeat").text());
+				var pressureLow = parseFloat($("#pressureLow").text());
+				var pressureHigh = parseFloat($("#pressureHigh").text());
+				var time = parseInt($("input[type='radio']:checked").val());
+				var res = "";
+				if(heartBeat < 60 || heartBeat > 100)
+					res += "心跳，";
+				if(pressureLow < 60 || pressureLow > 90)
+					res += "低压，";
+				if(pressureHigh < 100 || pressureHigh > 140)
+					res += "高压，";
+				switch(time) {
+					case 0:
+						if(bloodSugar < 2.0 || bloodSugar > 4.9)
+							res += "血糖，";
+						break;
+					case 1:
+						if(bloodSugar < 1.0 || bloodSugar > 4.9)
+							res += "血糖，";
+						break;
+					case 2:
+						if(bloodSugar < 8.0 || bloodSugar > 11.1)
+							res += "血糖，";
+						break;
+					case 3:
+						if(bloodSugar < 6.0 || bloodSugar > 9.0)
+							res += "血糖，";
+						break;
+					case 4:
+						if(bloodSugar < 8.0 || bloodSugar > 11.1)
+							res += "血糖，";
+						break;
+					case 5:
+						if(bloodSugar < 6.0 || bloodSugar > 9.0)
+							res += "血糖，";
+						break;
+					case 6:
+						if(bloodSugar < 8.0 || bloodSugar > 11.1)
+							res += "血糖，";
+						break;
+					case 7:
+						if(bloodSugar < 5.0 || bloodSugar > 9.0)
+							res += "血糖，";
+						break;
+				}
+				res = res.substring(0, res.length - 1);
+				//console.log(res);
+				return res;
+			}
+
+			function getHeartBeat() {
+				return $("#heartBeat").text();
+			}
+
+			function getPressureLow() {
+				return $("#pressureLow").text();
+			}
+
+			function getPressureHigh() {
+				return $("#pressureHigh").text();
+			}
+
+			function getBloodSugar() {
+				return $("#bloodSugar").text();
+			}
+
+			function submit() {
+				var url = "http://120.25.67.15/addPE";
+				var userid = plus.storage.getItem('userid');
+				var userPE = {
+					Huser_height: '',
+					Huser_weight: '',
+					Hblood_sugar: $("#bloodSugar").text(),
+					Hblood_fat: '',
+					Heart_rate: $("#heartBeat").text(),
+					Hcholesterol_ester: '',
+					Htriglyceride: '',
+					Hdiastolic_pressure: $("#pressureLow").text(),
+					Hsystolic_pressure: $("#pressureHigh").text(),
+					Hear_temperature: '',
+					Hrecording_time: $("input[type='radio']:checked").val(),
+					Htotal_cholesterol: '',
+					Huser_id: userid
+				};
+				//console.log(JSON.stringify(userPE));
+				$.post(url, userPE, function(text) {
+					if(text instanceof Object) {
+						hui.toast('数据异常！');
+						return false;
+					} else {
+						var obj = JSON.parse(text);
+						if(obj.success == "true") {
+							hui.toast('提交成功！');
+
+							function getIssue() {
+								return issue;
+							}
+							var issue = CheckData();
+							if(issue != "") { //不正常
+								hui.confirm('您的<span style="color:#ff0000">' + issue + '</span>不正常，是否发送短信？', ['取消', '确定'], function() {
+									var url = "http://120.25.67.15/smsFunc";
+									var finiStr = "【健康老年APP】体检数据：您家老人以下体检数据超标！ ";
+									var strIssue = getIssue();
+									strIssue = strIssue.split('，');
+									for(var i = 0; i < strIssue.length; i++) {
+										if(strIssue[i] == "心跳") {
+											finiStr = finiStr + "心跳为" + getHeartBeat() + "，";
+										} else if(strIssue[i] == "低压") {
+											finiStr = finiStr + "低压为" + getPressureLow() + "，";
+										} else if(strIssue[i] == "高压") {
+											finiStr = finiStr + "高压为" + getPressureHigh() + "，";
+										} else {
+											finiStr = finiStr + "血糖为" + getBloodSugar() + "，";
+										}
+									}
+									finiStr = finiStr.substring(0, finiStr.length - 1);
+									//console.log(finiStr);
+									$.post(url, {
+										mobile: getPhone(),
+										text: finiStr
+									}, function(text) {
+										hui.toast("短信已发送!");
+										window.open("exam.html");
+									}).error(function() {
+										hui.toast('响应错误!');
+									});
+
+								}, function() {
+									window.open("exam.html"); //取消
+								});
+							} else {
+								window.open("exam.html"); //正常
+							}
+							return true;
+						} else {
+							hui.toast('已经提交过了！');
+							return false;
+						}
+					}
+				}).error(function() {
+					hui.toast('响应错误!');
+					return false;
+				});
+			}
+
+			$("#submitBtn").click(function() {
+				submit();
+			});
+
+			var userPhone = '';
 			var meuns = ['一键呼救'];
 			var cancel = '关闭菜单';
 			var _str = '';
@@ -295,11 +455,37 @@
 				_str = str;
 			}
 
+			function setPhone(phone) {
+				userPhone = phone;
+			}
+
+			function getPhone(phone) {
+				return userPhone;
+			}
+
 			function check_user() {
 				var userid = plus.storage.getItem('userid');
 				if(userid == null) return false;
-				else return true;
-				//return true;
+				else {
+					var url = "http://120.25.67.15/getUserById";
+					$.post(url, {
+						User_id: userid
+					}, function(text) {
+						var obj = text;
+						if(obj.success == 'true') {
+							setPhone(obj.User_phone);
+							return true;
+						} else {
+							return false;
+						}
+					}).error(function() {
+						hui.toast('响应错误!');
+						plus.storage.removeItem('userid');
+						window.open("login.html");
+						return false;
+					});
+					return true;
+				}
 			}
 
 			hui('#yijianhujiu').click(function() {
