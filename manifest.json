@@ -451,7 +451,8 @@
 					"js/bootstrap.min.js",
 					"img/glyphicons-halflings.png",
 					"personal.html",
-					"search_symptom.html"
+					"search_symptom.html",
+					"exam.html"
 				],
 				"refer": [],
 				"priority": 0
@@ -527,7 +528,9 @@
 					"img/touxiang.jpg",
 					"modify.html",
 					"exam.html",
-					"index.html"
+					"index.html",
+					"img/avatar5.png",
+					"disease_seach.html"
 				],
 				"refer": [],
 				"priority": 0
@@ -642,7 +645,16 @@
 					"js/mui.min.js",
 					"css/mui.min.css",
 					"fonts/mui.ttf",
-					"img/2.jpg"
+					"img/2.jpg",
+					"img/b14.png",
+					"img/b2.png",
+					"img/b5.png",
+					"img/b8.png",
+					"img/b7.png",
+					"img/b4.png",
+					"img/b16.png",
+					"img/b10.png",
+					"img/b9.png"
 				],
 				"refer": [],
 				"priority": 0

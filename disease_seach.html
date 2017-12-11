@@ -159,7 +159,7 @@
 				<div class="hui-form-items" style="display: flex;justify-content: space-between;align-items: center;background-color: #fff;">
 					<div class="mui-input-row" style="margin-top:10px;" >
 						<!--<input type="text" id="speek" class="mui-input-speech mui-input-clear" placeholder="bbbb">-->
-						<input class="mui-input-speech mui-input-clear" onblur="showfoot()" onclick="hidefoot()" type="search" id="searchKey" placeholder="请输入疾病关键字" width: 150%;background-color:#e7e7e7;height: 40px;border-radius: 5px;border: 1px solid #444;"/>
+						<input class="mui-input-speech mui-input-clear" onblur="showfoot()" onclick="hidefoot()" type="search" id="searchKey" placeholder="请输入疾病关键字" style="background-color:#e7e7e7;height: 40px;border-radius: 5px;border: 1px solid #444;"/>
 					</div>
 					<button onclick="searchNow()" type="button" id="submitBtn" class="hui-button hui-primary hui-fl" style="width: 30%;">搜索</button>
 				</div>
@@ -201,7 +201,7 @@
 							}
 						</style>
 						<div class="hui-img-list" id="list2">
-							<ul id="list2UL">
+							<ul id="list2UL" style="display: flex;flex-wrap: wrap;justify-content:flex-start;">
 							</ul>
 						</div>
 						<div style="height:50px;"></div>
@@ -217,10 +217,6 @@
 		<script src="js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=thgDCOh7o3yI3xxQG8YmGi8toA9GCjhk"></script>
 		<script type="text/javascript">
-			document.getElementById("searchKey").addEventListener('recognized',function (e){
-			this.value=e.detail.value.replace("。","");
-			this.value=e.detail.value.replace("？","");
-			});
 			function change() {
 				hui.toast("施工中");
 			}
@@ -239,10 +235,25 @@
 				hui('#searchKey').val(k);
 				searchNow();
 			}
-			
+			MouseDown = function(event){
+				console.log("coming");
+				console.log(event.target.innerText);
+				if(event.target.tagName == "H1" ){
+					console.log("---coming");
+            		var disease_name = event.target.innerText;
+            		var targetId = disease_name;
+                	var baseUrl = 'disease_seach2.html';
+               	 	localStorage.setItem("targetId",disease_name);
+                	window.open('disease_seach2.html');	
+              }
+        	}
 			function searchNow() {
 				document.activeElement.blur();
 				var kwd = hui('#searchKey').val();
+				kwd=kwd.replace('。','');
+				kwd=kwd.replace('？','');
+				kwd=kwd.replace('，','');
+				kwd=kwd.replace('、','');
 				kwd = kwd.trim();
 				if(kwd.length < 2) {
 					hui.toast('关键字至少2个字符');
@@ -251,7 +262,7 @@
 				hui.toast('搜索 ' + kwd);
 				var url = "http://120.25.67.15/getDieasesInfoByName";
 				$.post(url,{"Disease_name":kwd}, function(text) {
-				
+					
 					var dis_arry = eval($.parseJSON(text));
 					
 					try{
@@ -259,25 +270,49 @@
 					}catch(err){
 						hui.toast(err.toString());
 					}
-					var li=document.getElementById("list2UL");
+					var disease_list = document.getElementById("list2UL");
+					//var li = document.getElementById("list2UL");
 					for(var i = 0; i < dis_arry.length; i++) {
-					li.innerHTML = '<div onclick="tiaozhuan() "><img lazySrc="img/ '+2+'.jpg " style="height=200px; " src="img/ '+2+'.jpg " class="hui-lazy " /><div class="hui-img-list-content "><h1>' + kwd + '</h1><p>'+dis_arry[i].Disease_cure+'</p></div></div>';
-					 hui(li).appendTo('#list2UL');
-				}
+						var disease_name = dis_arry[i].Disease_name;
+						var li = document.createElement("div");
+						$(li).css('flex-basis','49%');
+						$(li).css('margin','3px');
+						li.innerHTML = '<img lazySrc="img/b'+dis_arry[i].Disease_id+'.png" src="img/b'+dis_arry[i].Disease_id+'.png" class="hui-lazy " /><div class="hui-img-list-content "style="height:150px;"><h1>' + disease_name + '</h1><p>'+dis_arry[i].Disease_cure+'</p></div>';	 	
+					 	li.addEventListener("mousedown",MouseDown);
+					 	//$(li).appendTo($list2UL);
+					 	$('#list2UL').append(li);
+					 	//disease_list.appendChild(li);
+					}
 				}).error(function() {
 					hui.toast('发生错误!');
 				});
 				$('#list2UL').empty();
 				
 			}
-			function tiaozhuan() {
-				var kwd = hui('#searchKey').val();
+
+			
+			//document.addEventListener("mousedown",MouseDown)
+			
+
+			function tiaozhuan(kwd) {
+				//console.log(kwd);
+				
 				var targetId = kwd;
                 var baseUrl = 'disease_seach2.html';
                 localStorage.setItem("targetId",kwd);
                 window.open('disease_seach2.html');
 				console.log('aa');
 			}
+			function tiaozhuan() {
+				var kwd = hui('#searchKey').val();
+				//console.log(kwd);
+				var targetId = kwd;
+                var baseUrl = 'disease_seach2.html';
+                localStorage.setItem("targetId",kwd);
+                window.open('disease_seach2.html');
+				console.log('aa');
+			}
+
 			var meuns = ['一键呼救'];
 			var cancel = '关闭菜单';
 			var _str = '';

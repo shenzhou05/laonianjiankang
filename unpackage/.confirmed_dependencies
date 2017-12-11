@@ -219,7 +219,9 @@
 			"search_symptom.html",
 			"news.html",
 			"login.html",
-			"personal.html"
+			"personal.html",
+			"index.html",
+			"edit_clock.html"
 		]
 	},
 	"edit_clock.html": {
@@ -242,9 +244,13 @@
 			"js/bootstrap.min.js",
 			"img/glyphicons-halflings.png",
 			"personal.html",
-			"search_symptom.html"
+			"search_symptom.html",
+			"exam.html"
 		],
-		"refer": []
+		"refer": [
+			"fuyao.html",
+			"exam.html"
+		]
 	},
 	"login.html": {
 		"resources": [
@@ -328,13 +334,18 @@
 			"img/touxiang.jpg",
 			"modify.html",
 			"exam.html",
-			"index.html"
+			"index.html",
+			"img/avatar5.png",
+			"disease_seach.html"
 		],
 		"refer": [
 			"login.html",
 			"modify.html",
 			"index.html",
-			"news.html"
+			"news.html",
+			"fuyao.html",
+			"exam.html",
+			"disease_seach.html"
 		]
 	},
 	"modify.html": {
@@ -390,7 +401,10 @@
 		],
 		"refer": [
 			"login.html",
-			"personal.html"
+			"personal.html",
+			"index.html",
+			"news.html",
+			"disease_seach.html"
 		]
 	},
 	"add_exam.html": {
@@ -454,7 +468,16 @@
 			"js/mui.min.js",
 			"css/mui.min.css",
 			"fonts/mui.ttf",
-			"img/2.jpg"
+			"img/2.jpg",
+			"img/b14.png",
+			"img/b2.png",
+			"img/b5.png",
+			"img/b8.png",
+			"img/b7.png",
+			"img/b4.png",
+			"img/b16.png",
+			"img/b10.png",
+			"img/b9.png"
 		],
 		"refer": [
 			"fuyao.html",
@@ -500,7 +523,8 @@
 			"sym_search.html",
 			"news.html",
 			"fuyao.html",
-			"personal.html"
+			"personal.html",
+			"exam.html"
 		]
 	},
 	"disease_seach2.html": {
