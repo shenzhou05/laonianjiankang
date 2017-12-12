@@ -66,18 +66,21 @@
 				background-color: rgb(203, 58, 58);
 				border: 5px #EEEEEE solid;
 			}
-			.whitebackground{
+			
+			.whitebackground {
 				background-color: #fff;
 				margin: 5px;
-				border:1px solid #595959;
-				margin-top:10px;
-				padding:5px;
+				border: 1px solid #595959;
+				margin-top: 10px;
+				padding: 5px;
 				display: flex;
-				border-radius:8px;
+				border-radius: 8px;
 				justify-content: space-between;
 				flex-wrap: wrap;
 				align-items: center;
-			}.whitebackgroundbig {
+			}
+			
+			.whitebackgroundbig {
 				background-color: #fdfdfd;
 				margin: 5px;
 				border: 1px solid #595959;
@@ -123,47 +126,48 @@
 			</div>
 			<div style="display:flex;justify-content:center;background:#F4F5F6;height:90%;overflow:scroll;">
 				<!--这里面是主要界面-->
-				<div class="hui-wrap" style="width:90%;overflow:scroll;" >
+				<div class="hui-wrap" style="width:90%;overflow:scroll;">
 					<div class='whitebackgroundbig'>
-					<div class="hui-media-list" style="background:#FFFFFF; margin-top:28px;border:1px solid #595959;border-radius:8px;margin: 10px;">
-						<ul>
-							<li style="margin:0px; padding:8px;">
+						<div class="hui-media-list" style="background:#FFFFFF; margin-top:28px;border:1px solid #595959;border-radius:8px;margin: 10px;">
+							<ul>
+								<li style="margin:0px; padding:8px;">
 
-								<div class="hui-media-list-img"><img src="img/avatar5.png" /></div>
-								<div class="hui-media-content">
-									<h1>用户：<span id='username'>null</span>欢迎您。</h1>
-								</div>
+									<div class="hui-media-list-img"><img src="img/avatar5.png" /></div>
+									<div class="hui-media-content">
+										<h1>用户：<span id='username'>null</span>欢迎您。</h1>
+									</div>
 
-							</li>
-						</ul>
+								</li>
+							</ul>
+						</div>
+						<div class="hui-list" style="background:#FFFFFF; margin-top:28px;border:1px solid #595959;border-radius:8px;margin: 10px;">
+							<ul>
+								<li>
+									<a href="javascript:hui.toast('施工中...');" class="hui-arrow hui-icons hui-icons-help">&nbsp;&nbsp;查看帮助</a>
+								</li>
+								<li>
+									<a href="javascript:hui.toast('施工中...');" class="hui-arrow hui-icons hui-icons-forum">&nbsp;&nbsp;我的话题</a>
+								</li>
+								<li>
+									<a href="javascript:hui.toast('施工中...');" class="hui-arrow hui-icons hui-icons-write">&nbsp;&nbsp;意见反馈</a>
+								</li>
+								<li>
+									<a href="javascript:hui.toast('施工中...');" class="hui-arrow hui-icons hui-icons-nav">&nbsp;&nbsp;更多功能</a>
+								</li>
+							</ul>
+						</div>
+						<div class="hui-list" style="background:#FFFFFF; margin-top:28px;border:1px solid #595959;border-radius:8px;margin: 10px;">
+							<ul>
+								<li>
+									<a onclick="xiugaixinxi()" class="hui-icons hui-icons-msg">&nbsp;&nbsp;修改信息</a>
+								</li>
+								<li>
+									<a onclick="tuichudenglu()" class="hui-icons hui-icons-logoff">&nbsp;&nbsp;退出登录</a>
+								</li>
+							</ul>
+						</div>
 					</div>
-					<div class="hui-list" style="background:#FFFFFF; margin-top:28px;border:1px solid #595959;border-radius:8px;margin: 10px;">
-						<ul>
-							<li>
-								<a href="javascript:hui.toast('施工中...');" class="hui-arrow hui-icons hui-icons-help">&nbsp;&nbsp;关于我们</a>
-							</li>
-							<li>
-								<a href="javascript:hui.toast('施工中...');" class="hui-arrow hui-icons hui-icons-forum">&nbsp;&nbsp;我的话题</a>
-							</li>
-							<li>
-								<a href="javascript:hui.toast('施工中...');" class="hui-arrow hui-icons hui-icons-write">&nbsp;&nbsp;意见反馈</a>
-							</li>
-							<li>
-								<a href="javascript:hui.toast('施工中...');" class="hui-arrow hui-icons hui-icons-nav">&nbsp;&nbsp;更多功能</a>
-							</li>
-						</ul>
-					</div>
-					<div class="hui-list" style="background:#FFFFFF; margin-top:28px;border:1px solid #595959;border-radius:8px;margin: 10px;">
-						<ul>
-							<li>
-								<a onclick="xiugaixinxi()" class="hui-icons hui-icons-msg">&nbsp;&nbsp;修改信息</a>
-							</li>
-							<li>
-								<a onclick="tuichudenglu()" class="hui-icons hui-icons-logoff">&nbsp;&nbsp;退出登录</a>
-							</li>
-						</ul>
-					</div>
-				</div></div>
+				</div>
 			</div>
 		</div>
 
@@ -177,6 +181,7 @@
 		<script src="js/hui-water-fall.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/hui-refresh-load-more.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/hui-form.js" type="text/javascript" charset="utf-8"></script>
+		<script src="http://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.js"></script>
 		<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=thgDCOh7o3yI3xxQG8YmGi8toA9GCjhk"></script>
 		<script type="text/javascript">
 			var haveUser = false;
@@ -196,9 +201,10 @@
 					var url = "http://120.25.67.15/getUserById";
 
 					$.post(url, userid, function(text) {
-						var obj =text;
+						var obj = text;
 						if(obj.success == 'true') {
 							userName = obj.User_name;
+							setEmail(obj.User_email);
 							cancontune = true;
 							update();
 							return true;
@@ -225,20 +231,66 @@
 
 			function tuichudenglu() {
 				if(cancontune && haveUser && userName != null) {
-					hui.toast('ok');
+					hui.toast('已退出！');
 					plus.storage.removeItem('userid');
 					window.open('login.html');
 				}
 			}
 
+			var email = '';
+
+			function setEmail(str) {
+				email = str;
+			}
+
+			function getEmail() {
+				return email;
+			}
+			var wrongTimes = 0;
+
+			function setWrongTimes() {
+				wrongTimes = wrongTimes + 1;
+			}
+
+			function getWrongTimes() {
+				return wrongTimes;
+			}
+
 			function xiugaixinxi() {
-				window.open('modify.html');
+				if(getWrongTimes() >= 5) {
+					hui.toast('请重新登录！');
+					plus.storage.removeItem('userid');
+					window.open('login.html');
+					return;
+				}
+				hui.prompt('身份验证：请输入您的密码', ['取消', '确定'], function(pwd) {
+					var password = md5(pwd);
+					var url = "http://120.25.67.15/login";
+					$.post(url, {
+						User_email: getEmail(),
+						User_password: password
+					}, function(text) {
+						var obj = $.parseJSON(text);
+						if(obj.success == 'true') {
+							hui.toast('验证成功！');
+							window.open('modify.html');
+							return true;
+						} else {
+							setWrongTimes();
+							hui.toast('密码输入错误！您还有' + (5 - getWrongTimes()) + '次机会');
+							return false;
+						}
+					}).error(function() {
+						hui.toast('响应错误!');
+						return false;
+					});
+				}, '密码');
 			}
 
 			var meuns = ['一键呼救'];
 			var cancel = '关闭菜单';
 			var _str = '';
-			
+
 			function getstr() {
 				return _str;
 			}
@@ -259,8 +311,8 @@
 					window.open('login.html');
 					return;
 				}
-				hui.actionSheet(meuns, cancel, function(e) {
-					if(e.index != -1)
+				//hui.actionSheet(meuns, cancel, function(e) {
+					//if(e.index != -1)
 						hui.confirm('<div class="checkbox-wrap"><form id="form"> 您若出现以下症状，请点击该症状！<br /><br /> <input id="xiongmen" name="check" type="checkbox" value="0" /><label for="xiongmen">胸闷</label> <input id="huxi" name="check" type="checkbox" value="1" /><label for="huxi">呼吸不畅 </label> <input name="check" type="checkbox" id="shoushang" value="2" /><label for="shoushang">受伤 </label> <input name="check" type="checkbox" id="qichuan" value="3" /><label for="qichuan">气喘 </label> <input id="xinhuang" name="check" type="checkbox" value="4" /><label for="xinhuang">心慌 </label></form></div> ', ['取消', '确定'], function() {
 							var userid = {
 								User_id: plus.storage.getItem('userid')
@@ -269,7 +321,7 @@
 							console.log("id:" + JSON.stringify(userid));
 							var url = "http://120.25.67.15/getUserById";
 							$.post(url, userid, function(text) {
-								var obj =text;
+								var obj = text;
 								if(obj.success == 'true') {
 									hui.toast("发送中。。。");
 									var address = Array();
@@ -354,7 +406,7 @@
 								return false;
 							});
 						});
-				});
+				//});
 			});
 		</script>
 	</body>

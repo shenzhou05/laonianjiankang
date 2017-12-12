@@ -153,15 +153,15 @@
 									<div class="carousel-caption">老年人应该在何处居住？</div>
 								</div>
 								<div class="item">
-									<img id="2" onclick="tiaozhuan(this)"  style="width: 100%;height: 250px;"src="img/2.12.jpg" alt="Second slide">
+									<img id="2" onclick="tiaozhuan(this)" style="width: 100%;height: 250px;" src="img/2.12.jpg" alt="Second slide">
 									<div class="carousel-caption">老年人怎样预防病治疗褥疮和量体温呢？</div>
 								</div>
 								<div class="item">
-									<img id="3" onclick="tiaozhuan(this)"  style="width: 100%;height: 250px;"src="img/3.12.jpg" alt="Third slide">
+									<img id="3" onclick="tiaozhuan(this)" style="width: 100%;height: 250px;" src="img/3.12.jpg" alt="Third slide">
 									<div class="carousel-caption">怎样完成老年人的自我卫生和如厕需要？</div>
 								</div>
 								<div class="item">
-									<img id="4" onclick="tiaozhuan(this)"  style="width: 100%;height: 250px;"src="img/4.12.jpg" alt="Fourth slide">
+									<img id="4" onclick="tiaozhuan(this)" style="width: 100%;height: 250px;" src="img/4.12.jpg" alt="Fourth slide">
 									<div class="carousel-caption">老年人可以做哪些运动？</div>
 								</div>
 							</div>
@@ -197,7 +197,7 @@
 		<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=thgDCOh7o3yI3xxQG8YmGi8toA9GCjhk"></script>
 		<script type="text/javascript">
 			var haveUser = false;
-			
+
 			hui.plusReady(function() {
 				haveUser = check_user();
 				if(!haveUser) {
@@ -288,8 +288,9 @@
 							var Acontent = encodeURI(text[i].Acontent);
 							var Apush_date = encodeURI(text[i].Apush_date);
 							var str = 'Article.html?Atitle=' + Atitle + '&Alabel=' + Alabel + '&Asource=' + Asource + '&Acontent=' + Acontent + '&Apush_date=' + Apush_date;
-							$("#zhuanshu").append(								
-							'<li>\
+							if(text[i].Disease_id != 0)
+								$("#zhuanshu").append(
+									'<li>\
 								<a href="' + str + '">\
 									<div class="hui-media-list-img"><img src="img/b' + text[i].Disease_id + '.png" /></div>\
 									<div class="hui-media-content-left">\
@@ -335,8 +336,8 @@
 					window.open('login.html');
 					return;
 				}
-				hui.actionSheet(meuns, cancel, function(e) {
-					if(e.index != -1)
+				//hui.actionSheet(meuns, cancel, function(e) {
+					//if(e.index != -1)
 						hui.confirm('<div class="checkbox-wrap"><form id="form"> 您若出现以下症状，请点击该症状！<br /><br /> <input id="xiongmen" name="check" type="checkbox" value="0" /><label for="xiongmen">胸闷</label> <input id="huxi" name="check" type="checkbox" value="1" /><label for="huxi">呼吸不畅 </label> <input name="check" type="checkbox" id="shoushang" value="2" /><label for="shoushang">受伤 </label> <input name="check" type="checkbox" id="qichuan" value="3" /><label for="qichuan">气喘 </label> <input id="xinhuang" name="check" type="checkbox" value="4" /><label for="xinhuang">心慌 </label></form></div> ', ['取消', '确定'], function() {
 							var userid = {
 								User_id: plus.storage.getItem('userid')
@@ -430,7 +431,7 @@
 								return false;
 							});
 						});
-				});
+				//});
 			});
 		</script>
 	</body>

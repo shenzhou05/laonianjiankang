@@ -805,7 +805,8 @@ var hui = (function(selector, undefined){
 		if(!btnName){btnName = ['取消','确定'];}
 		if(!placeholder){placeholder = '';}
 		hui.dialogBase();
-		hui.dialogDom.innerHTML = '<div id="hui-dialog-in" style="width:300px;"><div id="hui-dialog-msg" style="padding-bottom:12px;">'+msg+'</div><div id="hui-dialog-input-in"><input type="text" id="hui-dialog-input" placeholder="'+placeholder+'" /></div><div style="height:15px;"></div><div id="hui-dialog-btn-line"><div>'+btnName[0]+'</div><div>'+btnName[1]+'</div></div></div>';
+		//<input type="password" name="User_password" class="hui-input hui-pwd-eye" placeholder="用户密码" checkType="string" id="pwd" checkData="6,20" checkMsg="密码应为6-20个字符" />
+		hui.dialogDom.innerHTML = '<div id="hui-dialog-in" style="width:300px;"><div id="hui-dialog-msg" style="padding-bottom:12px;">'+msg+'</div><div id="hui-dialog-input-in"><input type="password" class="hui-pwd-eye" id="hui-dialog-input" placeholder="'+placeholder+'" /></div><div style="height:15px;"></div><div id="hui-dialog-btn-line"><div>'+btnName[0]+'</div><div>'+btnName[1]+'</div></div></div>';
 		var btns = document.getElementById('hui-dialog-btn-line').getElementsByTagName('div');
 		btns[0].onclick = hui.dialogClose;
 		btns[1].onclick = function(){

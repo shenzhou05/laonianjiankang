@@ -403,8 +403,8 @@ p {
 					window.open('login.html');
 					return;
 				}
-				hui.actionSheet(meuns, cancel, function(e) {
-					if(e.index != -1)
+				//hui.actionSheet(meuns, cancel, function(e) {
+					//if(e.index != -1)
 						hui.confirm('<div class="checkbox-wrap"><form id="form"> 您若出现以下症状，请点击该症状！<br /><br /> <input id="xiongmen" name="check" type="checkbox" value="0" /><label for="xiongmen">胸闷</label> <input id="huxi" name="check" type="checkbox" value="1" /><label for="huxi">呼吸不畅 </label> <input name="check" type="checkbox" id="shoushang" value="2" /><label for="shoushang">受伤 </label> <input name="check" type="checkbox" id="qichuan" value="3" /><label for="qichuan">气喘 </label> <input id="xinhuang" name="check" type="checkbox" value="4" /><label for="xinhuang">心慌 </label></form></div> ', ['取消', '确定'], function() {
 							var userid = {
 								User_id: plus.storage.getItem('userid')
@@ -498,7 +498,7 @@ p {
 								return false;
 							});
 						});
-				});
+				//});
 			});
 		</script>
 	</body>

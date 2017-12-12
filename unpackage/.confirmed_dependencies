@@ -406,7 +406,9 @@
 			"news.html",
 			"disease_seach.html",
 			"add_exam.html",
-			"modify_exam.html"
+			"modify_exam.html",
+			"search_symptom.html",
+			"fuyao.html"
 		]
 	},
 	"add_exam.html": {
@@ -482,7 +484,8 @@
 			"img/b4.png",
 			"img/b16.png",
 			"img/b10.png",
-			"img/b9.png"
+			"img/b9.png",
+			"img/b1.png"
 		],
 		"refer": [
 			"fuyao.html",
@@ -530,7 +533,8 @@
 			"news.html",
 			"fuyao.html",
 			"personal.html",
-			"exam.html"
+			"exam.html",
+			"index.html"
 		]
 	},
 	"disease_seach2.html": {
