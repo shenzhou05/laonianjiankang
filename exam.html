@@ -119,7 +119,7 @@
 						<canvas id="canvas1"></canvas>
 						<div style='flex-basis: 100%;display: flex;justify-content: center;'>
 							<div style="display: flex;flex-basis: 80%;justify-content: space-between;align-items: center;">
-								<span id='avg1' style="font-size: 20px;">七天平均值：100</span>
+								<span id='avg1' style="font-size: 15px;">七天平均值：100</span>
 								<button type="button" id="addData1" class="hui-button hui-primary hui-fl" style="width: 30%;">切换为30天数据</button>
 							</div>
 						</div>
@@ -500,9 +500,146 @@
 				var ctx3 = document.getElementById("canvas3").getContext("2d");
 				Chart3 = new Chart(ctx3, config3);
 				window.myLine = Chart3;
+			};
 
+
+			function setgaoxueyapingjunzhi(high,low){
+				$('#avg1').html('高血压平均值：'+high+' 低血压平均值：'+low);
+				console.log('高血压平均值：'+high+' 低血压平均值：'+low);
+			}
+
+			function getXueYa7() {
+				var userid = plus.storage.getItem('userid');
 				$('#addData1').html('切换为30天数据');
-				$('#avg1').html('七天平均值：100');
+				
+				var url3 = "http://120.25.67.15/getAvgPEsBy";
+				var tobj3 = {
+					Huser_id: userid,
+					n: "7",
+					x: "Hsystolic_pressure",
+				};
+				$.post(url3, tobj3, function(text) {
+					var obj = JSON.parse(text);
+					var gaoAvg= parseFloat(obj.Hsystolic_pressure);
+					setgaoxueyapingjunzhi(gaoAvg,-1);
+				}).error(function() {
+					hui.toast('响应错误!');
+				});
+				
+				var url4 = "http://120.25.67.15/getAvgPEsBy";
+				var tobj4 = {
+					Huser_id: userid,
+					n: "7",
+					x: "Hdiastolic_pressure",
+				};
+				$.post(url4, tobj4, function(text) {
+					var obj = JSON.parse(text);
+					var diAvg= parseFloat(obj.Hdiastolic_pressure);
+					setgaoxueyapingjunzhi(-1,diAvg);
+				}).error(function() {
+					hui.toast('响应错误!');
+				});
+
+
+
+
+
+
+
+				var url = "http://120.25.67.15/getPEsBy";
+				var tobj = {
+					Huser_id: userid,
+					n: "7",
+					x: "Hsystolic_pressure",
+				};
+				$.post(url, tobj, function(text) {
+					var obj = JSON.parse(text);
+					var gaoxueyaAll = [0, 0, 0, 0, 0, 0, 0];
+					for(var i = 0; i < obj.length; i++) {
+						switch(obj[i].Hrecording_date) {
+							case LABELS[0] + " 00:00:00":
+								gaoxueyaAll[0] = parseFloat(gaoxueyaAll[0]) + parseFloat(obj[i].Hsystolic_pressure);
+								break;
+							case LABELS[1] + " 00:00:00":
+								gaoxueyaAll[1] = parseFloat(gaoxueyaAll[1]) + parseFloat(obj[i].Hsystolic_pressure);
+								break;
+							case LABELS[2] + " 00:00:00":
+								gaoxueyaAll[2] = parseFloat(gaoxueyaAll[2]) + parseFloat(obj[i].Hsystolic_pressure);
+								break;
+							case LABELS[3] + " 00:00:00":
+								gaoxueyaAll[3] = parseFloat(gaoxueyaAll[3]) + parseFloat(obj[i].Hsystolic_pressure);
+								break;
+							case LABELS[4] + " 00:00:00":
+								gaoxueyaAll[4] = parseFloat(gaoxueyaAll[4]) + parseFloat(obj[i].Hsystolic_pressure);
+								break;
+							case LABELS[5] + " 00:00:00":
+								gaoxueyaAll[5] = parseFloat(gaoxueyaAll[5]) + parseFloat(obj[i].Hsystolic_pressure);
+								break;
+							case LABELS[6] + " 00:00:00":
+								gaoxueyaAll[6] = parseFloat(gaoxueyaAll[6]) + parseFloat(obj[i].Hsystolic_pressure);
+								break;
+						}
+					}
+					for(var j = 0; j < 7; j++) {
+						gaoxueyaAll[j] = parseInt(gaoxueyaAll[j] / 8.0);
+						//console.log(gaoxueyaAll[j]);
+					}
+					setGaoEveryDayAvg7(gaoxueyaAll);
+					XueYaEveryDayAvg7SetData();
+				}).error(function() {
+					hui.toast('响应错误!');
+				});
+				
+				
+				var url2 = "http://120.25.67.15/getPEsBy";
+				var tobj2 = {
+					Huser_id: userid,
+					n: "30",
+					x: "Hdiastolic_pressure",
+				};
+				$.post(url2, tobj2, function(text) {
+					var obj = JSON.parse(text);
+					var dixueyaAll = [0, 0, 0, 0, 0, 0, 0];
+					for(var i = 0; i < obj.length; i++) {
+						switch(obj[i].Hrecording_date) {
+							case LABELS[0] + " 00:00:00":
+								dixueyaAll[0] = parseFloat(dixueyaAll[0]) + parseFloat(obj[i].Hdiastolic_pressure);
+								break;
+							case LABELS[1] + " 00:00:00":
+								dixueyaAll[1] = parseFloat(dixueyaAll[1]) + parseFloat(obj[i].Hdiastolic_pressure);
+								break;
+							case LABELS[2] + " 00:00:00":
+								dixueyaAll[2] = parseFloat(dixueyaAll[2]) + parseFloat(obj[i].Hdiastolic_pressure);
+								break;
+							case LABELS[3] + " 00:00:00":
+								dixueyaAll[3] = parseFloat(dixueyaAll[3]) + parseFloat(obj[i].Hdiastolic_pressure);
+								break;
+							case LABELS[4] + " 00:00:00":
+								dixueyaAll[4] = parseFloat(dixueyaAll[4]) + parseFloat(obj[i].Hdiastolic_pressure);
+								break;
+							case LABELS[5] + " 00:00:00":
+								dixueyaAll[5] = parseFloat(dixueyaAll[5]) + parseFloat(obj[i].Hdiastolic_pressure);
+								break;
+							case LABELS[6] + " 00:00:00":
+								dixueyaAll[6] = parseFloat(dixueyaAll[6]) + parseFloat(obj[i].Hdiastolic_pressure);
+								break;
+						}
+					}
+					
+					for(var j = 0; j < 7; j++) {
+						dixueyaAll[j] = parseInt(dixueyaAll[j] / 8.0);
+						//console.log(dixueyaAll[j]);
+					}
+					setDiEveryDayAvg7(dixueyaAll);
+					XueYaEveryDayAvg7SetData();
+				}).error(function() {
+					hui.toast('响应错误!');
+				});
+				
+				
+			}
+
+			function XueYaEveryDayAvg7SetData() {
 				config1.data.labels = [];
 				config1.data.datasets[0].data = [];
 				config1.data.datasets[1].data = [];
@@ -512,14 +649,39 @@
 						config1.data.labels.push(month);
 
 						config1.data.datasets.forEach(function(dataset) {
-							dataset.data.push(randomScalingFactor());
+							if(dataset.label == "高压"){
+								var gaotempobj=getGaoEveryDayAvg7();
+								dataset.data.push(gaotempobj[i-23]);
+							}
+							else{
+								var ditempobj=getDiEveryDayAvg7();
+								dataset.data.push(ditempobj[i-23]);
+							}
 						});
 						window.myLine = Chart1;
 						window.myLine.update();
 					}
-					
-				
-			};
+			}
+
+			var gaoxueyaEveryDayAvg7 = [0, 0, 0, 0, 0, 0, 0]; //七天高血压每天的平均值
+			function setGaoEveryDayAvg7(obj) {
+				gaoxueyaEveryDayAvg7 = obj;
+			}
+
+			function getGaoEveryDayAvg7() {
+				return gaoxueyaEveryDayAvg7;
+			}
+			
+			var dixueyaEveryDayAvg7 = [0, 0, 0, 0, 0, 0, 0]; //七天低血压每天的平均值
+			function setDiEveryDayAvg7(obj) {
+				dixueyaEveryDayAvg7 = obj;
+			}
+
+			function getDiEveryDayAvg7() {
+				return dixueyaEveryDayAvg7;
+			}
+
+
 
 			var addData1_7 = true;
 			document.getElementById('addData1').addEventListener('click', function() {
@@ -542,22 +704,7 @@
 						}
 					addData1_7 = false;
 				} else {
-					$('#addData1').html('切换为30天数据');
-					$('#avg1').html('七天平均值：100');
-					config1.data.labels = [];
-					config1.data.datasets[0].data = [];
-					config1.data.datasets[1].data = [];
-					for(var i = 23; i <= 29; i++)
-						if(config1.data.datasets.length > 0) {
-							var month = MONTHS[i];
-							config1.data.labels.push(month);
-
-							config1.data.datasets.forEach(function(dataset) {
-								dataset.data.push(randomScalingFactor());
-							});
-							window.myLine = Chart1;
-							window.myLine.update();
-						}
+					getXueYa7();
 					addData1_7 = true;
 				}
 			});
@@ -704,6 +851,7 @@
 				var user_id = {
 					Huser_id: userid
 				};
+				getXueYa7();
 				$.post(url, user_id, function(text) {
 					var obj = JSON.parse(text);
 					var compare = function(v1, v2) { //比较函数,从小到大，date权重最大

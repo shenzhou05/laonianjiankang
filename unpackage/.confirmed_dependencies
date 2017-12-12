@@ -490,7 +490,8 @@
 			"search_symptom.html",
 			"news.html",
 			"personal.html",
-			"index.html"
+			"index.html",
+			"exam.html"
 		]
 	},
 	"search_symptom.html": {
