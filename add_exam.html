@@ -392,34 +392,52 @@
 							}
 							var issue = CheckData();
 							if(issue != "") { //不正常
-								hui.confirm('您的<span style="color:#ff0000">' + issue + '</span>不正常，是否发送短信？', ['取消', '确定'], function() {
+								hui.confirm('您的<span style="color:#ff0000">' + issue + '</span>不正常，是否发送短信与电子邮件？', ['取消', '确定'], function() {
 									var url = "http://120.25.67.15/smsFunc";
-									var finiStr = "【健康老年APP】体检数据：您家老人以下体检数据超标！ ";
 									var strIssue = getIssue();
+									var content='';
+									var content1='';
 									strIssue = strIssue.split('，');
 									for(var i = 0; i < strIssue.length; i++) {
 										if(strIssue[i] == "心跳") {
-											finiStr = finiStr + "心跳为" + getHeartBeat() + "，";
+											content=content+"心跳，";
+											content1 = content1 +getHeartBeat() + "，";
 										} else if(strIssue[i] == "低压") {
-											finiStr = finiStr + "低压为" + getPressureLow() + "，";
+											content=content+"低压，";
+											content1 = content1+ getPressureLow() + "，";
 										} else if(strIssue[i] == "高压") {
-											finiStr = finiStr + "高压为" + getPressureHigh() + "，";
+											content=content+"高压，";
+											content1 = content1+ getPressureHigh() + "，";
 										} else {
-											finiStr = finiStr + "血糖为" + getBloodSugar() + "，";
+											content=content+"血糖，";
+											content1 = content1 + getBloodSugar() + "，";
 										}
 									}
-									finiStr = finiStr.substring(0, finiStr.length - 1);
-									//console.log(finiStr);
-									$.post(url, {
-										mobile: getPhone(),
-										text: finiStr
-									}, function(text) {
-										hui.toast("短信已发送!");
-										window.open("exam.html");
-									}).error(function() {
-										hui.toast('响应错误!');
-									});
+									content = content.substring(0, content.length - 1);
 
+									content1 = content1.substring(0, content1.length - 1);
+									var finiStr = "【健康老年APP】体检数据：您家老人体检数据"+content+"为"+content1+"：数据已超标";
+									//有问题，延时太长。。。
+									var mobile={mobile: getPhone(),text: finiStr};
+									console.log("phone:" + JSON.stringify(mobile));
+									$.post(url, mobile, function(text) {
+										hui.toast("短信已发送!");
+									}).error(function() {
+										hui.toast('短息发送响应错误!');
+									});
+									
+									var email={address:getEmail().toString(),title:"【健康老年APP】",content: finiStr};
+									console.log("email:" + JSON.stringify(email));
+									var url666 = "http://120.25.67.15/emailFunc";
+									$.post(url666, email, function(text) {
+										hui.toast("邮件已发送!");
+									}).error(function() {
+										hui.toast('邮件发送响应错误!');
+									});
+									
+									hui.toast("短信已发送!");
+									hui.toast("邮件已发送!");
+									window.open("exam.html");
 								}, function() {
 									window.open("exam.html"); //取消
 								});
@@ -443,6 +461,7 @@
 			});
 
 			var userPhone = '';
+			var userEmail='';
 			var meuns = ['一键呼救'];
 			var cancel = '关闭菜单';
 			var _str = '';
@@ -459,10 +478,18 @@
 				userPhone = phone;
 			}
 
-			function getPhone(phone) {
+			function getPhone() {
 				return userPhone;
 			}
 
+			function setEmail(email) {
+				userEmail=email;
+			}	
+			
+			function getEmail() {
+				return userEmail;
+			}
+			
 			function check_user() {
 				var userid = plus.storage.getItem('userid');
 				if(userid == null) return false;
@@ -474,6 +501,7 @@
 						var obj = text;
 						if(obj.success == 'true') {
 							setPhone(obj.User_phone);
+							setEmail(obj.User_email);
 							return true;
 						} else {
 							return false;

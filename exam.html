@@ -271,67 +271,7 @@
 									<th>修改/删除</th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<td>2017-12-12</td>
-									<td>清晨</td>
-									<td>6</td>
-									<td>80</td>
-									<td>130</td>
-									<td>80</td>
-									<td style="color: green;">正常</td>
-									<td>
-										<div style="display: flex;justify-content: center;align-items: center;flex-wrap: nowrap;">
-											<button type="button"  onclick="modify(this)" class="hui-button hui-primary hui-fl" style="height:25px;width: 50%;vertical-align:middle ; line-height:5px;">修改</button>
-											<button type="button" id='button0'onclick="delet(this)" class="hui-button hui-primary hui-fl" style="height:25px;width: 50%;vertical-align:middle ; line-height:5px;">删除</button>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>2017-12-12</td>
-									<td>早饭前</td>
-									<td>6</td>
-									<td>80</td>
-									<td>130</td>
-									<td>80</td>
-									<td style="color: green;">正常</td>
-									<td>
-										<div style="display: flex;justify-content: center;align-items: center;flex-wrap: nowrap;">
-											<button type="button"  onclick="modify(this)" class="hui-button hui-primary hui-fl" style="height:25px;width: 50%;vertical-align:middle ; line-height:5px;">修改</button>
-											<button type="button"id='button1' onclick="delet(this)" class="hui-button hui-primary hui-fl" style="height:25px;width: 50%;vertical-align:middle ; line-height:5px;">删除</button>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>2017-12-12</td>
-									<td>早饭后</td>
-									<td>6</td>
-									<td>80</td>
-									<td>130</td>
-									<td>80</td>
-									<td style="color: green;">正常</td>
-									<td>
-										<div style="display: flex;justify-content: center;align-items: center;flex-wrap: nowrap;">
-											<button type="button"  onclick="modify(this)" class="hui-button hui-primary hui-fl" style="height:25px;width: 50%;vertical-align:middle ; line-height:5px;">修改</button>
-											<button type="button" id='button2'onclick="delet(this)" class="hui-button hui-primary hui-fl" style="height:25px;width: 50%;vertical-align:middle ; line-height:5px;">删除</button>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>2017-12-13</td>
-									<td>清晨</td>
-									<td>6</td>
-									<td>80</td>
-									<td>130</td>
-									<td>80</td>
-									<td style="color: green;">正常</td>
-									<td>
-										<div style="display: flex;justify-content: center;align-items: center;flex-wrap: nowrap;">
-											<button type="button"  onclick="modify(this)" class="hui-button hui-primary hui-fl" style="height:25px;width: 50%;vertical-align:middle ; line-height:5px;">修改</button>
-											<button type="button" id='button3'onclick="delet(this)" class="hui-button hui-primary hui-fl" style="height:25px;width: 50%;vertical-align:middle ; line-height:5px;">删除</button>
-										</div>
-									</td>
-								</tr>
+							<tbody id="alldata">
 							</tbody>
 						</table>
 					</div>
@@ -348,22 +288,39 @@
 		<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=thgDCOh7o3yI3xxQG8YmGi8toA9GCjhk"></script>
 		<script src="js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript">
-			function delet(obj){
+			function delet(obj) {
+				var hid = {
+					Hid: $(obj).attr("id").replace('hid', '')
+				};
+				var url = "http://120.25.67.15/deletePE";
+				$.post(url, hid, function(text) {});
+				hui.toast("数据已删除!");
 				location.reload();
 			}
-			function modify(obj){
-				var data=$(obj).attr('id');
-				window.open('modify_exam.html'+"?msg="+data);
+
+			function modify(obj) {
+				hui.toast("施工中。。。");
+				//var data = $(obj).attr('id');
+				//window.open('modify_exam.html' + "?msg=" + data);
 			}
+
 			function openpage() {
 				window.open('add_exam.html');
 			}
 
-			var MONTHS = ["2017-12-12", "2017-12-13", "2017-12-14", "2017-12-15", "2017-12-16", "2017-12-17", "2017-12-18"];
+			var nowDate = new Date();
+			var MONTHS = [];
+			for(var i = 29; i >= 0; i--) {
+				var myDate = new Date(nowDate.getTime() - 86400000 * (29 - i));
+				MONTHS[i] = myDate.getFullYear() + '-' + (parseInt(myDate.getMonth()) + 1) + '-' + myDate.getDate();
+			}
+			var LABELS = MONTHS.slice(23);
+
+			//var MONTHS = ["2017-12-12", "2017-12-13", "2017-12-14", "2017-12-15", "2017-12-16", "2017-12-17", "2017-12-18"];
 			var config1 = {
 				type: 'line',
 				data: {
-					labels: ["2017-12-12", "2017-12-13", "2017-12-14", "2017-12-15", "2017-12-16", "2017-12-17", "2017-12-18"],
+					labels: LABELS,
 					datasets: [{
 						label: "高压",
 						backgroundColor: window.chartColors.red,
@@ -398,7 +355,7 @@
 					responsive: true,
 					title: {
 						display: true,
-						text: '七天每日高低血压平均值'
+						text: '每日高低血压平均值'
 					},
 					tooltips: {
 						mode: 'index',
@@ -429,7 +386,7 @@
 			var config2 = {
 				type: 'line',
 				data: {
-					labels: ["2017-12-12", "2017-12-13", "2017-12-14", "2017-12-15", "2017-12-16", "2017-12-17", "2017-12-18"],
+					labels: LABELS,
 					datasets: [{
 						label: "心跳",
 						backgroundColor: window.chartColors.yellow,
@@ -450,7 +407,7 @@
 					responsive: true,
 					title: {
 						display: true,
-						text: '七天每日心跳平均值'
+						text: '每日心跳平均值'
 					},
 					tooltips: {
 						mode: 'index',
@@ -481,7 +438,7 @@
 			var config3 = {
 				type: 'line',
 				data: {
-					labels: ["2017-12-12", "2017-12-13", "2017-12-14", "2017-12-15", "2017-12-16", "2017-12-17", "2017-12-18"],
+					labels: LABELS,
 					datasets: [{
 						label: "血糖",
 						backgroundColor: window.chartColors.purple,
@@ -502,7 +459,7 @@
 					responsive: true,
 					title: {
 						display: true,
-						text: '七天每日血糖平均值'
+						text: '每日血糖平均值'
 					},
 					tooltips: {
 						mode: 'index',
@@ -543,20 +500,42 @@
 				var ctx3 = document.getElementById("canvas3").getContext("2d");
 				Chart3 = new Chart(ctx3, config3);
 				window.myLine = Chart3;
+
+				$('#addData1').html('切换为30天数据');
+				$('#avg1').html('七天平均值：100');
+				config1.data.labels = [];
+				config1.data.datasets[0].data = [];
+				config1.data.datasets[1].data = [];
+				for(var i = 23; i <= 29; i++)
+					if(config1.data.datasets.length > 0) {
+						var month = MONTHS[i];
+						config1.data.labels.push(month);
+
+						config1.data.datasets.forEach(function(dataset) {
+							dataset.data.push(randomScalingFactor());
+						});
+						window.myLine = Chart1;
+						window.myLine.update();
+					}
+					
+				
 			};
 
 			var addData1_7 = true;
 			document.getElementById('addData1').addEventListener('click', function() {
 				if(addData1_7) {
 					$('#addData1').html('切换为7天数据');
-					for(var i = 0; i < 23; i++)
+					$('#avg1').html('三十天平均值：100');
+					config1.data.labels = [];
+					config1.data.datasets[0].data = [];
+					config1.data.datasets[1].data = [];
+					for(var i = 0; i < 30; i++)
 						if(config1.data.datasets.length > 0) {
-							var month = MONTHS[config1.data.labels.length % MONTHS.length];
+							var month = MONTHS[i];
 							config1.data.labels.push(month);
 
 							config1.data.datasets.forEach(function(dataset) {
 								dataset.data.push(randomScalingFactor());
-								dataset.data.color = window.chartColors['blue'];
 							});
 							window.myLine = Chart1;
 							window.myLine.update();
@@ -564,13 +543,17 @@
 					addData1_7 = false;
 				} else {
 					$('#addData1').html('切换为30天数据');
-					for(var i = 0; i < 23; i++)
+					$('#avg1').html('七天平均值：100');
+					config1.data.labels = [];
+					config1.data.datasets[0].data = [];
+					config1.data.datasets[1].data = [];
+					for(var i = 23; i <= 29; i++)
 						if(config1.data.datasets.length > 0) {
-							var month = MONTHS[config1.data.labels.length % MONTHS.length];
-							config1.data.labels.pop();
+							var month = MONTHS[i];
+							config1.data.labels.push(month);
 
 							config1.data.datasets.forEach(function(dataset) {
-								dataset.data.pop();
+								dataset.data.push(randomScalingFactor());
 							});
 							window.myLine = Chart1;
 							window.myLine.update();
@@ -583,6 +566,7 @@
 			document.getElementById('addData2').addEventListener('click', function() {
 				if(addData2_7) {
 					$('#addData2').html('切换为7天数据');
+					$('#avg2').html('三十天平均值：100');
 					for(var i = 0; i < 23; i++)
 						if(config2.data.datasets.length > 0) {
 							var month = MONTHS[config2.data.labels.length % MONTHS.length];
@@ -598,6 +582,7 @@
 					addData2_7 = false;
 				} else {
 					$('#addData2').html('切换为30天数据');
+					$('#avg2').html('七天平均值：100');
 					for(var i = 0; i < 23; i++)
 						if(config2.data.datasets.length > 0) {
 							var month = MONTHS[config2.data.labels.length % MONTHS.length];
@@ -618,6 +603,7 @@
 			document.getElementById('addData3').addEventListener('click', function() {
 				if(addData3_7) {
 					$('#addData3').html('切换为7天数据');
+					$('#avg3').html('三十天平均值：100');
 					for(var i = 0; i < 23; i++)
 						if(config3.data.datasets.length > 0) {
 							var month = MONTHS[config3.data.labels.length % MONTHS.length];
@@ -633,6 +619,7 @@
 					addData3_7 = false;
 				} else {
 					$('#addData3').html('切换为30天数据');
+					$('#avg3').html('七天平均值：100');
 					for(var i = 0; i < 23; i++)
 						if(config3.data.datasets.length > 0) {
 							var month = MONTHS[config3.data.labels.length % MONTHS.length];
@@ -660,8 +647,180 @@
 				}
 			});
 
-			function main() {
+			function CheckData(bloodSugar, heartBeat, pressureHigh, pressureLow, time) {
+				var res = "";
+				if(heartBeat < 60 || heartBeat > 100)
+					res += "心跳，";
+				if(pressureLow < 60 || pressureLow > 90)
+					res += "低压，";
+				if(pressureHigh < 100 || pressureHigh > 140)
+					res += "高压，";
+				switch(time) {
+					case 0:
+						if(bloodSugar < 2.0 || bloodSugar > 4.9)
+							res += "血糖，";
+						break;
+					case 1:
+						if(bloodSugar < 1.0 || bloodSugar > 4.9)
+							res += "血糖，";
+						break;
+					case 2:
+						if(bloodSugar < 8.0 || bloodSugar > 11.1)
+							res += "血糖，";
+						break;
+					case 3:
+						if(bloodSugar < 6.0 || bloodSugar > 9.0)
+							res += "血糖，";
+						break;
+					case 4:
+						if(bloodSugar < 8.0 || bloodSugar > 11.1)
+							res += "血糖，";
+						break;
+					case 5:
+						if(bloodSugar < 6.0 || bloodSugar > 9.0)
+							res += "血糖，";
+						break;
+					case 6:
+						if(bloodSugar < 8.0 || bloodSugar > 11.1)
+							res += "血糖，";
+						break;
+					case 7:
+						if(bloodSugar < 5.0 || bloodSugar > 9.0)
+							res += "血糖，";
+						break;
+					default:
+						if(bloodSugar < 5.0 || bloodSugar > 11.0)
+							res += "血糖，";
+						break;
+				}
+				res = res.substring(0, res.length - 1);
+				//console.log(res);
+				return res;
+			}
 
+			function main() {
+				var userid = plus.storage.getItem('userid');
+				var url = "http://120.25.67.15/getPEs";
+				var user_id = {
+					Huser_id: userid
+				};
+				$.post(url, user_id, function(text) {
+					var obj = JSON.parse(text);
+					var compare = function(v1, v2) { //比较函数,从小到大，date权重最大
+						var temp1 = ((v1.Hrecording_date.toString()).split(' '))[0];
+						temp1 = parseInt(temp1.replace("-", ""));
+						var temp2 = ((v2.Hrecording_date.toString()).split(' '))[0];
+						temp2 = parseInt(temp2.replace("-", ""));
+						var x = parseInt(v1.Hrecording_time);
+						var y = parseInt(v2.Hrecording_time);
+						if(temp1 < temp2) {
+							return -1;
+						} else if(temp1 == temp2) {
+							if(x < y) {
+								return -1;
+							} else if(x == y) {
+								return 0;
+							} else {
+								return 1;
+							}
+						} else if(temp1 > temp2) {
+							return 1;
+						}
+					}
+					obj.sort(compare);
+					var alldata = $("#alldata");
+					//console.log(obj.length);
+					if(obj.length == 0) {
+						$(alldata).append(
+							'<tr>\
+							<td>无数据</td>\
+							<td>无数据</td>\
+							<td>无数据</td>\
+							<td>无数据</td>\
+							<td>无数据</td>\
+							<td>无数据</td>\
+							<td style="color: green;">无数据</td>\
+							<td>\
+								<div style="display: flex;justify-content: center;align-items: center;flex-wrap: nowrap;">\
+								无数据\
+								</div>\
+							</td>\
+						</tr>');
+					} else {
+						$(alldata).html("");
+					}
+
+					for(var i = 0; i < obj.length; i++) {
+						var res = CheckData(parseFloat(obj[i].Hblood_sugar), parseInt(obj[i].Heart_rate), parseFloat(obj[i].Hsystolic_pressure), parseFloat(obj[i].Hdiastolic_pressure), parseInt(obj[i].Hrecording_time));
+						var resobj = res.split('，');
+						//console.log(parseInt(obj[i].Hrecording_time));
+						obj[i].Hrecording_date = ((obj[i].Hrecording_date.toString()).split(' '))[0];
+						switch(obj[i].Hrecording_time.toString()) {
+							case '0':
+								obj[i].Hrecording_time = '清晨';
+								break;
+							case '1':
+								obj[i].Hrecording_time = '早餐前';
+								break;
+							case '2':
+								obj[i].Hrecording_time = '早餐后';
+								break;
+							case '3':
+								obj[i].Hrecording_time = '中餐前';
+								break;
+							case '4':
+								obj[i].Hrecording_time = '中餐后';
+								break;
+							case '5':
+								obj[i].Hrecording_time = '晚餐前';
+								break;
+							case '6':
+								obj[i].Hrecording_time = '晚餐后';
+								break;
+							case '7':
+								obj[i].Hrecording_time = '睡前';
+								break;
+							default:
+								obj[i].Hrecording_time = '未知';
+								break;
+						}
+						$(alldata).append(
+							'<tr>\
+							<td>' + obj[i].Hrecording_date + '</td>\
+							<td>' + obj[i].Hrecording_time + '</td>\
+							<td id="sugar' + i + '">' + obj[i].Hblood_sugar + '</td>\
+							<td id="heart' + i + '">' + parseInt(obj[i].Heart_rate) + '</td>\
+							<td id="high' + i + '">' + obj[i].Hsystolic_pressure + '</td>\
+							<td id="low' + i + '">' + obj[i].Hdiastolic_pressure + '</td>\
+							<td id="normal' + i + '" style="color: green;">正常</td>\
+							<td>\
+								<div style="display: flex;justify-content: center;align-items: center;flex-wrap: nowrap;">\
+									<button type="button" onclick="modify(this)" class="hui-button hui-primary hui-fl" style="height:25px;width: 50%;vertical-align:middle ; line-height:5px;">修改</button>\
+									<button type="button" id="hid' + obj[i].Hid + '" onclick="delet(this)" class="hui-button hui-primary hui-fl" style="height:25px;width: 50%;vertical-align:middle ; line-height:5px;">删除</button>\
+								</div>\
+							</td>\
+						</tr>');
+
+						if(res != '') {
+							$("#normal" + i).css("color", "#F00000");
+							$("#normal" + i).html("不正常");
+						}
+						for(var j = 0; j < resobj.length; j++) {
+							if(resobj[j] == "心跳") {
+								$("#heart" + i).css("color", "red");
+							} else if(resobj[j] == "低压") {
+								$("#low" + i).css("color", "red");
+							} else if(resobj[j] == "高压") {
+								$("#high" + i).css("color", "red");
+							} else if(resobj[j] == "血糖") {
+								$("#sugar" + i).css("color", "red");
+							}
+						}
+
+					}
+				}).error(function() {
+					hui.toast('响应错误!');
+				});
 			}
 
 			var meuns = ['一键呼救'];

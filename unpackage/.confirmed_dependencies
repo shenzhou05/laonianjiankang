@@ -405,7 +405,8 @@
 			"index.html",
 			"news.html",
 			"disease_seach.html",
-			"add_exam.html"
+			"add_exam.html",
+			"modify_exam.html"
 		]
 	},
 	"add_exam.html": {
