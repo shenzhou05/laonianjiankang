@@ -167,16 +167,16 @@
 					<div id="hui-hot-sreach">
 						<div id="hui-hot-sreach-title">热门搜索</div>
 						<div id="hui-hot-sreach-keys">
-							<a style="font-size: 20px;" href="javascript:hotSearch('糖尿病');">糖尿病</a>
-							<a style="font-size: 20px;" href="javascript:hotSearch('心律失常');">心律失常</a>
-							<a style="font-size: 20px;" href="javascript:hotSearch('垂体瘤');">垂体瘤</a>
-							<a style="font-size: 20px;" href="javascript:hotSearch('甲状腺结节');">甲状腺结节</a>
-							<a style="font-size: 20px;" href="javascript:hotSearch('冠心病');">冠心病</a>
-							<a style="font-size: 20px;" href="javascript:hotSearch('甲状腺癌');">甲状腺癌</a>
-							<a style="font-size: 20px;" href="javascript:hotSearch('甲状腺炎');">甲状腺炎</a>
-							<a style="font-size: 20px;" href="javascript:hotSearch('高血压');">高血压</a>
-							<a style="font-size: 20px;" href="javascript:hotSearch('垂体功能衰退');">垂体功能衰退</a>
-							<a style="font-size: 20px;" href="javascript:hotSearch('肾上腺皮质功能衰退');">肾上腺皮质功能衰退</a>
+							<a style="text-decoration:none;font-size: 20px;" href="javascript:hotSearch('糖尿病');">糖尿病</a>
+							<a style="text-decoration:none;font-size: 20px;" href="javascript:hotSearch('心律失常');">心律失常</a>
+							<a style="text-decoration:none;font-size: 20px;" href="javascript:hotSearch('垂体瘤');">垂体瘤</a>
+							<a style="text-decoration:none;font-size: 20px;" href="javascript:hotSearch('甲状腺结节');">甲状腺结节</a>
+							<a style="text-decoration:none;font-size: 20px;" href="javascript:hotSearch('冠心病');">冠心病</a>
+							<a style="text-decoration:none;font-size: 20px;" href="javascript:hotSearch('甲状腺癌');">甲状腺癌</a>
+							<a style="text-decoration:none;font-size: 20px;" href="javascript:hotSearch('甲状腺炎');">甲状腺炎</a>
+							<a style="text-decoration:none;font-size: 20px;" href="javascript:hotSearch('高血压');">高血压</a>
+							<a style="text-decoration:none;font-size: 20px;" href="javascript:hotSearch('垂体功能衰退');">垂体功能衰退</a>
+							<a style="text-decoration:none;font-size: 20px;" href="javascript:hotSearch('肾上腺皮质功能衰退');">肾上腺皮质功能衰退</a>
 						</div>
 					</div>
 				</div>
@@ -236,10 +236,7 @@
 				searchNow();
 			}
 			MouseDown = function(event){
-				console.log("coming");
-				console.log(event.target.innerText);
 				if(event.target.tagName == "H1" ){
-					console.log("---coming");
             		var disease_name = event.target.innerText;
             		var targetId = disease_name;
                 	var baseUrl = 'disease_seach2.html';

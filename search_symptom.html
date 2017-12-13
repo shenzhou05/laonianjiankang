@@ -274,35 +274,36 @@
 						<div>
 							<div>
 								<div class="whitebackground">
-									<span style="height: 10%;margin: 0px;border: 0px;" class=" gre" id="position">头部</span> <div style="margin-right: 350px;">常见症状</div>
+									<span style="height: 10%;margin: 0px;border: 0px;" class=" gre" id="position">头部</span>
+									<div style="margin-right: 350px;">常见症状</div>
 								</div>
 								<ul class="whitebackgroundbig" style="height: 370px;overflow: scroll;">
 									<li class="whitebackground">
-										<a style=" text-decoration:none;flex-basis: 100%;" onclick="selectSyptom(this)" id="symptom1">头晕</a>
+										<a style=" text-decoration:none;flex-basis: 100%;" onclick="selectSyptom(this)" id="symptom1"></a>
 									</li>
 									<li class="whitebackground">
-										<a style="text-decoration:none;flex-basis: 100%;" onclick="selectSyptom(this)" id="symptom2">健忘</a>
+										<a style="text-decoration:none;flex-basis: 100%;" onclick="selectSyptom(this)" id="symptom2"></a>
 									</li>
 									<li class="whitebackground">
-										<a style="text-decoration:none;flex-basis: 100%;" onclick="selectSyptom(this)" id="symptom3">头发少</a>
+										<a style="text-decoration:none;flex-basis: 100%;" onclick="selectSyptom(this)" id="symptom3"></a>
 									</li>
 									<li class="whitebackground">
-										<a style="text-decoration:none;flex-basis: 100%;" onclick="selectSyptom(this)" id="symptom4">不能说话</a>
+										<a style="text-decoration:none;flex-basis: 100%;" onclick="selectSyptom(this)" id="symptom4"></a>
 									</li>
 									<li class="whitebackground">
-										<a style="text-decoration:none;flex-basis: 100%;" onclick="selectSyptom(this)" id="symptom5">说话颠三倒四</a>
+										<a style="text-decoration:none;flex-basis: 100%;" onclick="selectSyptom(this)" id="symptom5"></a>
 									</li>
 									<li class="whitebackground">
-										<a style="text-decoration:none;flex-basis: 100%;" onclick="selectSyptom(this)" id="symptom6">红眼</a>
+										<a style="text-decoration:none;flex-basis: 100%;" onclick="selectSyptom(this)" id="symptom6"></a>
 									</li>
 									<li class="whitebackground">
-										<a style="text-decoration:none;flex-basis: 100%;" onclick="selectSyptom(this)" id="symptom7">耳鸣</a>
+										<a style="text-decoration:none;flex-basis: 100%;" onclick="selectSyptom(this)" id="symptom7"></a>
 									</li>
 									<li class="whitebackground">
-										<a style="text-decoration:none;flex-basis: 100%;" onclick="selectSyptom(this)" id="symptom8">鼻塞</a>
+										<a style="text-decoration:none;flex-basis: 100%;" onclick="selectSyptom(this)" id="symptom8"></a>
 									</li>
 									<li class="whitebackground">
-										<a style="text-decoration:none;flex-basis: 100%;" onclick="selectSyptom(this)" id="symptom9">鼻出血</a>
+										<a style="text-decoration:none;flex-basis: 100%;" onclick="selectSyptom(this)" id="symptom9"></a>
 									</li>
 								</ul>
 							</div>
@@ -322,6 +323,8 @@
 		<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=thgDCOh7o3yI3xxQG8YmGi8toA9GCjhk"></script>
 		<!--<script src="js/symptom.js"></script>-->
 		<script type="text/javascript">
+			changeSymptomToHead();
+			
 			var meuns = ['一键呼救'];
 			var cancel = '关闭菜单';
 			var _str = '';
@@ -348,129 +351,122 @@
 					return;
 				}
 				//hui.actionSheet(meuns, cancel, function(e) {
-					//if(e.index != -1)
-						hui.confirm('<div class="checkbox-wrap"><form id="form"> 您若出现以下症状，请点击该症状！<br /><br /> <input id="xiongmen" name="check" type="checkbox" value="0" /><label for="xiongmen">胸闷</label> <input id="huxi" name="check" type="checkbox" value="1" /><label for="huxi">呼吸不畅 </label> <input name="check" type="checkbox" id="shoushang" value="2" /><label for="shoushang">受伤 </label> <input name="check" type="checkbox" id="qichuan" value="3" /><label for="qichuan">气喘 </label> <input id="xinhuang" name="check" type="checkbox" value="4" /><label for="xinhuang">心慌 </label></form></div> ', ['取消', '确定'], function() {
-							var userid = {
-								User_id: plus.storage.getItem('userid')
-							};
-							setstr($('#form').serialize());
-							console.log("id:" + JSON.stringify(userid));
-							var url = "http://120.25.67.15/getUserById";
-							$.post(url, userid, function(text) {
-								var obj = text;
-								if(obj.success == 'true') {
-									hui.toast("发送中。。。");
-									var address = Array();
-									var geolocation = new BMap.Geolocation();
-									geolocation.getCurrentPosition(function(r) {
-										if(this.getStatus() == BMAP_STATUS_SUCCESS) {
-											var gc = new BMap.Geocoder();
-											gc.getLocation(r.point, function(rs) {
-												var addComp = rs.addressComponents;
-												address[0] = addComp.province;
-												address[1] = addComp.city;
-												address[2] = addComp.district + addComp.street + addComp.streetNumber; //获取地址
-												var arry = (getstr()).split('&');
-												var strarry = [];
-												var arryobj = {};
-												for(var i = 0; i < arry.length; i++) {
-													switch((arry[i].split('='))[1]) {
-														case '0':
-															strarry.push("胸闷")
-															break;
-														case '1':
-															strarry.push("呼吸不畅")
-															break;
-														case '2':
-															strarry.push("受伤")
-															break;
-														case '3':
-															strarry.push("气喘")
-															break;
-														case '4':
-															strarry.push("心慌")
-															break;
-													}
-												}
-												var disease = '';
-												for(var i = 0; i < strarry.length; i++) {
-													disease += strarry[i];
-												}
-												var ph_obj = {};
-												var content = address[0]; //省
-												var content1 = address[1]; //市
-												var content2 = address[2]; //地区
-												ph_obj.mobile = obj.User_phone;
-												ph_obj.text = "【健康老年APP】您家老人于" + content + "省" + content1 + "市" + content2 + "地区出现紧急情况：" + disease;
-												var em_obj = {};
-												em_obj.address = obj.User_email;
-												em_obj.title = '【健康老年APP】';
-												em_obj.content = ph_obj.text;
-												console.log("phone:" + JSON.stringify(ph_obj));
-												console.log("email:" + JSON.stringify(em_obj));
-
-												var url1 = "http://120.25.67.15/smsFunc";
-												$.post(url1, ph_obj, function(text) {
-													hui.toast("短信已发送!");
-												}).error(function() {
-													hui.toast('响应错误!');
-												});
-
-												var url2 = "http://120.25.67.15/emailFunc";
-												$.post(url2, em_obj, function(text) {
-													hui.toast("邮件已发送!");
-												}).error(function() {
-													hui.toast('响应错误!');
-												});
-
-												return true;
-											});
-										} else {
-											hui.toast('失败' + this.getStatus());
+				//if(e.index != -1)
+				hui.confirm('<div class="checkbox-wrap"><form id="form"> 您若出现以下症状，请点击该症状！<br /><br /> <input id="xiongmen" name="check" type="checkbox" value="0" /><label for="xiongmen">胸闷</label> <input id="huxi" name="check" type="checkbox" value="1" /><label for="huxi">呼吸不畅 </label> <input name="check" type="checkbox" id="shoushang" value="2" /><label for="shoushang">受伤 </label> <input name="check" type="checkbox" id="qichuan" value="3" /><label for="qichuan">气喘 </label> <input id="xinhuang" name="check" type="checkbox" value="4" /><label for="xinhuang">心慌 </label></form></div> ', ['取消', '确定'], function() {
+					var userid = {
+						User_id: plus.storage.getItem('userid')
+					};
+					setstr($('#form').serialize());
+					console.log("id:" + JSON.stringify(userid));
+					var url = "http://120.25.67.15/getUserById";
+					$.post(url, userid, function(text) {
+						var obj = text;
+						if(obj.success == 'true') {
+							hui.toast("发送中。。。");
+							var address = Array();
+							var geolocation = new BMap.Geolocation();
+							geolocation.getCurrentPosition(function(r) {
+								if(this.getStatus() == BMAP_STATUS_SUCCESS) {
+									var gc = new BMap.Geocoder();
+									gc.getLocation(r.point, function(rs) {
+										var addComp = rs.addressComponents;
+										address[0] = addComp.province;
+										address[1] = addComp.city;
+										address[2] = addComp.district + addComp.street + addComp.streetNumber; //获取地址
+										var arry = (getstr()).split('&');
+										var strarry = [];
+										var arryobj = {};
+										for(var i = 0; i < arry.length; i++) {
+											switch((arry[i].split('='))[1]) {
+												case '0':
+													strarry.push("胸闷")
+													break;
+												case '1':
+													strarry.push("呼吸不畅")
+													break;
+												case '2':
+													strarry.push("受伤")
+													break;
+												case '3':
+													strarry.push("气喘")
+													break;
+												case '4':
+													strarry.push("心慌")
+													break;
+											}
 										}
+										var disease = '';
+										for(var i = 0; i < strarry.length; i++) {
+											disease += strarry[i];
+										}
+										var ph_obj = {};
+										var content = address[0]; //省
+										var content1 = address[1]; //市
+										var content2 = address[2]; //地区
+										ph_obj.mobile = obj.User_phone;
+										ph_obj.text = "【健康老年APP】您家老人于" + content + "省" + content1 + "市" + content2 + "地区出现紧急情况：" + disease;
+										var em_obj = {};
+										em_obj.address = obj.User_email;
+										em_obj.title = '【健康老年APP】';
+										em_obj.content = ph_obj.text;
+										console.log("phone:" + JSON.stringify(ph_obj));
+										console.log("email:" + JSON.stringify(em_obj));
+
+										var url1 = "http://120.25.67.15/smsFunc";
+										$.post(url1, ph_obj, function(text) {
+											hui.toast("短信已发送!");
+										}).error(function() {
+											hui.toast('响应错误!');
+										});
+
+										var url2 = "http://120.25.67.15/emailFunc";
+										$.post(url2, em_obj, function(text) {
+											hui.toast("邮件已发送!");
+										}).error(function() {
+											hui.toast('响应错误!');
+										});
+
+										return true;
 									});
 								} else {
-									hui.toast('无该用户!');
-									plus.storage.removeItem('userid');
-									window.open('login.html');
-									return false;
+									hui.toast('失败' + this.getStatus());
 								}
-							}).error(function() {
-								hui.toast('响应错误!');
-								plus.storage.removeItem('userid');
-								window.open('login.html');
-								return false;
 							});
-						});
+						} else {
+							hui.toast('无该用户!');
+							plus.storage.removeItem('userid');
+							window.open('login.html');
+							return false;
+						}
+					}).error(function() {
+						hui.toast('响应错误!');
+						plus.storage.removeItem('userid');
+						window.open('login.html');
+						return false;
+					});
+				});
 				//});
 			});
-			$(".mz-hd").click(function() {
-				$(".mz-hd").css("display", "block");
-			});
 
-			function selectSyptom(objj) {
-
-				//这里填剩下的数据交互
-				var targetId = objj.innerHTML;
-				var baseUrl = 'sym_search.html';
-				localStorage.setItem("targetId", objj.innerHTML);
-				window.open('sym_search.html');
-				console.log(objj.innerHTML);
-				var sym = objj.innerHTML;
+			function selectSyptom(symptom) {
+				var sym = symptom.innerHTML;
 				var url = "http://120.25.67.15/getDieasesInfoBySym";
 				$.post(url, {
 					"Disease_symptom": sym
 				}, function(text) {
-
-					var dis_arry = eval($.parseJSON(text));
-
+					var dis_arry = eval(text);
 					try {
-						if(dis_arry.length == 0) throw "未查询到相关信息 ";
-						else window.open('sym_search.html');
+
+						if(dis_arry.length != 0) {
+							plus.storage.removeItem("new_node");
+							plus.storage.removeItem("targetId");
+							plus.storage.setItem("new_node", JSON.stringify(text));
+							window.open("search_symptom_list.html");
+						} else
+							throw "暂未导入该症状 ";
 					} catch(err) {
 						hui.toast(err.toString());
 					}
-
 				}).error(function() {
 					hui.toast('发生错误!');
 				});
@@ -491,8 +487,8 @@
 
 			function changeSymptomToHead() {
 				var SyptomArray = new Array;
-				SyptomArray = ["头部", "头晕", "健忘", "头发少", "不能说话",
-					"说话颠三倒四", "红眼", "耳鸣", "鼻塞", "鼻出血"
+				SyptomArray = ["头部", "头晕", "鼻出血", "头后部疼痛", "面部麻木",
+					"下颚疼痛", "口渴", "耳鸣", "吞咽困难", "意识丧失"
 				];
 				changeAllSymptom(SyptomArray);
 			}
@@ -507,23 +503,23 @@
 
 			function changeSymptomToLowerBody() {
 				var SyptomArray = new Array;
-				SyptomArray = ["下肢", "腿部水肿", "腿部无力", "腿部麻木", "膝关节痛",
-					"X形腿", "手脚冰凉", "足部疼痛", "腿部异常灼烧感", "腿部感觉过度敏锐"
+				SyptomArray = ["下肢", "腿部痉挛", "腿部水肿", "腿部无力", "腿部麻木", "膝关节痛",
+					"X形腿", "手脚冰凉", "足部疼痛", "腿部感觉过度敏锐", "腿部感觉灼烧感"
 				];
 				changeAllSymptom(SyptomArray);
 			}
 
 			function changeSymptomToBrest() {
 				var SyptomArray = new Array;
-				SyptomArray = ["胸部", "呼吸急促", "呼吸困难", "呼吸暂停", "气喘",
-					"痰多", "心跳过快", "心跳过缓", "胸口疼痛", "胸口不适"
+				SyptomArray = ["胸部", "心绞痛", "气促", "呼吸困难", "颤动", "气喘",
+					"胸部压迫感", "心跳过缓", "胸口疼痛", "胸口不适"
 				];
 				changeAllSymptom(SyptomArray);
 			}
 
 			function changeSymptomToBelly() {
 				var SyptomArray = new Array;
-				SyptomArray = ["腹部", "肚子痛", "放屁多", "腹部胀气", "呕吐",
+				SyptomArray = ["腹部", "腹部疼痛", "放屁多", "腹部胀气", "呕吐",
 					"大便困难", "腹部胀气", "干呕", "排便带血", "胃肠道难受"
 				];
 				changeAllSymptom(SyptomArray);

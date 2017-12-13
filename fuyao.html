@@ -241,7 +241,7 @@
 		<script type="text/javascript">
 			function article_del(obj) {
 				hui.confirm('确认要删除吗？', ['取消', '确认'], function() {
-					var number = (($(obj).parent().find('h5').html()).split(':'))[1];
+					var number = (($(obj).parent().parent().find('h5').html()).split(':'))[1];
 					var url = "http://120.25.67.15/deleteClock";
 					$.post(url, {
 						"clock_id": number
@@ -261,6 +261,7 @@
 			var clocks_id_arry = [];
 			hui.plusReady(function() {
 				find_user();
+				plus.storage.removeItem("clock_id");
 			});
 
 			function find_user() {
@@ -304,13 +305,16 @@
 							var temp_str = obj_arry[i].Reminder_time;
 							temp_str = ((temp_str.split(':'))[0] + ":" + (temp_str.split(':'))[1])
 							$('#clocks').append('<div class="single-member effect-3" style="border:1px solid #595959;border-radius: 5px;">\
-													<div class="member-image" onclick="update(this)">\
+													<div class="member-image">\
 														<h3>' + temp_str + '</h3>\
 														<h3>药品名:' + obj_arry[i].dName + '</h3>\
 														<h4>剂量:' + obj_arry[i].dDose + '</h4>\
 													</div>\
 													<div class="member-info">\
+														<div style="display:flex;">\
+														<button type="button" class="hui-button hui-button-large hui-primary" onClick="modify(this)">修改</button>\
 														<button type="button" class="hui-button hui-button-large hui-primary" onClick="article_del(this)">删除</button>\
+														</div>\
 														<div class="social-touch">\
 															<h5 class="clock_class" style="margin-top: 5px;margin-bottom:5px;color: #fff;">闹钟编号:' + obj_arry[i].clock_id + '</h5>\
 														</div>\
@@ -331,13 +335,15 @@
 				});
 			}
 
-			function update(obj) {
-				//转到相应的修改页面
+			function modify(obj) {
+				var clock_id= (($(obj).parent().parent().find('div.social-touch').find('h5.clock_class').html()).split(":"))[1];
+				//console.log(clock_id);
+				plus.storage.setItem("clock_id",clock_id);
+				window.open("modify_clock.html");
 			}
 
 			function openpage() {
 				window.open("edit_clock.html");
-				//转到相应的修改页面
 			}
 
 			var meuns = ['一键呼救'];

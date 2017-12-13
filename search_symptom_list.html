@@ -1,0 +1,409 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>相关疾病列表</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/hui.css" />
+		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+		<style type="text/css">
+			body,
+			html {
+				margin: 0;
+				padding: 0;
+				height: 100%;
+				background-color: #158dd2;
+			}
+			
+			.checkbox-wrap {
+				width: 100%;
+				position: relative;
+				margin: 0 auto;
+				top: 30%;
+				height: 40%;
+				background-color: white;
+			}
+			
+			input[type="checkbox"] {
+				/* width: 40px; */
+				/* height: 40px; */
+				/* -webkit-border-radius: 50%; */
+				display: none;
+			}
+			
+			input[type="checkbox"]+label {
+				display: inline-block;
+				width: 48%;
+				margin-top: 10px;
+				margin-left: 5px;
+				text-align: left;
+				-webkit-box-sizing: border-box;
+			}
+			
+			label::before {
+				content: "";
+				display: inline-block;
+				width: 30px;
+				height: 30px;
+				background: #EEE;
+				vertical-align: middle;
+				-webkit-border-radius: 50%;
+				margin-right: 5px;
+				-webkit-box-sizing: border-box;
+				-webkit-transition: background ease-in .5s
+			}
+			
+			input[type="checkbox"]:checked+label::before {
+				background-color: rgb(203, 58, 58);
+				border: 5px #EEEEEE solid;
+			}
+			
+			.single-member {
+				width: 200px;
+				float: left;
+				font-family: sans-sarif;
+				margin: 30px 2.5%;
+				background-color: #fff;
+				text-align: center;
+				position: relative;
+			}
+			
+			.member-image img {
+				max-width: 100%;
+				vertical-align: middle;
+			}
+			
+			h3 {
+				font-size: 24px;
+				font-weight: normal;
+				margin: 10px 0 0;
+				text-transform: uppercase;
+			}
+			
+			h5 {
+				font-size: 16px;
+				font-weight: 300;
+				margin: 0 0 15px;
+				line-height: 22px;
+			}
+			
+			p {
+				font-size: 14px;
+				font-weight: 300;
+				line-height: 22px;
+				padding: 0 30px;
+				margin-bottom: 10px;
+			}
+			
+			.social-touch a {
+				display: inline-block;
+				width: 27px;
+				height: 26px;
+				vertical-align: middle;
+				margin: 0 2px;
+				background-image: url(images/social-icons.png);
+				background-repeat: no-repeat;
+				opacity: 0.7;
+				transition: 0.3s;
+			}
+			
+			.social-touch a:hover {
+				opacity: 1;
+				transition: 0.3s;
+			}
+			
+			.fb-touch {
+				background-position: 0 0;
+			}
+			
+			.tweet-touch {
+				background-position: -35px 0;
+			}
+			
+			.linkedin-touch {
+				background-position: -71px 0;
+			}
+			
+			.icon-colored .fb-touch {
+				background-position: 0 -27px;
+			}
+			
+			.icon-colored .tweet-touch {
+				background-position: -35px -27px;
+			}
+			
+			.icon-colored .linkedin-touch {
+				background-position: -71px -27px;
+			}
+			
+			.effect-3 {
+				max-height: 302px;
+				/*min-height: 302px;*/
+				overflow: hidden;
+			}
+			
+			.effect-3 h3 {
+				padding-top: 7px;
+				line-height: 33px;
+			}
+			
+			.effect-3 .member-image {
+				border-bottom: 0px solid #e5642b;
+				transition: 0.4s;
+				height: 180px;
+				width: 100%;
+				display: inline-block;
+				float: none;
+				vertical-align: middle;
+			}
+			
+			.effect-3 .member-info {
+				transition: 0.4s;
+			}
+			
+			.effect-3 .member-image img {
+				width: 100%;
+				vertical-align: bottom;
+			}
+			
+			.effect-3 .social-touch {
+				background-color: #e5642b;
+				float: left;
+				left: 0;
+				bottom: 0;
+				overflow: hidden;
+				padding: 5px 0;
+				width: 100%;
+				transition: 0.4s;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<div style="float:left;height:100%;width: 13%;">
+			<div style="width:98%;">
+				<a style="text-decoration: none;" href="index.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-clone" id="btn1">&nbsp;主页</button></a>
+				<a style="text-decoration: none;" href="news.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-news" id="btn2">&nbsp;知识</button></a>
+				<a style="text-decoration: none;" href="search_symptom.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-search" id="btn3">&nbsp;症状</button></a>
+				<a style="text-decoration: none;" href="disease_seach.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-progress" id="btn7">&nbsp;疾病</button></a>
+				<a style="text-decoration: none;" href="fuyao.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-check" id="btn4">&nbsp;服药</button></a>
+				<a style="text-decoration: none;" href="personal.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-my" id="btn5">&nbsp;我的</button></a>
+				<a style="text-decoration: none;" href="exam.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-like" id="btn6">&nbsp;体检</button></a>
+			</div>
+		</div>
+
+		<div style="float:left;height:100%;width: 87%;background-color:#fff ;">
+			<div style="height:10%;background-color:#00c6ff ;">
+				<div style="height: 100%;width: 10%;float: left;">
+					<center>
+						<div style="color: #fff;align-self: center;font-size: larger;margin-top: 8px;">健康老年</div>
+					</center>
+				</div>
+
+				<div style="height: 100%;width: 15%;float: right;background-color: #CD0A0A;">
+					<center>
+						<div id="yijianhujiu" style="color: #fff;align-self: center;font-size: larger;margin-top: 8px;"><span class="glyphicon glyphicon-earphone" style="color: #fff;"></span> 一键呼救</div>
+					</center>
+				</div>
+
+			</div>
+			<div style="background:#F4F5F6;height:90%;overflow:scroll;">
+				<div class="hui-wrap">
+					<div style="background-color: #fff;margin: 5px;border:1px solid #595959;margin-top:10px;padding:5px;display: flex;border-radius:8px;justify-content: space-between;align-items: center;height: 60px;">
+						<h3 style="margin: 0px;">相关疾病</h3>
+						<button type="button" style="height: 70%;border:1px solid #595959;" class="hui-button hui-footer-icons hui-icons-left" onclick="javascript:window.open('search_symptom.html');">返回</button>
+					</div>
+					<hr style="background-color: #000000;" />
+				</div>
+				<div class="hui-content">
+					<div id='jieguo'>
+						<div class="hui-center-title" style="margin-top:15px;">
+							<h1>相关疾病列表</h1></div>
+						<style>
+							#list2 li {
+								width: 50%;
+								float: left;
+								margin: 5px 0px;
+							}
+							
+							#list2 .hui-img-list-content {
+								padding: 5px;
+								padding-bottom: 10px;
+							}
+							
+							#list2 h1 {
+								font-size: 14px;
+							}
+						</style>
+						<div class="hui-img-list" id="list2">
+							<ul id="clocks" style="display: flex;flex-wrap: wrap;justify-content:flex-start;">
+							</ul>
+						</div>
+						<div style="height:50px;"></div>
+					</div>
+				</div>
+			</div>
+			<script type="text/javascript" src="js/hui.js" charset="UTF-8"></script>
+			<script src="js/hui-swipe.js" type="text/javascript" charset="utf-8"></script>
+			<script src="js/hui-water-fall.js" type="text/javascript" charset="utf-8"></script>
+			<script src="js/hui-refresh-load-more.js" type="text/javascript" charset="utf-8"></script>
+			<script src="js/jquery-2.1.1.min.js"></script>
+			<script type="text/javascript">
+				hui.plusReady(function() {
+					main();
+				});
+
+				MouseDown = function(event) {
+					if(event.target.tagName == "H1") {
+						var disease_name = event.target.innerText;
+						plus.storage.setItem("targetId", disease_name);
+						window.open('symptom_search_result.html');
+					}
+				}
+
+				function main() {
+					var text_result = plus.storage.getItem("new_node");
+					//console.log(text_result);
+					var new_lode = JSON.parse(text_result);
+					//console.log(new_lode[0]);
+					for(var i = 0; i < new_lode.length; i++) {
+						var disease_name = new_lode[i].Disease_name;
+						var disease_id = new_lode[i].Disease_id;
+						var li = document.createElement("div");
+						$(li).css('flex-basis', '49%');
+						$(li).css('margin', '3px');
+						if((new_lode[i].Disease_symptom).length>50){
+							new_lode[i].Disease_symptom=new_lode[i].Disease_symptom.slice(0,49)+"... ...";
+						}
+						li.innerHTML = '<img lazySrc="img/b' + disease_id + '.png" src="img/b' + disease_id + '.png" class="hui-lazy " /><div class="hui-img-list-content "style="height:150px;"><h1>' + disease_name + '</h1><p>' + new_lode[i].Disease_symptom + '</p></div>';
+						li.addEventListener("mousedown", MouseDown);
+						$('#clocks').append(li);
+					}
+
+				}
+
+				var meuns = ['一键呼救'];
+				var cancel = '关闭菜单';
+				var _str = '';
+
+				function getstr() {
+					return _str;
+				}
+
+				function setstr(str) {
+					_str = str;
+				}
+
+				function check_user() {
+					var userid = plus.storage.getItem('userid');
+					if(userid == null) return false;
+					else return true;
+					//return true;
+				}
+				hui('#yijianhujiu').click(function() {
+					if(!check_user()) {
+						hui.toast("请先登录！");
+						window.open('login.html');
+						return;
+					}
+					//hui.actionSheet(meuns, cancel, function(e) {
+					//if(e.index != -1)
+					hui.confirm('<div class="checkbox-wrap"><form id="form"> 您若出现以下症状，请点击该症状！<br /><br /> <input id="xiongmen" name="check" type="checkbox" value="0" /><label for="xiongmen">胸闷</label> <input id="huxi" name="check" type="checkbox" value="1" /><label for="huxi">呼吸不畅 </label> <input name="check" type="checkbox" id="shoushang" value="2" /><label for="shoushang">受伤 </label> <input name="check" type="checkbox" id="qichuan" value="3" /><label for="qichuan">气喘 </label> <input id="xinhuang" name="check" type="checkbox" value="4" /><label for="xinhuang">心慌 </label></form></div> ', ['取消', '确定'], function() {
+						var userid = {
+							User_id: plus.storage.getItem('userid')
+						};
+						setstr($('#form').serialize());
+						console.log("id:" + JSON.stringify(userid));
+						var url = "http://120.25.67.15/getUserById";
+						$.post(url, userid, function(text) {
+							var obj = text;
+							if(obj.success == 'true') {
+								hui.toast("发送中。。。");
+								var address = Array();
+								var geolocation = new BMap.Geolocation();
+								geolocation.getCurrentPosition(function(r) {
+									if(this.getStatus() == BMAP_STATUS_SUCCESS) {
+										var gc = new BMap.Geocoder();
+										gc.getLocation(r.point, function(rs) {
+											var addComp = rs.addressComponents;
+											address[0] = addComp.province;
+											address[1] = addComp.city;
+											address[2] = addComp.district + addComp.street + addComp.streetNumber; //获取地址
+											var arry = (getstr()).split('&');
+											var strarry = [];
+											var arryobj = {};
+											for(var i = 0; i < arry.length; i++) {
+												switch((arry[i].split('='))[1]) {
+													case '0':
+														strarry.push("胸闷")
+														break;
+													case '1':
+														strarry.push("呼吸不畅")
+														break;
+													case '2':
+														strarry.push("受伤")
+														break;
+													case '3':
+														strarry.push("气喘")
+														break;
+													case '4':
+														strarry.push("心慌")
+														break;
+												}
+											}
+											var disease = '';
+											for(var i = 0; i < strarry.length; i++) {
+												disease += strarry[i];
+											}
+											var ph_obj = {};
+											var content = address[0]; //省
+											var content1 = address[1]; //市
+											var content2 = address[2]; //地区
+											ph_obj.mobile = obj.User_phone;
+											ph_obj.text = "【健康老年APP】您家老人于" + content + "省" + content1 + "市" + content2 + "地区出现紧急情况：" + disease;
+											var em_obj = {};
+											em_obj.address = obj.User_email;
+											em_obj.title = '【健康老年APP】';
+											em_obj.content = ph_obj.text;
+											console.log("phone:" + JSON.stringify(ph_obj));
+											console.log("email:" + JSON.stringify(em_obj));
+											var url1 = "http://120.25.67.15/smsFunc";
+											$.post(url1, ph_obj, function(text) {
+												hui.toast("短信已发送!");
+											}).error(function() {
+												hui.toast('响应错误!');
+											});
+											var url2 = "http://120.25.67.15/emailFunc";
+											$.post(url2, em_obj, function(text) {
+												hui.toast("邮件已发送!");
+											}).error(function() {
+												hui.toast('响应错误!');
+											});
+											return true;
+										});
+									} else {
+										hui.toast('失败' + this.getStatus());
+									}
+								});
+							} else {
+								hui.toast('无该用户!');
+								plus.storage.removeItem('userid');
+								window.open('login.html');
+								return false;
+							}
+						}).error(function() {
+							hui.toast('响应错误!');
+							plus.storage.removeItem('userid');
+							window.open('login.html');
+							return false;
+						});
+					});
+					//});
+				});
+			</script>
+	</body>
+
+</html>

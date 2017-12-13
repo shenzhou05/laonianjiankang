@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<title>疾病详情</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link rel="stylesheet" type="text/css" href="css/hui.css" />
 		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -270,7 +270,7 @@ p {
 				<a style="text-decoration: none;" href="index.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-clone" id="btn1">&nbsp;主页</button></a>
 				<a style="text-decoration: none;" href="news.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-news" id="btn2">&nbsp;知识</button></a>
 				<a style="text-decoration: none;" href="search_symptom.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-search" id="btn3">&nbsp;症状</button></a>
-				<a style="text-decoration: none;" href=""><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-progress" id="btn7">&nbsp;疾病</button></a>
+				<a style="text-decoration: none;" href="disease_seach.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-progress" id="btn7">&nbsp;疾病</button></a>
 				<a style="text-decoration: none;" href="fuyao.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-check" id="btn4">&nbsp;服药</button></a>
 				<a style="text-decoration: none;" href="personal.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-my" id="btn5">&nbsp;我的</button></a>
 				<a style="text-decoration: none;" href="exam.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-like" id="btn6">&nbsp;体检</button></a>
@@ -301,7 +301,7 @@ p {
 						</div>
 						<!-- data -->
 						<div class="block pull-right">
-                             <p class="section_size" id = "Disease_name">木有信息</p>
+							<p class="section_size" id="Disease_name"></p>
 						</div>
 					</div>
 					<div class="list-item box">
@@ -309,34 +309,31 @@ p {
 							<h3 class="section_title">疾病部位</h3>
 						</div>
 						<div class="block pull-right">
-							<p class="section_size" id = "dis_pos">面对智障不多说.</p>
+							<p class="section_size" id="dis_pos"></p>
 						</div>
 					</div>
 					<div class="list-item box">
 						<div class="img pull-left">
 							<h3 class="section_title">疾病定义</h3>
-							</a>
 						</div>
 						<div class="block pull-right">
-							<p class="section_size" id = "Disease_define">木有信息</p>
+							<p class="section_size" id="Disease_define"></p>
 						</div>
 					</div>
 					<div class="list-item box">
 						<div class="img pull-left">
-							<h3 class="section_title" id = "Disease_cause">疾病起因</h3>
-							</a>
+							<h3 class="section_title">疾病起因</h3>
 						</div>
 						<div class="block pull-right">
-							<p class="section_size">木有信息</p>
+							<p class="section_size" id="Disease_cause"></p>
 						</div>
 					</div>
 					<div class="list-item box">
 						<div class="img pull-left">
 							<h3 class="section_title">疾病症状</h3>
-							</a>
 						</div>
 						<div class="block pull-right">
-							<p class="section_size" id = "Disease_symptom">木有信息</p>
+							<p class="section_size" id="Disease_symptom"></p>
 						</div>
 					</div>
 					<div class="list-item box">
@@ -345,7 +342,7 @@ p {
 							</a>
 						</div>
 						<div class="block pull-right">
-							<p class="section_size">木有信息</p>
+							<p class="section_size"></p>
 						</div>
 					</div>
 					<div class="list-item box">
@@ -354,7 +351,7 @@ p {
 							</a>
 						</div>
 						<div class="block pull-right">
-							<p class="section_size" id = "Disease_cure">木有信息</p>
+							<p class="section_size" id="Disease_cure"></p>
 						</div>
 					</div>
 					<div class="list-item box">
@@ -363,7 +360,7 @@ p {
 							</a>
 						</div>
 						<div class="block pull-right">
-							<p class="section_size" id = "Disease_check">木有信息</p>
+							<p class="section_size" id="Disease_check"></p>
 						</div>
 					</div>
 					<div class="list-item box">
@@ -372,7 +369,7 @@ p {
 							</a>
 						</div>
 						<div class="block pull-right">
-							<p class="section_size" id = "Disease_diagnosis">木有信息</p>
+							<p class="section_size" id="Disease_diagnosis"></p>
 						</div>
 					</div>
 					<div class="list-item box">
@@ -381,13 +378,17 @@ p {
 							</a>
 						</div>
 						<div class="block pull-right">
-							<p class="section_size" id ="Disease_prevention">shide</p>
+							<p class="section_size" id="Disease_prevention">
+							</p>
 						</div>
 					</div>
 				</div>
-				
-				<center><button type="button" onclick="javascript:window.open('disease_seach.html');" id="submitBtn" class="hui-button hui-primary hui-fl"  style="margin:20px;width: 30%;">返回</button></center>
-				
+
+				<center><button type="button" onclick="javascript:window.open('search_symptom_list.html');" id="submitBtn" class="hui-button hui-primary hui-fl" style="margin:20px;width: 30%;">
+							返回
+						</button>
+				</center>
+
 			</div>
 		</div>
 
@@ -397,14 +398,18 @@ p {
 		<script src="js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=thgDCOh7o3yI3xxQG8YmGi8toA9GCjhk"></script>
 		<script type="text/javascript">
-			var id = localStorage.getItem("targetId");
-		         console.log(id);
-				var url = "http://120.25.67.15/getDieasesInfoBySym";
-				$.post(url,{"Disease_symptom": id }, function(text) {
-				
+			hui.plusReady(function() {
+				main();
+			});
+
+			function main() {
+				var id = plus.storage.getItem("targetId");
+				var url = "http://120.25.67.15/getDieasesInfoByName";
+				$.post(url, {
+					"Disease_name": id
+				}, function(text) {
 					var dis_arry = eval($.parseJSON(text));
-					
-					var li=document.getElementById("dis_pos");
+					var li = document.getElementById("dis_pos");
 					var dis_nam = document.getElementById("Disease_name");
 					var dis_def = document.getElementById("Disease_define");
 					var dis_cau = document.getElementById("Disease_cause");
@@ -414,20 +419,21 @@ p {
 					var dis_dia = document.getElementById("Disease_diagnosis");
 					var dis_pre = document.getElementById("Disease_prevention");
 					for(var i = 0; i < dis_arry.length; i++) {
-					li.innerHTML = dis_arry[i].Disease_Position;
-					dis_nam.innerHTML = dis_arry[i].Disease_name;
-					dis_def.innerHTML = dis_arry[i].Disease_define;
-					dis_cau.innerHTML = dis_arry[i].Disease_cause;
-					dis_sym.innerHTML = dis_arry[i].Disease_symptom;
-					dis_cur.innerHTML = dis_arry[i].Disease_cure;
-					dis_che.innerHTML = dis_arry[i].Disease_check;
-					dis_dia.innerHTML = dis_arry[i].Disease_diagnosis;
-					dis_pre.innerHTML = dis_arry[i].Disease_prevention;
-				}
+						li.innerHTML = dis_arry[i].Disease_Position;
+						dis_nam.innerHTML = id;
+						dis_def.innerHTML = dis_arry[i].Disease_define;
+						dis_cau.innerHTML = dis_arry[i].Disease_cause;
+						dis_sym.innerHTML = dis_arry[i].Disease_symptom;
+						dis_cur.innerHTML = dis_arry[i].Disease_cure;
+						dis_che.innerHTML = dis_arry[i].Disease_check;
+						dis_dia.innerHTML = dis_arry[i].Disease_diagnosis;
+						dis_pre.innerHTML = dis_arry[i].Disease_prevention;
+					}
 				}).error(function() {
 					hui.toast('发生错误!');
 				});
-			
+			}
+
 			var meuns = ['一键呼救'];
 			var cancel = '关闭菜单';
 			var _str = '';
@@ -454,100 +460,100 @@ p {
 					return;
 				}
 				//hui.actionSheet(meuns, cancel, function(e) {
-					//if(e.index != -1)
-						hui.confirm('<div class="checkbox-wrap"><form id="form"> 您若出现以下症状，请点击该症状！<br /><br /> <input id="xiongmen" name="check" type="checkbox" value="0" /><label for="xiongmen">胸闷</label> <input id="huxi" name="check" type="checkbox" value="1" /><label for="huxi">呼吸不畅 </label> <input name="check" type="checkbox" id="shoushang" value="2" /><label for="shoushang">受伤 </label> <input name="check" type="checkbox" id="qichuan" value="3" /><label for="qichuan">气喘 </label> <input id="xinhuang" name="check" type="checkbox" value="4" /><label for="xinhuang">心慌 </label></form></div> ', ['取消', '确定'], function() {
-							var userid = {
-								User_id: plus.storage.getItem('userid')
-							};
-							setstr($('#form').serialize());
-							console.log("id:" + JSON.stringify(userid));
-							var url = "http://120.25.67.15/getUserById";
-							$.post(url, userid, function(text) {
-								var obj = text;
-								if(obj.success == 'true') {
-									hui.toast("发送中。。。");
-									var address = Array();
-									var geolocation = new BMap.Geolocation();
-									geolocation.getCurrentPosition(function(r) {
-										if(this.getStatus() == BMAP_STATUS_SUCCESS) {
-											var gc = new BMap.Geocoder();
-											gc.getLocation(r.point, function(rs) {
-												var addComp = rs.addressComponents;
-												address[0] = addComp.province;
-												address[1] = addComp.city;
-												address[2] = addComp.district + addComp.street + addComp.streetNumber; //获取地址
-												var arry = (getstr()).split('&');
-												var strarry = [];
-												var arryobj = {};
-												for(var i = 0; i < arry.length; i++) {
-													switch((arry[i].split('='))[1]) {
-														case '0':
-															strarry.push("胸闷")
-															break;
-														case '1':
-															strarry.push("呼吸不畅")
-															break;
-														case '2':
-															strarry.push("受伤")
-															break;
-														case '3':
-															strarry.push("气喘")
-															break;
-														case '4':
-															strarry.push("心慌")
-															break;
-													}
-												}
-												var disease = '';
-												for(var i = 0; i < strarry.length; i++) {
-													disease += strarry[i];
-												}
-												var ph_obj = {};
-												var content = address[0]; //省
-												var content1 = address[1]; //市
-												var content2 = address[2]; //地区
-												ph_obj.mobile = obj.User_phone;
-												ph_obj.text = "【健康老年APP】您家老人于" + content + "省" + content1 + "市" + content2 + "地区出现紧急情况：" + disease;
-												var em_obj = {};
-												em_obj.address = obj.User_email;
-												em_obj.title = '【健康老年APP】';
-												em_obj.content = ph_obj.text;
-												console.log("phone:" + JSON.stringify(ph_obj));
-												console.log("email:" + JSON.stringify(em_obj));
-
-												var url1 = "http://120.25.67.15/smsFunc";
-												$.post(url1, ph_obj, function(text) {
-													hui.toast("短信已发送!");
-												}).error(function() {
-													hui.toast('响应错误!');
-												});
-
-												var url2 = "http://120.25.67.15/emailFunc";
-												$.post(url2, em_obj, function(text) {
-													hui.toast("邮件已发送!");
-												}).error(function() {
-													hui.toast('响应错误!');
-												});
-
-												return true;
-											});
-										} else {
-											hui.toast('失败' + this.getStatus());
+				//if(e.index != -1)
+				hui.confirm('<div class="checkbox-wrap"><form id="form"> 您若出现以下症状，请点击该症状！<br /><br /> <input id="xiongmen" name="check" type="checkbox" value="0" /><label for="xiongmen">胸闷</label> <input id="huxi" name="check" type="checkbox" value="1" /><label for="huxi">呼吸不畅 </label> <input name="check" type="checkbox" id="shoushang" value="2" /><label for="shoushang">受伤 </label> <input name="check" type="checkbox" id="qichuan" value="3" /><label for="qichuan">气喘 </label> <input id="xinhuang" name="check" type="checkbox" value="4" /><label for="xinhuang">心慌 </label></form></div> ', ['取消', '确定'], function() {
+					var userid = {
+						User_id: plus.storage.getItem('userid')
+					};
+					setstr($('#form').serialize());
+					console.log("id:" + JSON.stringify(userid));
+					var url = "http://120.25.67.15/getUserById";
+					$.post(url, userid, function(text) {
+						var obj = text;
+						if(obj.success == 'true') {
+							hui.toast("发送中。。。");
+							var address = Array();
+							var geolocation = new BMap.Geolocation();
+							geolocation.getCurrentPosition(function(r) {
+								if(this.getStatus() == BMAP_STATUS_SUCCESS) {
+									var gc = new BMap.Geocoder();
+									gc.getLocation(r.point, function(rs) {
+										var addComp = rs.addressComponents;
+										address[0] = addComp.province;
+										address[1] = addComp.city;
+										address[2] = addComp.district + addComp.street + addComp.streetNumber; //获取地址
+										var arry = (getstr()).split('&');
+										var strarry = [];
+										var arryobj = {};
+										for(var i = 0; i < arry.length; i++) {
+											switch((arry[i].split('='))[1]) {
+												case '0':
+													strarry.push("胸闷")
+													break;
+												case '1':
+													strarry.push("呼吸不畅")
+													break;
+												case '2':
+													strarry.push("受伤")
+													break;
+												case '3':
+													strarry.push("气喘")
+													break;
+												case '4':
+													strarry.push("心慌")
+													break;
+											}
 										}
+										var disease = '';
+										for(var i = 0; i < strarry.length; i++) {
+											disease += strarry[i];
+										}
+										var ph_obj = {};
+										var content = address[0]; //省
+										var content1 = address[1]; //市
+										var content2 = address[2]; //地区
+										ph_obj.mobile = obj.User_phone;
+										ph_obj.text = "【健康老年APP】您家老人于" + content + "省" + content1 + "市" + content2 + "地区出现紧急情况：" + disease;
+										var em_obj = {};
+										em_obj.address = obj.User_email;
+										em_obj.title = '【健康老年APP】';
+										em_obj.content = ph_obj.text;
+										console.log("phone:" + JSON.stringify(ph_obj));
+										console.log("email:" + JSON.stringify(em_obj));
+
+										var url1 = "http://120.25.67.15/smsFunc";
+										$.post(url1, ph_obj, function(text) {
+											hui.toast("短信已发送!");
+										}).error(function() {
+											hui.toast('响应错误!');
+										});
+
+										var url2 = "http://120.25.67.15/emailFunc";
+										$.post(url2, em_obj, function(text) {
+											hui.toast("邮件已发送!");
+										}).error(function() {
+											hui.toast('响应错误!');
+										});
+
+										return true;
 									});
 								} else {
-									hui.toast('无该用户!');
-									plus.storage.removeItem('userid');
-									window.open('login.html');
-									return false;
+									hui.toast('失败' + this.getStatus());
 								}
-							}).error(function() {
-								hui.toast('响应错误!');
-								plus.storage.removeItem('userid');
-								window.open('login.html');
-								return false;
 							});
-						});
+						} else {
+							hui.toast('无该用户!');
+							plus.storage.removeItem('userid');
+							window.open('login.html');
+							return false;
+						}
+					}).error(function() {
+						hui.toast('响应错误!');
+						plus.storage.removeItem('userid');
+						window.open('login.html');
+						return false;
+					});
+				});
 				//});
 			});
 		</script>

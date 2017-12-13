@@ -212,7 +212,8 @@
 			"exam.html",
 			"index.html",
 			"disease_seach.html",
-			"search_symptom.html"
+			"search_symptom.html",
+			"modify_clock.html"
 		],
 		"refer": [
 			"disease_seach.html",
@@ -221,7 +222,9 @@
 			"login.html",
 			"personal.html",
 			"index.html",
-			"edit_clock.html"
+			"edit_clock.html",
+			"exam.html",
+			"modify_clock.html"
 		]
 	},
 	"edit_clock.html": {
@@ -336,7 +339,8 @@
 			"exam.html",
 			"index.html",
 			"img/avatar5.png",
-			"disease_seach.html"
+			"disease_seach.html",
+			"search_symptom.html"
 		],
 		"refer": [
 			"login.html",
@@ -345,7 +349,8 @@
 			"news.html",
 			"fuyao.html",
 			"exam.html",
-			"disease_seach.html"
+			"disease_seach.html",
+			"search_symptom.html"
 		]
 	},
 	"modify.html": {
@@ -485,7 +490,8 @@
 			"img/b16.png",
 			"img/b10.png",
 			"img/b9.png",
-			"img/b1.png"
+			"img/b1.png",
+			"img/b3.png"
 		],
 		"refer": [
 			"fuyao.html",
@@ -524,7 +530,8 @@
 			"index.html",
 			"fuyao.html",
 			"disease_seach2.html",
-			"sym_search.html"
+			"sym_search.html",
+			"search_symptom_list.html"
 		],
 		"refer": [
 			"disease_seach.html",
@@ -534,7 +541,8 @@
 			"fuyao.html",
 			"personal.html",
 			"exam.html",
-			"index.html"
+			"index.html",
+			"search_symptom_list.html"
 		]
 	},
 	"disease_seach2.html": {
@@ -580,6 +588,78 @@
 			"disease_seach.html",
 			"search_symptom.html",
 			"news.html"
+		]
+	},
+	"search_symptom_list.html": {
+		"resources": [
+			"news.html",
+			"css/hui.css",
+			"js/jquery-2.1.1.min.js",
+			"css/fonts/iconfont.woff",
+			"js/hui-refresh-load-more.js",
+			"js/hui-water-fall.js",
+			"search_symptom.html",
+			"js/hui.js",
+			"fonts/glyphicons-halflings-regular.woff",
+			"js/hui-swipe.js",
+			"css/bootstrap.min.css",
+			"personal.html",
+			"fuyao.html",
+			"img/b6.png",
+			"img/b10.png",
+			"img/b8.png",
+			"img/b7.png",
+			"img/b1.png",
+			"symptom_search_result.html",
+			"img/b16.png",
+			"img/b13.png"
+		],
+		"refer": [
+			"news.html",
+			"search_symptom.html",
+			"personal.html",
+			"fuyao.html",
+			"symptom_search_result.html"
+		]
+	},
+	"symptom_search_result.html": {
+		"resources": [
+			"search_symptom.html",
+			"css/hui.css",
+			"js/jquery-2.1.1.min.js",
+			"css/fonts/iconfont.woff",
+			"js/hui-water-fall.js",
+			"js/hui.js",
+			"fonts/glyphicons-halflings-regular.woff",
+			"js/hui-swipe.js",
+			"css/bootstrap.min.css",
+			"disease_seach.html",
+			"search_symptom_list.html"
+		],
+		"refer": [
+			"search_symptom.html",
+			"disease_seach.html",
+			"search_symptom_list.html"
+		]
+	},
+	"modify_clock.html": {
+		"resources": [
+			"fuyao.html",
+			"js/jquery-2.1.1.min.js",
+			"css/fonts/iconfont.woff",
+			"js/hui-water-fall.js",
+			"fonts/glyphicons-halflings-regular.woff",
+			"css/bootstrap.min.css",
+			"js/hui-swipe.js",
+			"css/hui.css",
+			"js/hui-refresh-load-more.js",
+			"js/hui-picker.js",
+			"js/hui-form.js",
+			"js/bootstrap.min.js",
+			"js/hui.js"
+		],
+		"refer": [
+			"fuyao.html"
 		]
 	}
 }

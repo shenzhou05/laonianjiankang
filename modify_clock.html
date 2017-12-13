@@ -1,0 +1,521 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>修改时钟</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/hui.css" />
+		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<style type="text/css">
+			body,
+			html {
+				margin: 0;
+				padding: 0;
+				height: 100%;
+				background-color: #158dd2;
+			}
+			
+			.checkbox-wrap {
+				width: 100%;
+				position: relative;
+				margin: 0 auto;
+				top: 30%;
+				height: 40%;
+				background-color: white;
+			}
+			
+			input[type="checkbox"] {
+				/* width: 40px; */
+				/* height: 40px; */
+				/* -webkit-border-radius: 50%; */
+				display: none;
+			}
+			
+			input[type="checkbox"]+label {
+				display: inline-block;
+				width: 48%;
+				margin-top: 10px;
+				margin-left: 5px;
+				text-align: left;
+				-webkit-box-sizing: border-box;
+			}
+			
+			label::before {
+				content: "";
+				display: inline-block;
+				width: 30px;
+				height: 30px;
+				background: #EEE;
+				vertical-align: middle;
+				-webkit-border-radius: 50%;
+				margin-right: 5px;
+				-webkit-box-sizing: border-box;
+				-webkit-transition: background ease-in .5s
+			}
+			
+			input[type="checkbox"]:checked+label::before {
+				background-color: rgb(203, 58, 58);
+				border: 5px #EEEEEE solid;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<div style="float:left;height:100%;width: 13%;">
+			<div style="width:98%;">
+				<a style="text-decoration: none;" href="index.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-clone" id="btn1">&nbsp;主页</button></a>
+				<a style="text-decoration: none;" href="news.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-news" id="btn2">&nbsp;知识</button></a>
+				<a style="text-decoration: none;" href="search_symptom.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-search" id="btn3">&nbsp;症状</button></a>
+				<a style="text-decoration: none;" href="disease_seach.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-progress" id="btn7">&nbsp;疾病</button></a>
+				<a style="text-decoration: none;" href="fuyao.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-check" id="btn4">&nbsp;服药</button></a>
+				<a style="text-decoration: none;" href="personal.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-my" id="btn5">&nbsp;我的</button></a>
+				<a style="text-decoration: none;" href="exam.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-like" id="btn6">&nbsp;体检</button></a>
+			</div>
+		</div>
+
+		<div style="float:left;height:100%;width: 87%;background-color:#fff ;">
+			<div style="height:10%;background-color:#00c6ff ;">
+				<div style="height: 100%;width: 10%;float: left;">
+					<center>
+						<div style="color: #fff;align-self: center;font-size: larger;margin-top: 8px;">健康老年</div>
+					</center>
+				</div>
+
+				<div style="height: 100%;width: 15%;float: right;background-color: #CD0A0A;">
+					<center>
+						<div id="yijianhujiu" style="color: #fff;align-self: center;font-size: larger;margin-top: 8px;"><span class="glyphicon glyphicon-earphone" style="color: #fff;"></span> 一键呼救</div>
+					</center>
+				</div>
+
+			</div>
+			<div style="background:#F4F5F6;height:90%;overflow:scroll;">
+				<!--这里面是主要界面-->
+
+				<div class="hui-wrap">
+
+					<div style="margin:5px 10px;" class="hui-form" id="form1">
+
+						<div class="hui-form-items">
+							<input type="text" id="yaopinming" class="hui-input hui-input-clear" name="dName" placeholder="药品名" />
+						</div>
+						<div class="hui-form-items">
+							<input type="number" id="yaopinjiliang" class="hui-input" placeholder="药品剂量" name="dDose" />
+						</div>
+
+						<div class="hui-form-items">
+							<div class="hui-form-items-title">选择时间</div>
+							<div class="hui-form-select">
+								<select id="hours" name="hour">
+									<option value="00">0</option>
+									<option value="01">1</option>
+									<option value="02">2</option>
+									<option value="03">3</option>
+									<option value="04">4</option>
+									<option value="05">5</option>
+									<option value="06">6</option>
+									<option value="07">7</option>
+									<option value="08">8</option>
+									<option value="09">9</option>
+									<option value="10">10</option>
+									<option value="11">11</option>
+									<option value="12">12</option>
+									<option value="13">13</option>
+									<option value="14">14</option>
+									<option value="15">15</option>
+									<option value="16">16</option>
+									<option value="17">17</option>
+									<option value="18">18</option>
+									<option value="19">19</option>
+									<option value="20">20</option>
+									<option value="21">21</option>
+									<option value="22">22</option>
+									<option value="23">23</option>
+								</select>
+								时：
+								<select id="mins" name="min">
+									<option value="00">0</option>
+									<option value="05">5</option>
+									<option value="10">10</option>
+									<option value="15">15</option>
+									<option value="20">20</option>
+									<option value="25">25</option>
+									<option value="30">30</option>
+									<option value="35">35</option>
+									<option value="40">40</option>
+									<option value="45">45</option>
+									<option value="50">50</option>
+									<option value="55">55</option>
+								</select>分
+							</div>
+						</div>
+
+						<div class="hui-form-items">
+							<div class="hui-form-items-title">重复次数</div>
+							<div class="hui-form-select" onchange="test(this)">
+								<select name="cishu">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+								</select>
+							</div>
+						</div>
+						<div style="display: none;" id="shijianjiange" class="hui-form-items">
+							<div class="hui-form-items-title">时间间隔</div>
+							<div class="hui-form-select">
+								<select name="jgshijian">
+									<option value="1">1分钟</option>
+									<option value="3">3分钟</option>
+									<option value="5">5分钟</option>
+									<option value="10">10分钟</option>
+									<option value="15">15分钟</option>
+									<option value="30">30分钟</option>
+									<option value="60">60分钟</option>
+									<option value="120">120分钟</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="hui-form-items" style="padding:5px;">
+							<button type="button" onclick="quxiao()" class="hui-button hui-primary hui-media-content-left" id="fangqi">取消</button>
+
+							<button type="button" class="hui-button hui-primary hui-fr" id="submitBtn">提交</button>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		</div>
+		<script src="js/jquery-2.1.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/hui.js" charset="UTF-8"></script>
+		<script src="js/hui-picker.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/hui-form.js"></script>
+		<script src="js/hui-swipe.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/hui-water-fall.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/hui-refresh-load-more.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/hui-form.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=thgDCOh7o3yI3xxQG8YmGi8toA9GCjhk"></script>
+		<script type="text/javascript">
+			hui.formInit();
+			var user_id;
+			hui.plusReady(function() {
+				find_user();
+				backfill();
+			});
+
+			function find_user() {
+				var userid = plus.storage.getItem('userid');
+				if(userid != null) {
+					user_id = userid;
+				} else {
+					hui.toast("您需要先登录！");
+					window.open("login.html");
+				}
+			}
+
+			function quxiao() {
+				self.open("fuyao.html");
+			}
+
+			function backfill() {
+				json_obj_input = {
+					"User_id": plus.storage.getItem('userid')
+				};
+				var url = "http://120.25.67.15/getClocks";
+				var clockid = parseInt(plus.storage.getItem("clock_id"));
+				$.post(url, json_obj_input, function(text) {
+					var obj_arry = text;
+					var temp = [];
+					for(var i = 0; i < obj_arry.length; i++) {
+						if(parseInt(obj_arry[i].clock_id) == clockid) {
+							$("#yaopinming").val(obj_arry[i].dName);
+							$("#yaopinjiliang").val(obj_arry[i].dDose);
+							var timeobj = (obj_arry[i].Reminder_time + "").split(":");
+							var hours = timeobj[0] + "";
+							var mins = timeobj[1] + "";
+							switch(hours) {
+								case '00':
+									$("#hours option").eq(0).attr("selected", true);
+									break;
+								case '01':
+									$("#hours option").eq(1).attr("selected", true);
+									break;
+								case '02':
+									$("#hours option").eq(2).attr("selected", true);
+									break;
+								case '03':
+									$("#hours option").eq(3).attr("selected", true);
+									break;
+								case '04':
+									$("#hours option").eq(4).attr("selected", true);
+									break;
+								case '05':
+									$("#hours option").eq(5).attr("selected", true);
+									break;
+								case '06':
+									$("#hours option").eq(6).attr("selected", true);
+									break;
+								case '07':
+									$("#hours option").eq(7).attr("selected", true);
+									break;
+								case '08':
+									$("#hours option").eq(8).attr("selected", true);
+									break;
+								case '09':
+									$("#hours option").eq(9).attr("selected", true);
+									break;
+								case '10':
+									$("#hours option").eq(10).attr("selected", true);
+									break;
+								case '11':
+									$("#hours option").eq(11).attr("selected", true);
+									break;
+								case '12':
+									$("#hours option").eq(12).attr("selected", true);
+									break;
+								case '13':
+									$("#hours option").eq(13).attr("selected", true);
+									break;
+								case '14':
+									$("#hours option").eq(14).attr("selected", true);
+									break;
+								case '15':
+									$("#hours option").eq(15).attr("selected", true);
+									break;
+								case '16':
+									$("#hours option").eq(16).attr("selected", true);
+									break;
+								case '17':
+									$("#hours option").eq(17).attr("selected", true);
+									break;
+								case '18':
+									$("#hours option").eq(18).attr("selected", true);
+									break;
+								case '19':
+									$("#hours option").eq(19).attr("selected", true);
+									break;
+								case '20':
+									$("#hours option").eq(20).attr("selected", true);
+									break;
+								case '21':
+									$("#hours option").eq(21).attr("selected", true);
+									break;
+								case '22':
+									$("#hours option").eq(22).attr("selected", true);
+									break;
+								case '23':
+									$("#hours option").eq(23).attr("selected", true);
+									break;
+							}
+							switch(mins) {
+								case '00':
+									$("#mins option").eq(0).attr("selected", true);
+									break;
+								case '05':
+									$("#mins option").eq(1).attr("selected", true);
+									break;
+								case '10':
+									$("#mins option").eq(2).attr("selected", true);
+									break;
+								case '15':
+									$("#mins option").eq(3).attr("selected", true);
+									break;
+								case '20':
+									$("#mins option").eq(4).attr("selected", true);
+									break;
+								case '25':
+									$("#mins option").eq(5).attr("selected", true);
+									break;
+								case '30':
+									$("#mins option").eq(6).attr("selected", true);
+									break;
+								case '35':
+									$("#mins option").eq(7).attr("selected", true);
+									break;
+								case '40':
+									$("#mins option").eq(8).attr("selected", true);
+									break;
+								case '45':
+									$("#mins option").eq(9).attr("selected", true);
+									break;
+								case '50':
+									$("#mins option").eq(10).attr("selected", true);
+									break;
+								case '55':
+									$("#mins option").eq(11).attr("selected", true);
+									break;
+							}
+						}
+					}
+				}).error(function() {
+					hui.toast('响应错误!');
+				});
+			}
+
+			hui('#submitBtn').click(function() {
+				find_user();
+				if(($("#yaopinming").val() == "") || ($("#yaopinjiliang").val() == "") || (parseInt($("#yaopinjiliang").val()) < 1) || (user_id == null)) {
+					hui.toast("数据有误,请检查后再提交");
+					return false;
+				}
+				var data = hui.getFormData('#form1');
+				data.cishu = undefined;
+				data.jgshijian = undefined;
+				data.Reminder_time = data.hour + ":" + data.min + ":00";
+				data.hour = undefined;
+				data.min = undefined;
+				data.User_id = user_id;
+				//接口有问题！
+				var url = "http://120.25.67.15/setClock";
+				console.log(JSON.stringify(data));
+				$.post(url, data, function(text) {
+					console.log(text);
+					hui.toast("提交成功");
+					self.open("fuyao.html");
+					return true;
+				}).error(function() {
+					hui.toast('响应错误!');
+					return false;
+				});
+			});
+
+			function test(obj) {
+				if($(obj).find("option:selected").text() == 1) {
+					$('#shijianjiange').hide();
+				} else {
+					$('#shijianjiange').show();
+				}
+			}
+
+			var meuns = ['一键呼救'];
+			var cancel = '关闭菜单';
+			var _str = '';
+
+			function getstr() {
+				return _str;
+			}
+
+			function setstr(str) {
+				_str = str;
+			}
+
+			function check_user() {
+				var userid = plus.storage.getItem('userid');
+				if(userid == null) return false;
+				else return true;
+			}
+
+			hui('#yijianhujiu').click(function() {
+				if(!check_user()) {
+					hui.toast("请先登录！");
+					window.open('login.html');
+					return;
+				}
+				//hui.actionSheet(meuns, cancel, function(e) {
+				//if(e.index != -1)
+				hui.confirm('<div class="checkbox-wrap"><form id="form"> 您若出现以下症状，请点击该症状！<br /><br /> <input id="xiongmen" name="check" type="checkbox" value="0" /><label for="xiongmen">胸闷</label> <input id="huxi" name="check" type="checkbox" value="1" /><label for="huxi">呼吸不畅 </label> <input name="check" type="checkbox" id="shoushang" value="2" /><label for="shoushang">受伤 </label> <input name="check" type="checkbox" id="qichuan" value="3" /><label for="qichuan">气喘 </label> <input id="xinhuang" name="check" type="checkbox" value="4" /><label for="xinhuang">心慌 </label></form></div> ', ['取消', '确定'], function() {
+					var userid = {
+						User_id: plus.storage.getItem('userid')
+					};
+					setstr($('#form').serialize());
+					console.log("id:" + JSON.stringify(userid));
+					var url = "http://120.25.67.15/getUserById";
+					$.post(url, userid, function(text) {
+						var obj = text;
+						if(obj.success == 'true') {
+							hui.toast("发送中。。。");
+							var address = Array();
+							var geolocation = new BMap.Geolocation();
+							geolocation.getCurrentPosition(function(r) {
+								if(this.getStatus() == BMAP_STATUS_SUCCESS) {
+									var gc = new BMap.Geocoder();
+									gc.getLocation(r.point, function(rs) {
+										var addComp = rs.addressComponents;
+										address[0] = addComp.province;
+										address[1] = addComp.city;
+										address[2] = addComp.district + addComp.street + addComp.streetNumber; //获取地址
+										var arry = (getstr()).split('&');
+										var strarry = [];
+										var arryobj = {};
+										for(var i = 0; i < arry.length; i++) {
+											switch((arry[i].split('='))[1]) {
+												case '0':
+													strarry.push("胸闷")
+													break;
+												case '1':
+													strarry.push("呼吸不畅")
+													break;
+												case '2':
+													strarry.push("受伤")
+													break;
+												case '3':
+													strarry.push("气喘")
+													break;
+												case '4':
+													strarry.push("心慌")
+													break;
+											}
+										}
+										var disease = '';
+										for(var i = 0; i < strarry.length; i++) {
+											disease += strarry[i];
+										}
+										var ph_obj = {};
+										var content = address[0]; //省
+										var content1 = address[1]; //市
+										var content2 = address[2]; //地区
+										ph_obj.mobile = obj.User_phone;
+										ph_obj.text = "【健康老年APP】您家老人于" + content + "省" + content1 + "市" + content2 + "地区出现紧急情况：" + disease;
+										var em_obj = {};
+										em_obj.address = obj.User_email;
+										em_obj.title = '【健康老年APP】';
+										em_obj.content = ph_obj.text;
+										console.log("phone:" + JSON.stringify(ph_obj));
+										console.log("email:" + JSON.stringify(em_obj));
+
+										var url1 = "http://120.25.67.15/smsFunc";
+										$.post(url1, ph_obj, function(text) {
+											hui.toast("短信已发送!");
+										}).error(function() {
+											hui.toast('响应错误!');
+										});
+
+										var url2 = "http://120.25.67.15/emailFunc";
+										$.post(url2, em_obj, function(text) {
+											hui.toast("邮件已发送!");
+										}).error(function() {
+											hui.toast('响应错误!');
+										});
+
+										return true;
+									});
+								} else {
+									hui.toast('失败' + this.getStatus());
+								}
+							});
+						} else {
+							hui.toast('无该用户!');
+							plus.storage.removeItem('userid');
+							window.open('login.html');
+							return false;
+						}
+					}).error(function() {
+						hui.toast('响应错误!');
+						plus.storage.removeItem('userid');
+						window.open('login.html');
+						return false;
+					});
+				});
+				//});
+			});
+		</script>
+	</body>
+
+</html>
