@@ -213,7 +213,8 @@
 			"index.html",
 			"disease_seach.html",
 			"search_symptom.html",
-			"modify_clock.html"
+			"modify_clock.html",
+			"bgm.mp3"
 		],
 		"refer": [
 			"disease_seach.html",
@@ -274,7 +275,8 @@
 			"exam.html",
 			"index.html",
 			"disease_seach.html",
-			"search_symptom.html"
+			"search_symptom.html",
+			"js/md5.js"
 		],
 		"refer": [
 			"index.html",
@@ -340,7 +342,8 @@
 			"index.html",
 			"img/avatar5.png",
 			"disease_seach.html",
-			"search_symptom.html"
+			"search_symptom.html",
+			"js/md5.js"
 		],
 		"refer": [
 			"login.html",

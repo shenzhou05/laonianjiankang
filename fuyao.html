@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
 	<head>
@@ -198,7 +198,7 @@
 				<a style="text-decoration: none;" href="news.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-news" id="btn2">&nbsp;知识</button></a>
 				<a style="text-decoration: none;" href="search_symptom.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-search" id="btn3">&nbsp;症状</button></a>
 				<a style="text-decoration: none;" href="disease_seach.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-progress" id="btn7">&nbsp;疾病</button></a>
-				<a style="text-decoration: none;" href=""><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-check" id="btn4">&nbsp;服药</button></a>
+				<a style="text-decoration: none;" href="javascript:test_tip()"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-check" id="btn4">&nbsp;服药</button></a>
 				<a style="text-decoration: none;" href="personal.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-my" id="btn5">&nbsp;我的</button></a>
 				<a style="text-decoration: none;" href="exam.html"><button style="margin-top:2px;height: 40px;background-color: #00a2ff; color: #fff;" type="button" class="hui-button hui-button-large hui-footer-icons hui-icons-like" id="btn6">&nbsp;体检</button></a>
 			</div>
@@ -231,7 +231,9 @@
 					</div>
 				</div>
 			</div>
+			
 		</div>
+		<audio src='./bgm.mp3' preload='auto' id='music'></audio>
 		<script type="text/javascript" src="js/hui.js" charset="UTF-8"></script>
 		<script src="js/hui-swipe.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/hui-water-fall.js" type="text/javascript" charset="utf-8"></script>
@@ -239,6 +241,8 @@
 		<script src="js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=thgDCOh7o3yI3xxQG8YmGi8toA9GCjhk"></script>
 		<script type="text/javascript">
+			
+
 			function article_del(obj) {
 				hui.confirm('确认要删除吗？', ['取消', '确认'], function() {
 					var number = (($(obj).parent().parent().find('h5').html()).split(':'))[1];
@@ -334,11 +338,137 @@
 					hui.toast('响应错误!');
 				});
 			}
+          
+			function test_tip() { //测试函数
 
+				$.ajax({
+					type: "post",
+					dataType: "html",
+					url: 'http://120.25.67.15/getClocks',
+					data: {
+						"User_id": "3"
+					},
+					success: function(data) {
+						
+						if(data != "") {
+							newData = JSON.parse(data);
+							var shi = new Array();
+							var clock_list = [];
+							for(var i = 0; i < newData.length; i++) {
+
+								shi = newData[i]['Reminder_time'].split(":");
+								
+								var boole = showtip(shi[0], shi[1], shi[2]);
+								
+								if(boole) {
+									clock_list.push(i);
+								};
+                                
+							}
+							fuyao_tip('3', clock_list);
+
+							function duanxin() {
+
+								$.ajax({
+									type: "post",
+									dataType: "html",
+									url: 'http://120.25.67.15/smsFunc',
+									data: {
+										"mobile": "18705691756",
+										"text": "【健康老年APP】服药提醒：您家老人未服用 复方氨酚烷胺胶囊"
+									},
+									success: function(data) {
+
+									}
+								});
+							}
+                            
+							function showtip(shi, fen, miao) {
+								var time = new Date();
+								var minute = time.getMinutes();
+								var hou = time.getHours();
+								var sec = time.getSeconds();
+								var d1 = hou >= shi && minute >= fen && sec >= miao;
+								var d2 = hou >= shi && minute > fen;
+								var d3 = hou > shi;
+								if(d1 || d2 || d3) {
+									if(!music.play()) {
+										music.play();
+
+								} //响铃
+									return true;
+								} else {
+									music.pause();
+									return false;
+
+								} //同理
+							}
+
+							function back(ret) {
+								console.log("fuyao_tip函数返回值:" + ret);
+							}
+
+							function fuyao_tip(username, clockid_arry) {
+
+								var json_obj_input = {};
+								if(!username) {
+									username = 'null';
+									json_obj_input = {
+										"User_id": username
+									};
+								} else
+									json_obj_input = {
+										"User_id": username
+									};
+								var url = "http://120.25.67.15/getClocks";
+								$.post(url, json_obj_input, function(text) {
+									var obj_arry = text;
+									var str_html = '';
+                                    
+									try {
+										if(obj_arry.length == 0) throw "未查询到相关信息";
+										if(clockid_arry.length <= obj_arry.length) {
+											for(var i = 0; i < clockid_arry.length; i++) {
+												str_html += '<a style="color:#158dd2;">闹钟编号：' + obj_arry[clockid_arry[i]].clock_id + '</a>&nbsp;&nbsp;' + '<a style="color:#d33939;">药名：' + obj_arry[clockid_arry[i]].dName + '</a>&nbsp;&nbsp;<a style="color:#39d36f;">剂量：' + obj_arry[clockid_arry[i]].dDose + '</a><br>';
+												setTimeout(duanxin, 60000);
+											}
+										} else {
+											throw "越界";
+										}
+										hui.alert(str_html, '确认已服药', function() {
+											var ret = true;
+
+											music.pause();
+											back(ret);
+										});
+										
+									} catch(err) {
+										if(err.toString().indexOf('undefined') >= 0) err = '数据未定义';
+										hui.alert('发生错误：' + err, '关闭', function() {
+											console.log(err);
+											var ret = false;
+
+											back(ret);
+										});
+									}
+								}).error(function() {
+									hui.toast('响应错误!');
+							     });
+							}
+						}
+					}
+
+				});
+
+				//var str_username = '1'; //用户名
+				//var clockid_arry = [0, 1]; //1,2号闹钟
+				//fuyao_tip(str_username, clockid_arry);
+			}
+          
 			function modify(obj) {
-				var clock_id= (($(obj).parent().parent().find('div.social-touch').find('h5.clock_class').html()).split(":"))[1];
+				var clock_id = (($(obj).parent().parent().find('div.social-touch').find('h5.clock_class').html()).split(":"))[1];
 				//console.log(clock_id);
-				plus.storage.setItem("clock_id",clock_id);
+				plus.storage.setItem("clock_id", clock_id);
 				window.open("modify_clock.html");
 			}
 
@@ -371,103 +501,104 @@
 					return;
 				}
 				//hui.actionSheet(meuns, cancel, function(e) {
-					//if(e.index != -1)
-						hui.confirm('<div class="checkbox-wrap"><form id="form"> 您若出现以下症状，请点击该症状！<br /><br /> <input id="xiongmen" name="check" type="checkbox" value="0" /><label for="xiongmen">胸闷</label> <input id="huxi" name="check" type="checkbox" value="1" /><label for="huxi">呼吸不畅 </label> <input name="check" type="checkbox" id="shoushang" value="2" /><label for="shoushang">受伤 </label> <input name="check" type="checkbox" id="qichuan" value="3" /><label for="qichuan">气喘 </label> <input id="xinhuang" name="check" type="checkbox" value="4" /><label for="xinhuang">心慌 </label></form></div> ', ['取消', '确定'], function() {
-							var userid = {
-								User_id: plus.storage.getItem('userid')
-							};
-							setstr($('#form').serialize());
-							console.log("id:" + JSON.stringify(userid));
-							var url = "http://120.25.67.15/getUserById";
-							$.post(url, userid, function(text) {
-								var obj = text;
-								if(obj.success == 'true') {
-									hui.toast("发送中。。。");
-									var address = Array();
-									var geolocation = new BMap.Geolocation();
-									geolocation.getCurrentPosition(function(r) {
-										if(this.getStatus() == BMAP_STATUS_SUCCESS) {
-											var gc = new BMap.Geocoder();
-											gc.getLocation(r.point, function(rs) {
-												var addComp = rs.addressComponents;
-												address[0] = addComp.province;
-												address[1] = addComp.city;
-												address[2] = addComp.district + addComp.street + addComp.streetNumber; //获取地址
-												var arry = (getstr()).split('&');
-												var strarry = [];
-												var arryobj = {};
-												for(var i = 0; i < arry.length; i++) {
-													switch((arry[i].split('='))[1]) {
-														case '0':
-															strarry.push("胸闷")
-															break;
-														case '1':
-															strarry.push("呼吸不畅")
-															break;
-														case '2':
-															strarry.push("受伤")
-															break;
-														case '3':
-															strarry.push("气喘")
-															break;
-														case '4':
-															strarry.push("心慌")
-															break;
-													}
-												}
-												var disease = '';
-												for(var i = 0; i < strarry.length; i++) {
-													disease += strarry[i];
-												}
-												var ph_obj = {};
-												var content = address[0]; //省
-												var content1 = address[1]; //市
-												var content2 = address[2]; //地区
-												ph_obj.mobile = obj.User_phone;
-												ph_obj.text = "【健康老年APP】您家老人于" + content + "省" + content1 + "市" + content2 + "地区出现紧急情况：" + disease;
-												var em_obj = {};
-												em_obj.address = obj.User_email;
-												em_obj.title = '【健康老年APP】';
-												em_obj.content = ph_obj.text;
-												console.log("phone:" + JSON.stringify(ph_obj));
-												console.log("email:" + JSON.stringify(em_obj));
-
-												var url1 = "http://120.25.67.15/smsFunc";
-												$.post(url1, ph_obj, function(text) {
-													hui.toast("短信已发送!");
-												}).error(function() {
-													hui.toast('响应错误!');
-												});
-
-												var url2 = "http://120.25.67.15/emailFunc";
-												$.post(url2, em_obj, function(text) {
-													hui.toast("邮件已发送!");
-												}).error(function() {
-													hui.toast('响应错误!');
-												});
-
-												return true;
-											});
-										} else {
-											hui.toast('失败' + this.getStatus());
+				//if(e.index != -1)
+				hui.confirm('<div class="checkbox-wrap"><form id="form"> 您若出现以下症状，请点击该症状！<br /><br /> <input id="xiongmen" name="check" type="checkbox" value="0" /><label for="xiongmen">胸闷</label> <input id="huxi" name="check" type="checkbox" value="1" /><label for="huxi">呼吸不畅 </label> <input name="check" type="checkbox" id="shoushang" value="2" /><label for="shoushang">受伤 </label> <input name="check" type="checkbox" id="qichuan" value="3" /><label for="qichuan">气喘 </label> <input id="xinhuang" name="check" type="checkbox" value="4" /><label for="xinhuang">心慌 </label></form></div> ', ['取消', '确定'], function() {
+					var userid = {
+						User_id: plus.storage.getItem('userid')
+					};
+					setstr($('#form').serialize());
+					console.log("id:" + JSON.stringify(userid));
+					var url = "http://120.25.67.15/getUserById";
+					$.post(url, userid, function(text) {
+						var obj = text;
+						if(obj.success == 'true') {
+							hui.toast("发送中。。。");
+							var address = Array();
+							var geolocation = new BMap.Geolocation();
+							geolocation.getCurrentPosition(function(r) {
+								if(this.getStatus() == BMAP_STATUS_SUCCESS) {
+									var gc = new BMap.Geocoder();
+									gc.getLocation(r.point, function(rs) {
+										var addComp = rs.addressComponents;
+										address[0] = addComp.province;
+										address[1] = addComp.city;
+										address[2] = addComp.district + addComp.street + addComp.streetNumber; //获取地址
+										var arry = (getstr()).split('&');
+										var strarry = [];
+										var arryobj = {};
+										for(var i = 0; i < arry.length; i++) {
+											switch((arry[i].split('='))[1]) {
+												case '0':
+													strarry.push("胸闷")
+													break;
+												case '1':
+													strarry.push("呼吸不畅")
+													break;
+												case '2':
+													strarry.push("受伤")
+													break;
+												case '3':
+													strarry.push("气喘")
+													break;
+												case '4':
+													strarry.push("心慌")
+													break;
+											}
 										}
+										var disease = '';
+										for(var i = 0; i < strarry.length; i++) {
+											disease += strarry[i];
+										}
+										var ph_obj = {};
+										var content = address[0]; //省
+										var content1 = address[1]; //市
+										var content2 = address[2]; //地区
+										ph_obj.mobile = obj.User_phone;
+										ph_obj.text = "【健康老年APP】您家老人于" + content + "省" + content1 + "市" + content2 + "地区出现紧急情况：" + disease;
+										var em_obj = {};
+										em_obj.address = obj.User_email;
+										em_obj.title = '【健康老年APP】';
+										em_obj.content = ph_obj.text;
+										console.log("phone:" + JSON.stringify(ph_obj));
+										console.log("email:" + JSON.stringify(em_obj));
+
+										var url1 = "http://120.25.67.15/smsFunc";
+										$.post(url1, ph_obj, function(text) {
+											hui.toast("短信已发送!");
+										}).error(function() {
+											hui.toast('响应错误!');
+										});
+
+										var url2 = "http://120.25.67.15/emailFunc";
+										$.post(url2, em_obj, function(text) {
+											hui.toast("邮件已发送!");
+										}).error(function() {
+											hui.toast('响应错误!');
+										});
+
+										return true;
 									});
 								} else {
-									hui.toast('无该用户!');
-									plus.storage.removeItem('userid');
-									window.open('login.html');
-									return false;
+									hui.toast('失败' + this.getStatus());
 								}
-							}).error(function() {
-								hui.toast('响应错误!');
-								plus.storage.removeItem('userid');
-								window.open('login.html');
-								return false;
 							});
-						});
+						} else {
+							hui.toast('无该用户!');
+							plus.storage.removeItem('userid');
+							window.open('login.html');
+							return false;
+						}
+					}).error(function() {
+						hui.toast('响应错误!');
+						plus.storage.removeItem('userid');
+						window.open('login.html');
+						return false;
+					});
+				});
 				//});
 			});
 		</script>
+
 	</body>
 
 </html>

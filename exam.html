@@ -152,32 +152,21 @@
 									<th>状态</th>
 								</tr>
 							</thead>
-							<tbody>
-								<div id="list">
-									<!--tr示例-->
-									<!--<tr>
-										<td>早饭前</td>
-										<td>6</td>
-										<td>80</td>
-										<td>130</td>
-										<td>80</td>
-										<td style="color: green;">正常</td>
-									</tr>-->
-								</div>
-								<tr id="avg">
-									<td style="background-color: #bbe6f3;">平均值</td>
-									<td id="xuetangavg" style="background-color: #bbe6f3;">0.00</td>
-									<td id="xintiaoavg" style="background-color: #bbe6f3;">0.00</td>
-									<td id="gaoxueyaavg" style="background-color: #bbe6f3;">0.00</td>
-									<td id="dixueyaavg" style="background-color: #bbe6f3;">0.00</td>
-									<td style="background-color: #bbe6f3;">无</td>
-								</tr>
+							<tbody id="list">
 							</tbody>
+							<tr id="avg">
+								<td style="background-color: #bbe6f3;">平均值</td>
+								<td id="xuetangavg" style="background-color: #bbe6f3;">0.00</td>
+								<td id="xintiaoavg" style="background-color: #bbe6f3;">0.0</td>
+								<td id="gaoxueyaavg" style="background-color: #bbe6f3;">0.0</td>
+								<td id="dixueyaavg" style="background-color: #bbe6f3;">0.0</td>
+								<td style="background-color: #bbe6f3;">无</td>
+							</tr>
 						</table>
 						<div style="display: flex;justify-content: center;flex-basis:100%">
 							<ul class="pagination">
 								<li>
-									<a id="up">&laquo;</a>
+									<a id="down">&laquo;</a>
 								</li>
 								<li>
 									<a id="day1">1970-1-1</a>
@@ -195,7 +184,7 @@
 									<a id="day5">1970-1-5</a>
 								</li>
 								<li>
-									<a id="down">&raquo;</a>
+									<a id="up">&raquo;</a>
 								</li>
 							</ul>
 						</div>
@@ -239,6 +228,234 @@
 		<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=thgDCOh7o3yI3xxQG8YmGi8toA9GCjhk"></script>
 		<script src="js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript">
+			$("#up").click(function() {
+				move(1);
+				showdata();
+			});
+			$("#down").click(function() {
+				move(-1);
+				showdata();
+			});
+			$("#day1").click(function() {
+				$("li.active").removeClass("active");
+				$("a[id='day1']").parent().addClass("active");
+				point = 0;
+				showdata();
+			});
+			$("#day2").click(function() {
+				$("li.active").removeClass("active");
+				$("a[id='day2']").parent().addClass("active");
+				point = 1;
+				showdata();
+			});
+			$("#day3").click(function() {
+				$("li.active").removeClass("active");
+				$("a[id='day3']").parent().addClass("active");
+				point = 2;
+				showdata();
+			});
+			$("#day4").click(function() {
+				$("li.active").removeClass("active");
+				$("a[id='day4']").parent().addClass("active");
+				point = 3;
+				showdata();
+			});
+			$("#day5").click(function() {
+				$("li.active").removeClass("active");
+				$("a[id='day5']").parent().addClass("active");
+				point = 4;
+				showdata();
+			});
+
+			function showdata() {
+				var userid = plus.storage.getItem('userid');
+				var url = "http://120.25.67.15/getPEs";
+				var user_id = {
+					Huser_id: userid
+				};
+				$.post(url, user_id, function(text) {
+					var obj = JSON.parse(text);
+					var temparry = [];
+					for(var k = 0; k < obj.length; k++) {
+						var str = (obj[k].Hrecording_date.split(" "))[0];
+						str = parseInt((str.split("-"))[0]) + '-' + parseInt((str.split("-"))[1]) + '-' + parseInt((str.split("-"))[2]);
+						obj[k].Hrecording_date = str;
+						if(str == daylist[point]) {
+							temparry.push(obj[k]);
+						}
+					}
+					var compare = function(v1, v2) { //比较函数,从小到大
+						var x = parseInt(v1.Hrecording_time);
+						var y = parseInt(v2.Hrecording_time);
+						if(x < y) {
+							return -1;
+						} else if(x == y) {
+							return 0;
+						} else {
+							return 1;
+						}
+					}
+					temparry.sort(compare);
+
+					var alldata = $("#list");
+					$(alldata).html("");
+
+					var xueall = 0;
+					var xinall = 0;
+					var gaoall = 0;
+					var diall = 0;
+
+					for(var i = 0; i < temparry.length; i++) {
+						xueall += parseFloat(temparry[i].Hblood_sugar);
+						xinall += parseInt(temparry[i].Heart_rate);
+						gaoall += parseFloat(temparry[i].Hsystolic_pressure);
+						diall += parseFloat(temparry[i].Hdiastolic_pressure);
+
+						var res = CheckData(parseFloat(temparry[i].Hblood_sugar), parseInt(temparry[i].Heart_rate), parseFloat(temparry[i].Hsystolic_pressure), parseFloat(temparry[i].Hdiastolic_pressure), parseInt(temparry[i].Hrecording_time));
+						var resobj = res.split('，');
+
+						switch(temparry[i].Hrecording_time.toString()) {
+							case '0':
+								temparry[i].Hrecording_time = '清晨';
+								break;
+							case '1':
+								temparry[i].Hrecording_time = '早餐前';
+								break;
+							case '2':
+								temparry[i].Hrecording_time = '早餐后';
+								break;
+							case '3':
+								temparry[i].Hrecording_time = '中餐前';
+								break;
+							case '4':
+								temparry[i].Hrecording_time = '中餐后';
+								break;
+							case '5':
+								temparry[i].Hrecording_time = '晚餐前';
+								break;
+							case '6':
+								temparry[i].Hrecording_time = '晚餐后';
+								break;
+							case '7':
+								temparry[i].Hrecording_time = '睡前';
+								break;
+							default:
+								temparry[i].Hrecording_time = '未知';
+								break;
+						}
+
+						$(alldata).append(
+							'<tr>\
+							<td>' + temparry[i].Hrecording_time + '</td>\
+							<td id="lsugar' + i + '">' + temparry[i].Hblood_sugar + '</td>\
+							<td id="lheart' + i + '">' + parseInt(temparry[i].Heart_rate) + '</td>\
+							<td id="lhigh' + i + '">' + temparry[i].Hsystolic_pressure + '</td>\
+							<td id="llow' + i + '">' + temparry[i].Hdiastolic_pressure + '</td>\
+							<td id="lnormal' + i + '" style="color: green;">正常</td>\
+						</tr>');
+
+						if(res != '') {
+							$("#lnormal" + i).css("color", "#F00000");
+							$("#lnormal" + i).html("不正常");
+						}
+						for(var j = 0; j < resobj.length; j++) {
+							if(resobj[j] == "心跳") {
+								$("#lheart" + i).css("color", "red");
+							} else if(resobj[j] == "低压") {
+								$("#llow" + i).css("color", "red");
+							} else if(resobj[j] == "高压") {
+								$("#lhigh" + i).css("color", "red");
+							} else if(resobj[j] == "血糖") {
+								$("#lsugar" + i).css("color", "red");
+							}
+						}
+
+					}
+					if(temparry.length != 0) {
+						$("#xuetangavg").html(parseFloat(xueall / temparry.length).toFixed(2));
+						$("#xintiaoavg").html(parseFloat(xinall / temparry.length).toFixed(1));
+						$("#gaoxueyaavg").html(parseFloat(gaoall / temparry.length).toFixed(1));
+						$("#dixueyaavg").html(parseFloat(diall / temparry.length).toFixed(1));
+					} else {
+						$("#xuetangavg").html("0.00");
+						$("#xintiaoavg").html("0.0");
+						$("#gaoxueyaavg").html("0.0");
+						$("#dixueyaavg").html("0.0");
+					}
+				}).error(function() {
+					hui.toast('响应错误!');
+				});
+			}
+
+			var point = 4;
+			var daylist = ['', '', '', '', ''];
+			var nowDate2 = new Date();
+			var nowDate3 = new Date(nowDate2.getTime() - 86400000 * 4);
+
+			function move(direct) {
+				if(direct > 0) {
+					if($("li.active a").attr("id") == "day5") {
+						var myDate = new Date(nowDate2.getTime() + 86400000);
+						nowDate2 = myDate;
+						var myDateStr = myDate.getFullYear() + '-' + (parseInt(myDate.getMonth()) + 1) + '-' + myDate.getDate();
+						getdaylist(myDateStr);
+						UpDateDays();
+						point = 4;
+					} else {
+						var daynum = parseInt($("li.active a").attr("id").replace("day", ""));
+						$("li.active").removeClass("active");
+						$("a[id='day" + (daynum + 1) + "']").parent().addClass("active");
+						point++;
+					}
+				} else {
+					if($("li.active a").attr("id") == "day1") {
+						var myDate = new Date(nowDate3.getTime() - 86400000);
+						nowDate3 = myDate;
+						var myDateStr = myDate.getFullYear() + '-' + (parseInt(myDate.getMonth()) + 1) + '-' + myDate.getDate();
+						getdaylist2(myDateStr);
+						UpDateDays();
+						point = 0;
+					} else {
+						var daynum = parseInt($("li.active a").attr("id").replace("day", ""));
+						$("li.active").removeClass("active");
+						$("a[id='day" + (daynum - 1) + "']").parent().addClass("active");
+						point--;
+					}
+				}
+			}
+
+			function UpDateDays() {
+				$("#day1").html(daylist[0]);
+				$("#day2").html(daylist[1]);
+				$("#day3").html(daylist[2]);
+				$("#day4").html(daylist[3]);
+				$("#day5").html(daylist[4]);
+			}
+
+			function getdaylist(nowdate_str) {
+				var year = parseInt((nowdate_str.split("-"))[0]);
+				var month = parseInt((nowdate_str.split("-"))[1]) - 1;
+				var day = parseInt((nowdate_str.split("-"))[2]);
+				var nowDate1 = new Date();
+				nowDate1.setFullYear(year, month, day);
+				for(var i = 4; i >= 0; i--) {
+					var myDate = new Date(nowDate1.getTime() - 86400000 * (4 - i));
+					daylist[i] = myDate.getFullYear() + '-' + (parseInt(myDate.getMonth()) + 1) + '-' + myDate.getDate();
+				}
+			}
+
+			function getdaylist2(nowdate_str) {
+				var year = parseInt((nowdate_str.split("-"))[0]);
+				var month = parseInt((nowdate_str.split("-"))[1]) - 1;
+				var day = parseInt((nowdate_str.split("-"))[2]);
+				var nowDate1 = new Date();
+				nowDate1.setFullYear(year, month, day);
+				for(var i = 0; i < 5; i++) {
+					var myDate = new Date(nowDate1.getTime() + 86400000 * i);
+					daylist[i] = myDate.getFullYear() + '-' + (parseInt(myDate.getMonth()) + 1) + '-' + myDate.getDate();
+				}
+			}
+
 			function delet(obj) {
 				var hid = {
 					Hid: $(obj).attr("id").replace('hid', '')
@@ -1822,6 +2039,10 @@
 				} else //在内存中有user_id
 				{
 					main();
+					daylist = ['', '', '', '', ''];
+					getdaylist(LABELS[6]);
+					UpDateDays();
+					showdata();
 				}
 			});
 
@@ -2032,100 +2253,100 @@
 					return;
 				}
 				//hui.actionSheet(meuns, cancel, function(e) {
-					//if(e.index != -1)
-						hui.confirm('<div class="checkbox-wrap"><form id="form"> 您若出现以下症状，请点击该症状！<br /><br /> <input id="xiongmen" name="check" type="checkbox" value="0" /><label for="xiongmen">胸闷</label> <input id="huxi" name="check" type="checkbox" value="1" /><label for="huxi">呼吸不畅 </label> <input name="check" type="checkbox" id="shoushang" value="2" /><label for="shoushang">受伤 </label> <input name="check" type="checkbox" id="qichuan" value="3" /><label for="qichuan">气喘 </label> <input id="xinhuang" name="check" type="checkbox" value="4" /><label for="xinhuang">心慌 </label></form></div> ', ['取消', '确定'], function() {
-							var userid = {
-								User_id: plus.storage.getItem('userid')
-							};
-							setstr($('#form').serialize());
-							console.log("id:" + JSON.stringify(userid));
-							var url = "http://120.25.67.15/getUserById";
-							$.post(url, userid, function(text) {
-								var obj = text;
-								if(obj.success == 'true') {
-									hui.toast("发送中。。。");
-									var address = Array();
-									var geolocation = new BMap.Geolocation();
-									geolocation.getCurrentPosition(function(r) {
-										if(this.getStatus() == BMAP_STATUS_SUCCESS) {
-											var gc = new BMap.Geocoder();
-											gc.getLocation(r.point, function(rs) {
-												var addComp = rs.addressComponents;
-												address[0] = addComp.province;
-												address[1] = addComp.city;
-												address[2] = addComp.district + addComp.street + addComp.streetNumber; //获取地址
-												var arry = (getstr()).split('&');
-												var strarry = [];
-												var arryobj = {};
-												for(var i = 0; i < arry.length; i++) {
-													switch((arry[i].split('='))[1]) {
-														case '0':
-															strarry.push("胸闷")
-															break;
-														case '1':
-															strarry.push("呼吸不畅")
-															break;
-														case '2':
-															strarry.push("受伤")
-															break;
-														case '3':
-															strarry.push("气喘")
-															break;
-														case '4':
-															strarry.push("心慌")
-															break;
-													}
-												}
-												var disease = '';
-												for(var i = 0; i < strarry.length; i++) {
-													disease += strarry[i];
-												}
-												var ph_obj = {};
-												var content = address[0]; //省
-												var content1 = address[1]; //市
-												var content2 = address[2]; //地区
-												ph_obj.mobile = obj.User_phone;
-												ph_obj.text = "【健康老年APP】您家老人于" + content + "省" + content1 + "市" + content2 + "地区出现紧急情况：" + disease;
-												var em_obj = {};
-												em_obj.address = obj.User_email;
-												em_obj.title = '【健康老年APP】';
-												em_obj.content = ph_obj.text;
-												console.log("phone:" + JSON.stringify(ph_obj));
-												console.log("email:" + JSON.stringify(em_obj));
-
-												var url1 = "http://120.25.67.15/smsFunc";
-												$.post(url1, ph_obj, function(text) {
-													hui.toast("短信已发送!");
-												}).error(function() {
-													hui.toast('响应错误!');
-												});
-
-												var url2 = "http://120.25.67.15/emailFunc";
-												$.post(url2, em_obj, function(text) {
-													hui.toast("邮件已发送!");
-												}).error(function() {
-													hui.toast('响应错误!');
-												});
-
-												return true;
-											});
-										} else {
-											hui.toast('失败' + this.getStatus());
+				//if(e.index != -1)
+				hui.confirm('<div class="checkbox-wrap"><form id="form"> 您若出现以下症状，请点击该症状！<br /><br /> <input id="xiongmen" name="check" type="checkbox" value="0" /><label for="xiongmen">胸闷</label> <input id="huxi" name="check" type="checkbox" value="1" /><label for="huxi">呼吸不畅 </label> <input name="check" type="checkbox" id="shoushang" value="2" /><label for="shoushang">受伤 </label> <input name="check" type="checkbox" id="qichuan" value="3" /><label for="qichuan">气喘 </label> <input id="xinhuang" name="check" type="checkbox" value="4" /><label for="xinhuang">心慌 </label></form></div> ', ['取消', '确定'], function() {
+					var userid = {
+						User_id: plus.storage.getItem('userid')
+					};
+					setstr($('#form').serialize());
+					console.log("id:" + JSON.stringify(userid));
+					var url = "http://120.25.67.15/getUserById";
+					$.post(url, userid, function(text) {
+						var obj = text;
+						if(obj.success == 'true') {
+							hui.toast("发送中。。。");
+							var address = Array();
+							var geolocation = new BMap.Geolocation();
+							geolocation.getCurrentPosition(function(r) {
+								if(this.getStatus() == BMAP_STATUS_SUCCESS) {
+									var gc = new BMap.Geocoder();
+									gc.getLocation(r.point, function(rs) {
+										var addComp = rs.addressComponents;
+										address[0] = addComp.province;
+										address[1] = addComp.city;
+										address[2] = addComp.district + addComp.street + addComp.streetNumber; //获取地址
+										var arry = (getstr()).split('&');
+										var strarry = [];
+										var arryobj = {};
+										for(var i = 0; i < arry.length; i++) {
+											switch((arry[i].split('='))[1]) {
+												case '0':
+													strarry.push("胸闷")
+													break;
+												case '1':
+													strarry.push("呼吸不畅")
+													break;
+												case '2':
+													strarry.push("受伤")
+													break;
+												case '3':
+													strarry.push("气喘")
+													break;
+												case '4':
+													strarry.push("心慌")
+													break;
+											}
 										}
+										var disease = '';
+										for(var i = 0; i < strarry.length; i++) {
+											disease += strarry[i];
+										}
+										var ph_obj = {};
+										var content = address[0]; //省
+										var content1 = address[1]; //市
+										var content2 = address[2]; //地区
+										ph_obj.mobile = obj.User_phone;
+										ph_obj.text = "【健康老年APP】您家老人于" + content + "省" + content1 + "市" + content2 + "地区出现紧急情况：" + disease;
+										var em_obj = {};
+										em_obj.address = obj.User_email;
+										em_obj.title = '【健康老年APP】';
+										em_obj.content = ph_obj.text;
+										console.log("phone:" + JSON.stringify(ph_obj));
+										console.log("email:" + JSON.stringify(em_obj));
+
+										var url1 = "http://120.25.67.15/smsFunc";
+										$.post(url1, ph_obj, function(text) {
+											hui.toast("短信已发送!");
+										}).error(function() {
+											hui.toast('响应错误!');
+										});
+
+										var url2 = "http://120.25.67.15/emailFunc";
+										$.post(url2, em_obj, function(text) {
+											hui.toast("邮件已发送!");
+										}).error(function() {
+											hui.toast('响应错误!');
+										});
+
+										return true;
 									});
 								} else {
-									hui.toast('无该用户!');
-									plus.storage.removeItem('userid');
-									window.open('login.html');
-									return false;
+									hui.toast('失败' + this.getStatus());
 								}
-							}).error(function() {
-								hui.toast('响应错误!');
-								plus.storage.removeItem('userid');
-								window.open('login.html');
-								return false;
 							});
-						});
+						} else {
+							hui.toast('无该用户!');
+							plus.storage.removeItem('userid');
+							window.open('login.html');
+							return false;
+						}
+					}).error(function() {
+						hui.toast('响应错误!');
+						plus.storage.removeItem('userid');
+						window.open('login.html');
+						return false;
+					});
+				});
 				//});
 			});
 		</script>

@@ -371,13 +371,13 @@
 				data.Reminder_time = data.hour + ":" + data.min + ":00";
 				data.hour = undefined;
 				data.min = undefined;
-				data.User_id = user_id;
-				//接口有问题！
-				var url = "http://120.25.67.15/setClock";
+				data.clock_id = plus.storage.getItem('clock_id');
+
+				var url = "http://120.25.67.15/resetClock";
 				console.log(JSON.stringify(data));
 				$.post(url, data, function(text) {
-					console.log(text);
-					hui.toast("提交成功");
+					//console.log(text);
+					hui.toast("修改成功！");
 					self.open("fuyao.html");
 					return true;
 				}).error(function() {
