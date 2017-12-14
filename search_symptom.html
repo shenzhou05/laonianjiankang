@@ -261,7 +261,7 @@
 							<div class="main_body_img upper_body_img_item">
 								<img src="img/brest.jpg" class="main_body_img_item" alt="胸部" border="0" onclick="changeSymptomToBrest()">
 								<img src="img/belly.jpg" class="main_body_img_item" alt="腹部" border="0" onclick="changeSymptomToBelly()">
-								<img src="img/xxx.jpg" class="main_body_img_item" alt="生殖" border="0">
+								<img src="img/shengzhi.jpg" class="main_body_img_item" alt="生殖" border="0">
 							</div>
 							<img src="img/right_arm.jpg" class="upper_body_img_item" alt="右手臂" border="0" onclick="changeSymptomToArm()">
 						</div>
@@ -416,14 +416,14 @@
 										$.post(url1, ph_obj, function(text) {
 											hui.toast("短信已发送!");
 										}).error(function() {
-											hui.toast('响应错误!');
+											hui.toast('短信响应错误!');
 										});
 
 										var url2 = "http://120.25.67.15/emailFunc";
 										$.post(url2, em_obj, function(text) {
 											hui.toast("邮件已发送!");
 										}).error(function() {
-											hui.toast('响应错误!');
+											hui.toast('邮件响应错误!');
 										});
 
 										return true;

@@ -557,7 +557,8 @@
 					"login.html",
 					"index.html",
 					"disease_seach.html",
-					"news.html"
+					"news.html",
+					"js/md5.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -619,7 +620,21 @@
 			},
 			"modify_exam.html": {
 				"resources": [
-					"exam.html"
+					"exam.html",
+					"js/in01.js",
+					"css/hui.css",
+					"js/jquery-2.1.1.min.js",
+					"css/fonts/iconfont.woff",
+					"js/hui-refresh-load-more.js",
+					"js/hui-water-fall.js",
+					"img/ruler_height.png",
+					"img/ruler_weight.png",
+					"css/style.css",
+					"js/hui.js",
+					"fonts/glyphicons-halflings-regular.woff",
+					"js/hui-swipe.js",
+					"css/bootstrap.min.css",
+					"img/ruler_xuetang.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -694,7 +709,8 @@
 					"fuyao.html",
 					"disease_seach2.html",
 					"sym_search.html",
-					"search_symptom_list.html"
+					"search_symptom_list.html",
+					"img/shengzhi.jpg"
 				],
 				"refer": [],
 				"priority": 0

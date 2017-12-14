@@ -129,7 +129,7 @@
 								<div class="ruler ruler-height">
 									<div class="main" value="1">
 										<ul data-initial='true'>
-											<li><span class="num">40</span></li>
+											<li><span class="min num">40</span></li>
 											<li><span class="num">50</span></li>
 											<li><span class="num">60</span></li>
 											<li><span class="num">70</span></li>
@@ -186,7 +186,7 @@
 								<div class="ruler ruler-weight">
 									<div class="main" value="0">
 										<ul data-initial='true'>
-											<li><span class="num">100</span></li>
+											<li><span class="min num">100</span></li>
 											<li><span class="num">105</span></li>
 											<li><span class="num">110</span></li>
 											<li><span class="num">115</span></li>
@@ -212,7 +212,7 @@
 								<div class="ruler ruler-weight">
 									<div class="main" value="1">
 										<ul data-initial='true'>
-											<li><span class="num">50</span></li>
+											<li><span class="min num">50</span></li>
 											<li><span class="num">55</span></li>
 											<li><span class="num">60</span></li>
 											<li><span class="num">65</span></li>
@@ -284,10 +284,12 @@
 
 		<script type="text/javascript">
 			hui.plusReady(function() {
-				haveUser = check_user();
+				var haveUser = check_user();
 				if(!haveUser) {
 					hui.toast('请先登录!');
 					window.open('login.html');
+				}else{
+					chizi();
 				}
 			});
 
@@ -427,18 +429,20 @@
 										hui.toast('短息发送响应错误!');
 									});
 									
-									var email={address:getEmail().toString(),title:"【健康老年APP】",content: finiStr};
+									var email={address:getEmail()+'',title:"【健康老年APP】",content: finiStr};
 									console.log("email:" + JSON.stringify(email));
 									var url666 = "http://120.25.67.15/emailFunc";
 									$.post(url666, email, function(text) {
 										hui.toast("邮件已发送!");
+										window.open("exam.html");
 									}).error(function() {
 										hui.toast('邮件发送响应错误!');
+										window.open("exam.html");
 									});
 									
-									hui.toast("短信已发送!");
-									hui.toast("邮件已发送!");
-									window.open("exam.html");
+									//hui.toast("短信已发送!");
+									//hui.toast("邮件已发送!");
+									//window.open("exam.html");
 								}, function() {
 									window.open("exam.html"); //取消
 								});
@@ -589,14 +593,14 @@
 												$.post(url1, ph_obj, function(text) {
 													hui.toast("短信已发送!");
 												}).error(function() {
-													hui.toast('响应错误!');
+													hui.toast('短信响应错误!');
 												});
 
 												var url2 = "http://120.25.67.15/emailFunc";
 												$.post(url2, em_obj, function(text) {
 													hui.toast("邮件已发送!");
 												}).error(function() {
-													hui.toast('响应错误!');
+													hui.toast('邮件响应错误!');
 												});
 
 												return true;

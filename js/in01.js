@@ -1,11 +1,6 @@
-/**
- * Created by Administrator on 2016/11/25.
- */
-setTimeout(function(){
+function chizi(){
 
-    var n =0;
-
-    var u,end,start,g,g2;
+    var end,start,g;
 
     var w0 = 50;
 
@@ -20,6 +15,7 @@ setTimeout(function(){
     var ageVal = $("div[data-page='profile1']").find(".row").eq(0).find(".number").attr("initial-value"); //30-18
     //var  mouVal=$("div[data-page='profil']");
 	var widthVal2 =$("div[data-page='profile1']").find(".row").eq(3).find(".number").attr("initial-value");
+
     $('.ruler .main').eq(0).css({
         '-webkit-transform':'translateX(-'+Math.ceil(parseInt(ageVal*w0))+'px)'
     }).attr('value',Math.ceil(ageVal*w0));
@@ -34,10 +30,7 @@ setTimeout(function(){
     $('.ruler .main').eq(3).css({
         '-webkit-transform':'translateX(-'+parseInt(widthVal2*w2)+'px)'
     }).attr('value',widthVal2*w2);
-    for( var i =0 ; i < $('.ruler').length; i++){
-        var liW = $('.ruler').eq(i).find("li").width();
-        var size =  $('.ruler').eq(i).find('li').size();
-    }
+
 
     $('body').on('touchcancel,touchend,touchmove,touchstart',function(e){
         e.preventDefault();
@@ -55,13 +48,13 @@ setTimeout(function(){
     $('.ruler ul').on("touchstart",function(e){
         var  initial = $(this).attr('data-initial');
         e.stopPropagation();
-        v = parseInt($(this).parent(".main").attr('value'));
+        var v = parseInt($(this).parent(".main").attr('value'));
 
-        if($(this).closest('.ruler').hasClass("ruler-weight")){
+        if($(this).closest('.ruler').hasClass("ruler-weight")){//血压
             start = 0;
             end = '-1458';
             g = 52;
-        }else if($(this).closest('.ruler').hasClass("ruler-age")){
+        }else if($(this).closest('.ruler').hasClass("ruler-age")){//no
             start = 0;
             end = '-1600';
             g = 50;
@@ -70,7 +63,7 @@ setTimeout(function(){
             start = 0;
             end = '-1250';
             g = 10.4;
-        }else{
+        }else{//心跳
             start = 0;
             end = '-823';
             g = 10.4;
@@ -84,16 +77,16 @@ setTimeout(function(){
             startX = e.originalEvent.changedTouches[0].pageX-v;
         }
     });
-
+	//var startX;
 
 
     $('.ruler ul').on("touchmove",function(e){
 
-        var number = parseInt($(this).closest(".row").find('.number').attr('value'));
+        var number = parseFloat($(this).closest(".row").find('.number').attr('value'));
 //      console.log($(this).closest(".row").find('.number').attr('value'));
         moveX = e.originalEvent.changedTouches[0].pageX;
-
         X = moveX - startX;
+        //console.log(X);
 
         if(X>0){
             var vv = $(this).parent(".main").attr('value');
@@ -112,23 +105,23 @@ setTimeout(function(){
             }
 
             if($(this).closest('.ruler').hasClass("ruler-weight")){
-                var val = (number-20+Math.abs(vv/g)/0.4).toFixed(1);//.replace('.0','');
+                var val = (parseInt($(this).find(".min").html())+Math.abs(vv/g)/0.4).toFixed(1);//.replace('.0','');
                 $(this).closest(".row").find('.number').text(val);
             }else if($(this).closest('.ruler').hasClass("ruler-xuetang")){
             		$(this).closest(".row").find('.number').text((number+Math.abs(vv/(g*10))-3).toFixed(1));
-//          		console.log("number:"+number+"vv:"+vv+"g:"+g);
+          			//console.log("number:"+number+"vv:"+vv+"g:"+g);
             }else{
-                $(this).closest(".row").find('.number').text(Math.ceil(number-(vv/g)-10));
-                if($(this).closest('.ruler').hasClass("ruler-age")){
-                    var ageVal = $(this).closest(".row").find('.number').text();
-                    $(this).closest(".row").find('.number').text(parseInt(ageVal-2))
-                }
+                $(this).closest(".row").find('.number').text(Math.ceil(parseInt($(this).find(".min").html())+(vv/g)));
+//              if($(this).closest('.ruler').hasClass("ruler-age")){
+//                  var ageVal = $(this).closest(".row").find('.number').text();
+//                  $(this).closest(".row").find('.number').text(parseInt(ageVal-2))
+//              }
             }
 
         }else{
 
             var vv = $(this).parent(".main").attr('value');
-//          console.log("a:"+vv);
+          //console.log("a:"+vv);
             if($(this).parent(".main").attr('value') <=end){
                 end = X< end ? end : X;
                 $(this).parent(".main").css({
@@ -142,7 +135,7 @@ setTimeout(function(){
 
             if($(this).closest('.ruler').hasClass("ruler-weight")){
 
-                var val = (number-20+Math.abs(vv/g)/0.4).toFixed(1);
+                var val = (parseInt($(this).find(".min").html())+Math.abs(vv/g)/0.4).toFixed(1);
                 
                 if(val == '100.1'){val=100;}
 
@@ -152,12 +145,11 @@ setTimeout(function(){
             		$(this).closest(".row").find('.number').text((number+Math.abs(vv/(g*10))-3).toFixed(1));
 //          		console.log("number:"+number+"vv:"+vv+"g:"+g);
             }else{
-                $(this).closest(".row").find('.number').text(Math.ceil(number+Math.abs(vv/g)-10));
-
-                if($(this).closest('.ruler').hasClass("ruler-age")){
-                    var ageVal = $(this).closest(".row").find('.number').text();
-                    $(this).closest(".row").find('.number').text(parseInt(ageVal-2))
-                }
+                $(this).closest(".row").find('.number').text(Math.ceil(parseInt($(this).find(".min").html())+Math.abs(vv/g)));
+//              if($(this).closest('.ruler').hasClass("ruler-age")){
+//                  var ageVal = $(this).closest(".row").find('.number').text();
+//                  $(this).closest(".row").find('.number').text(parseInt(ageVal-2))
+//              }
             }
         }
         e.preventDefault();
@@ -201,4 +193,4 @@ setTimeout(function(){
 
     });
 
-},100);
+}

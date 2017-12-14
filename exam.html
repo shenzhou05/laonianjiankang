@@ -397,6 +397,7 @@
 					if($("li.active a").attr("id") == "day5") {
 						var myDate = new Date(nowDate2.getTime() + 86400000);
 						nowDate2 = myDate;
+						nowDate3 = new Date(nowDate2.getTime() - 86400000 * 4);
 						var myDateStr = myDate.getFullYear() + '-' + (parseInt(myDate.getMonth()) + 1) + '-' + myDate.getDate();
 						getdaylist(myDateStr);
 						UpDateDays();
@@ -411,6 +412,7 @@
 					if($("li.active a").attr("id") == "day1") {
 						var myDate = new Date(nowDate3.getTime() - 86400000);
 						nowDate3 = myDate;
+						nowDate2 = new Date(nowDate3.getTime() + 86400000 * 4);
 						var myDateStr = myDate.getFullYear() + '-' + (parseInt(myDate.getMonth()) + 1) + '-' + myDate.getDate();
 						getdaylist2(myDateStr);
 						UpDateDays();
@@ -467,9 +469,57 @@
 			}
 
 			function modify(obj) {
-				hui.toast("施工中。。。");
-				//var data = $(obj).attr('id');
-				//window.open('modify_exam.html' + "?msg=" + data);
+				var hid = $(obj).parent().find("button[id]").attr('id');
+				hid = hid.replace("hid", "");
+				var sugar = $($(obj).parent().parent().parent().children("td").get(2)).html();
+				var heart = $($(obj).parent().parent().parent().children("td").get(3)).html();
+				var high = $($(obj).parent().parent().parent().children("td").get(4)).html();
+				var low = $($(obj).parent().parent().parent().children("td").get(5)).html();
+				var time = $($(obj).parent().parent().parent().children("td").get(1)).html();
+				var date = $($(obj).parent().parent().parent().children("td").get(0)).html();
+
+				switch(time) {
+					case '清晨':
+						time = '0';
+						break;
+					case '早餐前':
+						time = '1';
+						break;
+					case '早餐后':
+						time = '2';
+						break;
+					case '中餐前':
+						time = '3';
+						break;
+					case '中餐后':
+						time = '4';
+						break;
+					case '晚餐前':
+						time = '5';
+						break;
+					case '晚餐后':
+						time = '6';
+						break;
+					case '睡前':
+						time = '7';
+						break;
+					default:
+						time = '8';
+						break;
+				}
+
+				var strr = (date.split("-")[0] + "");
+				if((date.split("-")[1] + "").length < 2)
+					strr += "-0" + (date.split("-")[1] + "");
+				else
+					strr += "-" + (date.split("-")[1] + "");
+				if((date.split("-")[2] + "").length < 2)
+					strr += "-0" + (date.split("-")[2] + "");
+				else
+					strr += "-" + (date.split("-")[2] + "");
+				date = strr;
+				//console.log('modify_exam.html' + "?hid=" + hid + "&sugar=" + sugar + "&heart=" + heart + "&high=" + high + "&low=" + low + "&time=" + time + "&date=" + date);
+				window.open('modify_exam.html' + "?hid=" + hid + "&sugar=" + sugar + "&heart=" + heart + "&high=" + high + "&low=" + low + "&time=" + time + "&date=" + date);
 			}
 
 			function openpage() {
@@ -2318,14 +2368,14 @@
 										$.post(url1, ph_obj, function(text) {
 											hui.toast("短信已发送!");
 										}).error(function() {
-											hui.toast('响应错误!');
+											hui.toast('短信响应错误!');
 										});
 
 										var url2 = "http://120.25.67.15/emailFunc";
 										$.post(url2, em_obj, function(text) {
 											hui.toast("邮件已发送!");
 										}).error(function() {
-											hui.toast('响应错误!');
+											hui.toast('邮件响应错误!');
 										});
 
 										return true;

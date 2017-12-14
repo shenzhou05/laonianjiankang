@@ -517,14 +517,14 @@ p {
 												$.post(url1, ph_obj, function(text) {
 													hui.toast("短信已发送!");
 												}).error(function() {
-													hui.toast('响应错误!');
+													hui.toast('短信响应错误!');
 												});
 
 												var url2 = "http://120.25.67.15/emailFunc";
 												$.post(url2, em_obj, function(text) {
 													hui.toast("邮件已发送!");
 												}).error(function() {
-													hui.toast('响应错误!');
+													hui.toast('邮件响应错误!');
 												});
 
 												return true;

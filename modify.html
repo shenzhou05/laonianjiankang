@@ -100,7 +100,7 @@
 					</div>
 					<div style="height:310px;display:flex;justify-content:space-around;margin:0px; margin-bottom:5px;" class="hui-form" id="form1">
 
-						<div style="display: flex;justify-content: space-between;flex-direction: column;width: 45%;">
+						<div style="display: flex;justify-content: space-around;flex-direction: column;width: 45%;">
 							<div class="hui-form-items">
 								<input type="password" name="User_password" class="hui-input hui-pwd-eye" placeholder="新密码" checkType="string" id="pwd" checkData="6,20" checkMsg="密码应为6-20个字符" />
 							</div>
@@ -125,9 +125,9 @@
 								</div>
 								<!--<input type="number" class="hui-input" placeholder="年龄" name="age"/>-->
 							</div>
-							<div class="hui-form-items">
+							<!--<div class="hui-form-items">
 								<input type="text" id="User_email" name="User_email" class="hui-input hui-input-clear" placeholder="紧急联系人的电子邮箱" />
-							</div>
+							</div>-->
 							<div class="hui-form-items">
 								<input type="text" id="User_phone" name="User_phone" class="hui-input hui-input-clear" placeholder="紧急联系人的联系方式" />
 							</div>
@@ -193,11 +193,11 @@
 				};
 				var url = "http://120.25.67.15/getUserById";
 				$.post(url, userid, function(text) {
-					var obj =text;
+					var obj = text;
 
 					if(obj.success == 'true') {
 						//"User_email":"String", "User_phone":"String", "User_sex":"String",//1(男)或者2(女) "Disease_id":"String","User_age":"String"
-						$("#User_email").val(obj.User_email);
+						//$("#User_email").val(obj.User_email);
 						$("#User_phone").val(obj.User_phone);
 						if(obj.User_sex == '1') {
 							$('#g1').attr("checked", true);
@@ -206,7 +206,7 @@
 							$('#g2').attr("checked", true);
 							$('#g1').removeAttr("checked");
 						}
-						if(obj.Disease_id==null)obj.Disease_id='';
+						if(obj.Disease_id == null) obj.Disease_id = '';
 						var dis_arry = (obj.Disease_id).split('|');
 						for(var i in dis_arry) {
 							switch(dis_arry[i]) {
@@ -314,11 +314,12 @@
 				}
 				reg.Disease_id = temp;
 				reg.User_password = md5(reg.User_password);
-				var reg_email_zz = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
-				if(!reg_email_zz.test(reg.User_email)) {
-					hui.toast("邮箱填写错误！");
-					return false;
-				}
+//				var reg_email_zz = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+//				if(!reg_email_zz.test(reg.User_email)) {
+//					hui.toast("邮箱填写错误！");
+//					return false;
+//				}
+				reg.User_email=getEmail();
 				var reg_phone_zz = /^1[3|4|5|8][0-9]\d{4,8}$/;
 				if(!reg_phone_zz.test(reg.User_phone)) {
 					hui.toast("联系方式填写错误错误！");
@@ -358,10 +359,37 @@
 				_str = str;
 			}
 
+			var email='';
+			function setEmail(str) {
+				email=str;
+			}
+			function getEmail() {
+				return email;
+			}
+
 			function check_user() {
 				var userid = plus.storage.getItem('userid');
 				if(userid == null) return false;
-				else return true;
+				else {
+					var url = "http://120.25.67.15/getUserById";
+					$.post(url, {
+						User_id: userid
+					}, function(text) {
+						var obj = text;
+						if(obj.success == 'true') {
+							setEmail(obj.User_email);
+							return true;
+						} else {
+							return false;
+						}
+					}).error(function() {
+						hui.toast('响应错误!');
+						plus.storage.removeItem('userid');
+						window.open("login.html");
+						return false;
+					});
+					return true;
+				}
 			}
 
 			hui('#yijianhujiu').click(function() {
@@ -371,100 +399,100 @@
 					return;
 				}
 				//hui.actionSheet(meuns, cancel, function(e) {
-					//if(e.index != -1)
-						hui.confirm('<div class="checkbox-wrap"><form id="form"> 您若出现以下症状，请点击该症状！<br /><br /> <input id="xiongmen" name="check" type="checkbox" value="0" /><label for="xiongmen">胸闷</label> <input id="huxi" name="check" type="checkbox" value="1" /><label for="huxi">呼吸不畅 </label> <input name="check" type="checkbox" id="shoushang" value="2" /><label for="shoushang">受伤 </label> <input name="check" type="checkbox" id="qichuan" value="3" /><label for="qichuan">气喘 </label> <input id="xinhuang" name="check" type="checkbox" value="4" /><label for="xinhuang">心慌 </label></form></div> ', ['取消', '确定'], function() {
-							var userid = {
-								User_id: plus.storage.getItem('userid')
-							};
-							setstr($('#form').serialize());
-							console.log("id:" + JSON.stringify(userid));
-							var url = "http://120.25.67.15/getUserById";
-							$.post(url, userid, function(text) {
-								var obj =text;
-								if(obj.success == 'true') {
-									hui.toast("发送中。。。");
-									var address = Array();
-									var geolocation = new BMap.Geolocation();
-									geolocation.getCurrentPosition(function(r) {
-										if(this.getStatus() == BMAP_STATUS_SUCCESS) {
-											var gc = new BMap.Geocoder();
-											gc.getLocation(r.point, function(rs) {
-												var addComp = rs.addressComponents;
-												address[0] = addComp.province;
-												address[1] = addComp.city;
-												address[2] = addComp.district + addComp.street + addComp.streetNumber; //获取地址
-												var arry = (getstr()).split('&');
-												var strarry = [];
-												var arryobj = {};
-												for(var i = 0; i < arry.length; i++) {
-													switch((arry[i].split('='))[1]) {
-														case '0':
-															strarry.push("胸闷")
-															break;
-														case '1':
-															strarry.push("呼吸不畅")
-															break;
-														case '2':
-															strarry.push("受伤")
-															break;
-														case '3':
-															strarry.push("气喘")
-															break;
-														case '4':
-															strarry.push("心慌")
-															break;
-													}
-												}
-												var disease = '';
-												for(var i = 0; i < strarry.length; i++) {
-													disease += strarry[i];
-												}
-												var ph_obj = {};
-												var content = address[0]; //省
-												var content1 = address[1]; //市
-												var content2 = address[2]; //地区
-												ph_obj.mobile = obj.User_phone;
-												ph_obj.text = "【健康老年APP】您家老人于" + content + "省" + content1 + "市" + content2 + "地区出现紧急情况：" + disease;
-												var em_obj = {};
-												em_obj.address = obj.User_email;
-												em_obj.title = '【健康老年APP】';
-												em_obj.content = ph_obj.text;
-												console.log("phone:" + JSON.stringify(ph_obj));
-												console.log("email:" + JSON.stringify(em_obj));
-
-												var url1 = "http://120.25.67.15/smsFunc";
-												$.post(url1, ph_obj, function(text) {
-													hui.toast("短信已发送!");
-												}).error(function() {
-													hui.toast('响应错误!');
-												});
-
-												var url2 = "http://120.25.67.15/emailFunc";
-												$.post(url2, em_obj, function(text) {
-													hui.toast("邮件已发送!");
-												}).error(function() {
-													hui.toast('响应错误!');
-												});
-
-												return true;
-											});
-										} else {
-											hui.toast('失败' + this.getStatus());
+				//if(e.index != -1)
+				hui.confirm('<div class="checkbox-wrap"><form id="form"> 您若出现以下症状，请点击该症状！<br /><br /> <input id="xiongmen" name="check" type="checkbox" value="0" /><label for="xiongmen">胸闷</label> <input id="huxi" name="check" type="checkbox" value="1" /><label for="huxi">呼吸不畅 </label> <input name="check" type="checkbox" id="shoushang" value="2" /><label for="shoushang">受伤 </label> <input name="check" type="checkbox" id="qichuan" value="3" /><label for="qichuan">气喘 </label> <input id="xinhuang" name="check" type="checkbox" value="4" /><label for="xinhuang">心慌 </label></form></div> ', ['取消', '确定'], function() {
+					var userid = {
+						User_id: plus.storage.getItem('userid')
+					};
+					setstr($('#form').serialize());
+					console.log("id:" + JSON.stringify(userid));
+					var url = "http://120.25.67.15/getUserById";
+					$.post(url, userid, function(text) {
+						var obj = text;
+						if(obj.success == 'true') {
+							hui.toast("发送中。。。");
+							var address = Array();
+							var geolocation = new BMap.Geolocation();
+							geolocation.getCurrentPosition(function(r) {
+								if(this.getStatus() == BMAP_STATUS_SUCCESS) {
+									var gc = new BMap.Geocoder();
+									gc.getLocation(r.point, function(rs) {
+										var addComp = rs.addressComponents;
+										address[0] = addComp.province;
+										address[1] = addComp.city;
+										address[2] = addComp.district + addComp.street + addComp.streetNumber; //获取地址
+										var arry = (getstr()).split('&');
+										var strarry = [];
+										var arryobj = {};
+										for(var i = 0; i < arry.length; i++) {
+											switch((arry[i].split('='))[1]) {
+												case '0':
+													strarry.push("胸闷")
+													break;
+												case '1':
+													strarry.push("呼吸不畅")
+													break;
+												case '2':
+													strarry.push("受伤")
+													break;
+												case '3':
+													strarry.push("气喘")
+													break;
+												case '4':
+													strarry.push("心慌")
+													break;
+											}
 										}
+										var disease = '';
+										for(var i = 0; i < strarry.length; i++) {
+											disease += strarry[i];
+										}
+										var ph_obj = {};
+										var content = address[0]; //省
+										var content1 = address[1]; //市
+										var content2 = address[2]; //地区
+										ph_obj.mobile = obj.User_phone;
+										ph_obj.text = "【健康老年APP】您家老人于" + content + "省" + content1 + "市" + content2 + "地区出现紧急情况：" + disease;
+										var em_obj = {};
+										em_obj.address = obj.User_email;
+										em_obj.title = '【健康老年APP】';
+										em_obj.content = ph_obj.text;
+										console.log("phone:" + JSON.stringify(ph_obj));
+										console.log("email:" + JSON.stringify(em_obj));
+
+										var url1 = "http://120.25.67.15/smsFunc";
+										$.post(url1, ph_obj, function(text) {
+											hui.toast("短信已发送!");
+										}).error(function() {
+											hui.toast('短信响应错误!');
+										});
+
+										var url2 = "http://120.25.67.15/emailFunc";
+										$.post(url2, em_obj, function(text) {
+											hui.toast("邮件已发送!");
+										}).error(function() {
+											hui.toast('邮件响应错误!');
+										});
+
+										return true;
 									});
 								} else {
-									hui.toast('无该用户!');
-									plus.storage.removeItem('userid');
-									window.open('login.html');
-									return false;
+									hui.toast('失败' + this.getStatus());
 								}
-							}).error(function() {
-								hui.toast('响应错误!');
-								plus.storage.removeItem('userid');
-								window.open('login.html');
-								return false;
 							});
-						});
+						} else {
+							hui.toast('无该用户!');
+							plus.storage.removeItem('userid');
+							window.open('login.html');
+							return false;
+						}
+					}).error(function() {
+						hui.toast('响应错误!');
+						plus.storage.removeItem('userid');
+						window.open('login.html');
+						return false;
+					});
+				});
 				//});
 			});
 		</script>
