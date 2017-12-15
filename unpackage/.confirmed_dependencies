@@ -64,7 +64,17 @@
 			"js/libs/laya.html.js",
 			"js/test/LayaAir3D.js",
 			"js/libs/laya.filter.js",
-			"js/libs/laya.particle.js"
+			"js/libs/laya.particle.js",
+			"img/1.jpg",
+			"img/bg.jpg",
+			"img/blur-background09.jpg",
+			"css/icheck.png",
+			"img/help.png",
+			"img/clock.png",
+			"img/news.png",
+			"img/contacts.png",
+			"img/floppy.png",
+			"help.html"
 		],
 		"refer": [
 			"general.html",
@@ -73,7 +83,9 @@
 			"search_symptom.html",
 			"news.html",
 			"personal.html",
-			"exam.html"
+			"exam.html",
+			"login.html",
+			"help.html"
 		]
 	},
 	"general.html": {
@@ -167,7 +179,8 @@
 			"css/htmleaf-demo.css",
 			"img/b3.png",
 			"img/b6.png",
-			"img/b1.png"
+			"img/b1.png",
+			"img/b8.png"
 		],
 		"refer": [
 			"search_symptom.html",
@@ -311,12 +324,15 @@
 			"js/jquery.min.js",
 			"personal.html",
 			"exam.html",
-			"index.html"
+			"index.html",
+			"js/md5.js",
+			"help.html"
 		],
 		"refer": [
 			"personal.html",
 			"index.html",
-			"news.html"
+			"news.html",
+			"help.html"
 		]
 	},
 	"personal.html": {
@@ -343,7 +359,8 @@
 			"img/avatar5.png",
 			"disease_seach.html",
 			"search_symptom.html",
-			"js/md5.js"
+			"js/md5.js",
+			"help.html"
 		],
 		"refer": [
 			"login.html",
@@ -353,7 +370,8 @@
 			"fuyao.html",
 			"exam.html",
 			"disease_seach.html",
-			"search_symptom.html"
+			"search_symptom.html",
+			"help.html"
 		]
 	},
 	"modify.html": {
@@ -680,6 +698,21 @@
 		],
 		"refer": [
 			"fuyao.html"
+		]
+	},
+	"help.html": {
+		"resources": [
+			"js/naiveScroll.min.js",
+			"css/htmleaf-demo.css",
+			"css/normalize.css",
+			"js/jquery-2.1.1.min.js",
+			"index.html",
+			"css/hui.css",
+			"js/onepage.js",
+			"img/h0.jpg"
+		],
+		"refer": [
+			"index.html"
 		]
 	}
 }

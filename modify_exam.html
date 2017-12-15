@@ -459,14 +459,14 @@
 					Hrecording_time: $("input[type='radio']:checked").val(),
 					Htotal_cholesterol: '',
 				};
-				//console.log(JSON.stringify(userPE));
+				console.log(JSON.stringify(userPE));
 				$.post(url, userPE, function(text) {
-					if(text instanceof Object) {
-						hui.toast('数据异常！');
-						return false;
-					} else {
-						var obj = JSON.parse(text);
-						//console.log(text);
+//					if(text instanceof Object) {
+//						hui.toast('数据异常！');
+//						return false;
+//					} else {
+						var obj =JSON.parse(text);
+						//console.log(obj.success);
 						if(obj.success == "true") {
 							hui.toast('提交成功！');
 
@@ -541,7 +541,7 @@
 							hui.toast('已经提交过了！');
 							return false;
 						}
-					}
+					//}
 				}).error(function() {
 					hui.toast('响应错误!');
 					return false;
