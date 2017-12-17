@@ -101,12 +101,18 @@
 					<div style="height:310px;display:flex;justify-content:space-around;margin:0px; margin-bottom:5px;" class="hui-form" id="form1">
 
 						<div style="display: flex;justify-content: space-around;flex-direction: column;width: 45%;">
-							<div class="hui-form-items">
-								<input type="password" name="User_password" class="hui-input hui-pwd-eye" placeholder="新密码" checkType="string" id="pwd" checkData="6,20" checkMsg="密码应为6-20个字符" />
+							<div id="choice" class="hui-form-items">
+								<div style="display: flex;justify-content: space-around;align-items: center;">
+									<div class="hui-form-items-title">是否改密码</div>
+									<div class="hui-form-radios">
+										<input type="radio" value="1" checked="true" name="changePwd" id="s1" /><label for="s1" style="font-weight:normal;color: rgba(153, 153, 153, 1);">否</label>
+									</div>
+									<div class="hui-form-radios">
+										<input type="radio" value="2" name="changePwd" id="s2" /><label for="s2" style="font-weight:normal;color: rgba(153, 153, 153, 1);">是</label>
+									</div>
+								</div>
 							</div>
-							<div class="hui-form-items">
-								<input type="password" class="hui-input hui-pwd-eye" placeholder="确认密码" checkType="sameWithId" checkData="pwd" checkMsg="两次密码不一致" />
-							</div>
+
 							<div class="hui-form-items" style="display: flex;justify-content: space-between;align-items: center;">
 								<div style="font-weight:normal;color: rgba(153, 153, 153, 1);">年龄段</div>
 								<div class="hui-form-select">
@@ -150,16 +156,16 @@
 							<div class="hui-form-items">
 								<div style="display: flex;justify-content: flex-start;flex-wrap:wrap;align-items: center;align-content:flex-start;padding: 0px;" class="hui-form-radios">
 
-									<input type="checkbox" value="1" name="Disease_id[]" id="c1" /><label for="c1" style="font-weight:normal;color: rgba(153, 153, 153, 1);">心律失常</label>
-									<input type="checkbox" value="2" name="Disease_id[]" id="c2" /><label for="c2" style="font-weight:normal;color: rgba(153, 153, 153, 1);">垂体瘤</label>
-									<input type="checkbox" value="3" name="Disease_id[]" id="c3" /><label for="c3" style="font-weight:normal;color: rgba(153, 153, 153, 1);">糖尿病</label>
-									<input type="checkbox" value="4" name="Disease_id[]" id="c4" /><label for="c4" style="font-weight:normal;color: rgba(153, 153, 153, 1);">甲状腺结节</label>
-									<input type="checkbox" value="5" name="Disease_id[]" id="c5" /><label for="c5" style="font-weight:normal;color: rgba(153, 153, 153, 1);">冠心病</label>
-									<input type="checkbox" value="6" name="Disease_id[]" id="c6" /><label for="c6" style="font-weight:normal;color: rgba(153, 153, 153, 1);">甲状腺癌</label>
-									<input type="checkbox" value="7" name="Disease_id[]" id="c7" /><label for="c7" style="font-weight:normal;color: rgba(153, 153, 153, 1);">甲状腺炎</label>
-									<input type="checkbox" value="8" name="Disease_id[]" id="c8" /><label for="c8" style="font-weight:normal;color: rgba(153, 153, 153, 1);">高血压</label>
-									<input type="checkbox" value="9" name="Disease_id[]" id="c9" /><label for="c9" style="font-weight:normal;color: rgba(153, 153, 153, 1);">垂体功能衰退</label>
-									<input type="checkbox" value="10" name="Disease_id[]" id="c10" /><label for="c10" style="font-weight:normal;color: rgba(153, 153, 153, 1);">肾上腺皮质功能减退</label>
+									<input type="checkbox" value="9" name="Disease_id[]" id="c1" /><label for="c1" style="font-weight:normal;color: rgba(153, 153, 153, 1);">心律失常</label>
+									<input type="checkbox" value="6" name="Disease_id[]" id="c2" /><label for="c2" style="font-weight:normal;color: rgba(153, 153, 153, 1);">垂体瘤</label>
+									<input type="checkbox" value="2" name="Disease_id[]" id="c3" /><label for="c3" style="font-weight:normal;color: rgba(153, 153, 153, 1);">糖尿病</label>
+									<input type="checkbox" value="15" name="Disease_id[]" id="c4" /><label for="c4" style="font-weight:normal;color: rgba(153, 153, 153, 1);">甲状腺结节</label>
+									<input type="checkbox" value="7" name="Disease_id[]" id="c5" /><label for="c5" style="font-weight:normal;color: rgba(153, 153, 153, 1);">心动过缓</label>
+									<input type="checkbox" value="4" name="Disease_id[]" id="c6" /><label for="c6" style="font-weight:normal;color: rgba(153, 153, 153, 1);">甲状腺癌</label>
+									<input type="checkbox" value="17" name="Disease_id[]" id="c7" /><label for="c7" style="font-weight:normal;color: rgba(153, 153, 153, 1);">甲状腺炎</label>
+									<input type="checkbox" value="1" name="Disease_id[]" id="c8" /><label for="c8" style="font-weight:normal;color: rgba(153, 153, 153, 1);">高血压</label>
+									<input type="checkbox" value="5" name="Disease_id[]" id="c9" /><label for="c9" style="font-weight:normal;color: rgba(153, 153, 153, 1);">垂体功能衰退</label>
+									<input type="checkbox" value="12" name="Disease_id[]" id="c10" /><label for="c10" style="font-weight:normal;color: rgba(153, 153, 153, 1);">肾上腺皮质功能减退</label>
 								</div>
 							</div>
 						</div>
@@ -185,8 +191,31 @@
 		<script type="text/javascript">
 			hui.formInit();
 			var isReady = false;
+			$('input:radio[name="changePwd"]').change(function() {
+				changepwd();
+			});
+			var gai = false;
+			var User_password = '';
+
+			function changepwd() {
+				if(!gai) {
+					$("#choice").after('<div class="changepwd hui-form-items">\
+									<input type="password" name="User_password" class="hui-input hui-pwd-eye" placeholder="新密码" checkType="string" id="pwd" checkData="6,20" checkMsg="密码应为6-20个字符" />\
+								</div>\
+								<div class="changepwd hui-form-items">\
+									<input type="password" class="hui-input hui-pwd-eye" placeholder="确认密码" checkType="sameWithId" checkData="pwd" checkMsg="两次密码不一致" />\
+								</div>');
+					hui.formInit();
+					gai = true;
+				} else {
+					if($(".changepwd").length > 0) {
+						$(".changepwd").remove();
+					}
+					gai = false;
+				}
+			}
 			hui.plusReady(function() {
-				if(!check_user()){
+				if(!check_user()) {
 					hui.toast("发生错误！");
 					window.open("login.html");
 				}
@@ -210,38 +239,39 @@
 							$('#g2').attr("checked", true);
 							$('#g1').removeAttr("checked");
 						}
+						//console.log(obj.Disease_id);
 						if(obj.Disease_id == null) obj.Disease_id = '';
 						var dis_arry = (obj.Disease_id).split('|');
 						for(var i in dis_arry) {
 							switch(dis_arry[i]) {
-								case '1':
+								case '9':
 									$('#c1').attr("checked", true);
 									break;
-								case '2':
+								case '6':
 									$('#c2').attr("checked", true);
 									break;
-								case '3':
+								case '2':
 									$('#c3').attr("checked", true);
 									break;
-								case '4':
+								case '15':
 									$('#c4').attr("checked", true);
 									break;
-								case '5':
+								case '7':
 									$('#c5').attr("checked", true);
 									break;
-								case '6':
+								case '4':
 									$('#c6').attr("checked", true);
 									break;
-								case '7':
+								case '17':
 									$('#c7').attr("checked", true);
 									break;
-								case '8':
+								case '1':
 									$('#c8').attr("checked", true);
 									break;
-								case '9':
+								case '5':
 									$('#c9').attr("checked", true);
 									break;
-								case '10':
+								case '12':
 									$('#c10').attr("checked", true);
 									break;
 							}
@@ -316,8 +346,8 @@
 					else
 						temp = temp + arry[i];
 				}
+				reg.changePwd = undefined;
 				reg.Disease_id = temp;
-				reg.User_password = md5(reg.User_password);
 				var reg_email_zz = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
 				if(!reg_email_zz.test(reg.User_email)) {
 					hui.toast("邮箱填写错误！");
@@ -328,6 +358,15 @@
 				if(!reg_phone_zz.test(reg.User_phone)) {
 					hui.toast("联系方式填写错误！");
 					return false;
+				}
+				if(!gai) {
+					reg.User_password = getPwd();
+				} else {
+					reg.User_password = md5(reg.User_password);
+					if(reg.User_password == getPwd()) {
+						hui.toast("请输入与旧密码不同的密码");
+						return false;
+					}
 				}
 				console.log(JSON.stringify(reg));
 				if(reg != null) {
@@ -347,7 +386,6 @@
 						hui.toast('响应错误!');
 						return false;
 					});
-
 				}
 			});
 
@@ -363,12 +401,22 @@
 				_str = str;
 			}
 
-			var email='';
+			var email = '';
+
 			function setEmail(str) {
-				email=str;
+				email = str;
 			}
+
 			function getEmail() {
 				return email;
+			}
+
+			function setPwd(str) {
+				User_password = str;
+			}
+
+			function getPwd() {
+				return User_password;
 			}
 
 			function check_user() {
@@ -382,6 +430,7 @@
 						var obj = text;
 						if(obj.success == 'true') {
 							setEmail(obj.User_email);
+							setPwd(obj.User_password);
 							//console.log(obj.User_email);
 							return true;
 						} else {

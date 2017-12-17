@@ -304,7 +304,9 @@
 					"img/news.png",
 					"img/contacts.png",
 					"img/floppy.png",
-					"help.html"
+					"help.html",
+					"img/search.png",
+					"img/search2.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -400,7 +402,11 @@
 					"img/b6.png",
 					"img/b1.png",
 					"img/b8.png",
-					"img/b5.png"
+					"img/b5.png",
+					"img/b9.png",
+					"img/b7.png",
+					"img/b2.png",
+					"img/b4.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -550,7 +556,8 @@
 					"disease_seach.html",
 					"search_symptom.html",
 					"js/md5.js",
-					"help.html"
+					"help.html",
+					"img/avatar2.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -693,7 +700,8 @@
 					"img/b9.png",
 					"img/b1.png",
 					"img/b3.png",
-					"img/b11.png"
+					"img/b11.png",
+					"img/b6.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -855,7 +863,12 @@
 			"video_help.html": {
 				"resources": [
 					"index.html",
-					"help.html"
+					"help.html",
+					"css/hui.css",
+					"css/normalize.css",
+					"js/video.min.js",
+					"css/video-js.css",
+					"img/1.jpg"
 				],
 				"refer": [],
 				"priority": 0

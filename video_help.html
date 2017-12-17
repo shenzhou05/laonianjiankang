@@ -3,7 +3,6 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>视频帮助</title>
 		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
@@ -12,14 +11,16 @@
 
 	<body style="background-color: #d8d8c0;">
 
-		<div style="display: flex;justify-content: center;margin: 10px;margin-bottom: 0px;"><img style="width:700px;height:400px;" src="img/h4.jpg" /></div>
+		<div style="display: flex;justify-content: center;margin: 10px;margin-bottom: 0px;">
+			<video width="700" height="400" style="background-color: #000000;" poster="img/1.jpg" controls>
+				<source src="http://jq22com.qiniudn.com/jq22-sp.mp4" type="video/mp4">
+			</video>
+		</div>
 		<div style="display: flex;justify-content: center;">
 			<button type="button" onclick="javascript:window.open('index.html');" class="hui-button hui-primary hui-fl" style="margin:15px;width: 30%;">回到主页</button>
 			<button type="button" onclick="javascript:window.open('help.html');" class="hui-button hui-primary hui-fl" style="margin:15px;width: 30%;">图文教程</button>
 		</div>
 
-		<script>
-		</script>
 	</body>
 
 </html>

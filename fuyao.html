@@ -340,18 +340,19 @@
 			}
           
 			function test_tip() { //测试函数
-
+                var userid = plus.storage.getItem('userid');
 				$.ajax({
 					type: "post",
 					dataType: "html",
 					url: 'http://120.25.67.15/getClocks',
 					data: {
-						"User_id": "3"
+						"User_id": plus.storage.getItem('userid')
 					},
 					success: function(data) {
 						
 						if(data != "") {
 							newData = JSON.parse(data);
+							//alert(newData[0]['Reminder_time']);
 							var shi = new Array();
 							var clock_list = [];
 							for(var i = 0; i < newData.length; i++) {
@@ -365,22 +366,42 @@
 								};
                                 
 							}
-							fuyao_tip('3', clock_list);
+							fuyao_tip(userid, clock_list);
 
 							function duanxin() {
-
-								$.ajax({
+								var phone='';
+								var userid = plus.storage.getItem('userid');
+									$.ajax({
+									type: "post",
+									dataType:"html",
+									url: 'http://120.25.67.15/getUserById',
+									data: {
+										"User_id": userid
+									},
+									success: function(data) {
+									//	alert(data[2]);
+                                     newData = JSON.parse(data);
+                                     //alert(newData.User_phone);
+                                     
+                                     phone = newData.User_phone;
+                                   //  alert(phone);
+                                     $.ajax({
 									type: "post",
 									dataType: "html",
 									url: 'http://120.25.67.15/smsFunc',
 									data: {
-										"mobile": "18705691756",
-										"text": "【健康老年APP】服药提醒：您家老人未服用 复方氨酚烷胺胶囊"
+										"mobile": phone,
+										"text": "【健康老年APP】服药提醒：您家老人未服用 药物"
 									},
 									success: function(data) {
 
 									}
 								});
+									}
+								});
+                              
+					            //	alert(phone);
+							
 							}
                             
 							function showtip(shi, fen, miao) {
@@ -430,8 +451,10 @@
 										if(clockid_arry.length <= obj_arry.length) {
 											for(var i = 0; i < clockid_arry.length; i++) {
 												str_html += '<a style="color:#158dd2;">闹钟编号：' + obj_arry[clockid_arry[i]].clock_id + '</a>&nbsp;&nbsp;' + '<a style="color:#d33939;">药名：' + obj_arry[clockid_arry[i]].dName + '</a>&nbsp;&nbsp;<a style="color:#39d36f;">剂量：' + obj_arry[clockid_arry[i]].dDose + '</a><br>';
+												//duanxin();
 												setTimeout(duanxin, 60000);
 											}
+											
 										} else {
 											throw "越界";
 										}
