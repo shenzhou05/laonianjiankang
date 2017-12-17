@@ -125,9 +125,9 @@
 								</div>
 								<!--<input type="number" class="hui-input" placeholder="年龄" name="age"/>-->
 							</div>
-							<!--<div class="hui-form-items">
+							<div class="hui-form-items">
 								<input type="text" id="User_email" name="User_email" class="hui-input hui-input-clear" placeholder="紧急联系人的电子邮箱" />
-							</div>-->
+							</div>
 							<div class="hui-form-items">
 								<input type="text" id="User_phone" name="User_phone" class="hui-input hui-input-clear" placeholder="紧急联系人的联系方式" />
 							</div>
@@ -186,6 +186,10 @@
 			hui.formInit();
 			var isReady = false;
 			hui.plusReady(function() {
+				if(!check_user()){
+					hui.toast("发生错误！");
+					window.open("login.html");
+				}
 				isReady = true;
 				//信息回填
 				var userid = {
@@ -197,7 +201,7 @@
 
 					if(obj.success == 'true') {
 						//"User_email":"String", "User_phone":"String", "User_sex":"String",//1(男)或者2(女) "Disease_id":"String","User_age":"String"
-						//$("#User_email").val(obj.User_email);
+						$("#User_email").val(obj.User_email);
 						$("#User_phone").val(obj.User_phone);
 						if(obj.User_sex == '1') {
 							$('#g1').attr("checked", true);
@@ -314,15 +318,15 @@
 				}
 				reg.Disease_id = temp;
 				reg.User_password = md5(reg.User_password);
-//				var reg_email_zz = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
-//				if(!reg_email_zz.test(reg.User_email)) {
-//					hui.toast("邮箱填写错误！");
-//					return false;
-//				}
-				reg.User_email=getEmail();
+				var reg_email_zz = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+				if(!reg_email_zz.test(reg.User_email)) {
+					hui.toast("邮箱填写错误！");
+					return false;
+				}
+				//reg.User_email=getEmail();
 				var reg_phone_zz = /^1[3|4|5|8][0-9]\d{4,8}$/;
 				if(!reg_phone_zz.test(reg.User_phone)) {
-					hui.toast("联系方式填写错误错误！");
+					hui.toast("联系方式填写错误！");
 					return false;
 				}
 				console.log(JSON.stringify(reg));
@@ -378,6 +382,7 @@
 						var obj = text;
 						if(obj.success == 'true') {
 							setEmail(obj.User_email);
+							//console.log(obj.User_email);
 							return true;
 						} else {
 							return false;

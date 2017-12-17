@@ -296,8 +296,8 @@
 			function CheckData() {
 				var bloodSugar = parseFloat($("#bloodSugar").text());
 				var heartBeat = parseInt($("#heartBeat").text());
-				var pressureLow = parseFloat($("#pressureLow").text());
-				var pressureHigh = parseFloat($("#pressureHigh").text());
+				var pressureLow = parseInt($("#pressureLow").text());
+				var pressureHigh = parseInt($("#pressureHigh").text());
 				var time = parseInt($("input[type='radio']:checked").val());
 				var res = "";
 				if(heartBeat < 60 || heartBeat > 100)

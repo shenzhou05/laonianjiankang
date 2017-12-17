@@ -220,6 +220,11 @@
 					hui.toast("邮箱填写错误！");
 					return false;
 				}
+//				 var reg_name_zz =/^[\u4E00-\u9FA5]+(·[\u4E00-\u9FA5]+)*$/;
+//				if(!reg_name_zz.test(reg.User_name)) {
+//					hui.toast("请填写正确姓名！");
+//					return false;
+//				}
 				var reg_phone_zz = /^1[3|4|5|8][0-9]\d{4,8}$/;
 				if(!reg_phone_zz.test(reg.User_phone)) {
 					hui.toast("联系方式填写错误！");
@@ -237,7 +242,7 @@
 							window.open('help.html');
 							return true;
 						} else {
-							hui.toast('注册失败！请检查无误后再注册！');
+							hui.toast('注册失败！用户名已存在！');
 							return false;
 						}
 					}).error(function() {

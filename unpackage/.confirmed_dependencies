@@ -180,7 +180,8 @@
 			"img/b3.png",
 			"img/b6.png",
 			"img/b1.png",
-			"img/b8.png"
+			"img/b8.png",
+			"img/b5.png"
 		],
 		"refer": [
 			"search_symptom.html",
@@ -332,7 +333,8 @@
 			"personal.html",
 			"index.html",
 			"news.html",
-			"help.html"
+			"help.html",
+			"exam.html"
 		]
 	},
 	"personal.html": {
@@ -392,13 +394,15 @@
 			"index.html",
 			"disease_seach.html",
 			"news.html",
-			"js/md5.js"
+			"js/md5.js",
+			"search_symptom.html"
 		],
 		"refer": [
 			"login.html",
 			"news.html",
 			"personal.html",
-			"index.html"
+			"index.html",
+			"search_symptom.html"
 		]
 	},
 	"exam.html": {
@@ -528,7 +532,8 @@
 			"img/b10.png",
 			"img/b9.png",
 			"img/b1.png",
-			"img/b3.png"
+			"img/b3.png",
+			"img/b11.png"
 		],
 		"refer": [
 			"fuyao.html",
@@ -709,7 +714,11 @@
 			"index.html",
 			"css/hui.css",
 			"js/onepage.js",
-			"img/h0.jpg"
+			"img/h0.jpg",
+			"img/h4.jpg",
+			"img/h3.jpg",
+			"img/h1.jpg",
+			"img/h2.jpg"
 		],
 		"refer": [
 			"index.html"

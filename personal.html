@@ -264,12 +264,15 @@
 					return;
 				}
 				hui.prompt('身份验证：请输入您的密码', ['取消', '确定'], function(pwd) {
-					var password = md5(pwd);
+					var password = md5(pwd)+'';
+					//console.log(password);
+					//console.log(getEmail());
 					var url = "http://120.25.67.15/login";
 					$.post(url, {
 						User_email: getEmail(),
 						User_password: password
 					}, function(text) {
+						console.log(text);
 						var obj = $.parseJSON(text);
 						if(obj.success == 'true') {
 							hui.toast('验证成功！');

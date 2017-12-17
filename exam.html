@@ -116,7 +116,7 @@
 						<canvas id="canvas1"></canvas>
 						<div style='flex-basis: 100%;display: flex;justify-content: center;'>
 							<div style="display: flex;flex-basis: 80%;justify-content: space-between;align-items: center;">
-								<span id='avg1' style="font-size: 15px;">七天平均值：100</span>
+								<span id='avg1' style="font-size: 15px;">总高血压平均值：0.00 总低血压平均值：0.00</span>
 								<button type="button" id="addData1" class="hui-button hui-primary hui-fl" style="width: 30%;">切换为30天数据</button>
 							</div>
 						</div>
@@ -125,7 +125,7 @@
 						<canvas id="canvas2"></canvas>
 						<div style='flex-basis: 100%;display: flex;justify-content: center;'>
 							<div style="display: flex;flex-basis: 80%;justify-content: space-between;align-items: center;">
-								<span id='avg2' style="font-size: 20px;">七天平均值：100</span>
+								<span id='avg2' style="font-size: 20px;">总心跳平均值：0.00</span>
 								<button type="button" id="addData2" class="hui-button hui-primary hui-fl" style="width: 30%;">切换为30天数据</button>
 							</div>
 						</div>
@@ -135,7 +135,7 @@
 						<canvas id="canvas3"></canvas>
 						<div style='flex-basis: 100%;display: flex;justify-content: center;'>
 							<div style="display: flex;flex-basis: 80%;justify-content: space-between;align-items: center;">
-								<span id='avg3' style="font-size: 20px;">七天平均值：100</span>
+								<span id='avg3' style="font-size: 20px;">总血糖平均值：0.00</span>
 								<button type="button" id="addData3" class="hui-button hui-primary hui-fl" style="width: 30%;">切换为30天数据</button>
 							</div>
 						</div>
@@ -758,7 +758,7 @@
 					var xinAvg = parseFloat(obj.Heart_rate);
 					setxintiaopingjunzhi7(xinAvg);
 				}).error(function() {
-					hui.toast('响应错误!');
+					hui.toast('无数据!');
 				});
 
 				var url = "http://120.25.67.15/getPEsBy";
@@ -818,7 +818,7 @@
 					setXinEveryDayAvg7(xintiaoAll);
 					XinTiaoEveryDayAvg7SetData();
 				}).error(function() {
-					hui.toast('响应错误!');
+					hui.toast('无数据!');
 				});
 			}
 
@@ -837,7 +837,7 @@
 					var xinAvg = parseFloat(obj.Heart_rate);
 					setxintiaopingjunzhi30(xinAvg);
 				}).error(function() {
-					hui.toast('响应错误!');
+					hui.toast('无数据!');
 				});
 
 				var url = "http://120.25.67.15/getPEsBy";
@@ -1012,7 +1012,7 @@
 					setXinEveryDayAvg30(xintiaoAll);
 					XinTiaoEveryDayAvg30SetData();
 				}).error(function() {
-					hui.toast('响应错误!');
+					hui.toast('无数据!');
 				});
 			}
 
@@ -1031,7 +1031,7 @@
 					var xueAvg = parseFloat(obj.Hblood_sugar);
 					setxuetangpingjunzhi7(xueAvg);
 				}).error(function() {
-					hui.toast('响应错误!');
+					hui.toast('无数据!');
 				});
 
 				var url = "http://120.25.67.15/getPEsBy";
@@ -1091,7 +1091,7 @@
 					setXueEveryDayAvg7(xuetangAll);
 					XueTangEveryDayAvg7SetData();
 				}).error(function() {
-					hui.toast('响应错误!');
+					hui.toast('无数据!');
 				});
 			}
 
@@ -1110,7 +1110,7 @@
 					var xueAvg = parseFloat(obj.Hblood_sugar);
 					setxuetangpingjunzhi30(xueAvg);
 				}).error(function() {
-					hui.toast('响应错误!');
+					hui.toast('无数据!');
 				});
 
 				var url = "http://120.25.67.15/getPEsBy";
@@ -1285,7 +1285,7 @@
 					setXueEveryDayAvg30(xuetangAll);
 					XueTangEveryDayAvg30SetData();
 				}).error(function() {
-					hui.toast('响应错误!');
+					hui.toast('无数据!');
 				});
 			}
 
@@ -1304,7 +1304,7 @@
 					var gaoAvg = parseFloat(obj.Hsystolic_pressure);
 					setgaoxueyapingjunzhi7(gaoAvg, 0);
 				}).error(function() {
-					hui.toast('响应错误!');
+					hui.toast('无数据!');
 				});
 
 				var url4 = "http://120.25.67.15/getAvgPEsBy";
@@ -1318,7 +1318,7 @@
 					var diAvg = parseFloat(obj.Hdiastolic_pressure);
 					setgaoxueyapingjunzhi7(0, diAvg);
 				}).error(function() {
-					hui.toast('响应错误!');
+					hui.toast('无数据!');
 				});
 
 				var url = "http://120.25.67.15/getPEsBy";
@@ -1378,7 +1378,7 @@
 					setGaoEveryDayAvg7(gaoxueyaAll);
 					XueYaEveryDayAvg7SetData();
 				}).error(function() {
-					hui.toast('响应错误!');
+					hui.toast('无数据!');
 				});
 
 				var url2 = "http://120.25.67.15/getPEsBy";
@@ -1439,7 +1439,7 @@
 					setDiEveryDayAvg7(dixueyaAll);
 					XueYaEveryDayAvg7SetData();
 				}).error(function() {
-					hui.toast('响应错误!');
+					hui.toast('无数据!');
 				});
 
 			}
@@ -1459,7 +1459,7 @@
 					var gaoAvg = parseFloat(obj.Hsystolic_pressure);
 					setgaoxueyapingjunzhi30(gaoAvg, 0);
 				}).error(function() {
-					hui.toast('响应错误!');
+					hui.toast('无数据!');
 				});
 
 				var url4 = "http://120.25.67.15/getAvgPEsBy";
@@ -1473,7 +1473,7 @@
 					var diAvg = parseFloat(obj.Hdiastolic_pressure);
 					setgaoxueyapingjunzhi30(0, diAvg);
 				}).error(function() {
-					hui.toast('响应错误!');
+					hui.toast('无数据!');
 				});
 
 				var url = "http://120.25.67.15/getPEsBy";
@@ -1648,7 +1648,7 @@
 					setGaoEveryDayAvg30(gaoxueyaAll);
 					XueYaEveryDayAvg30SetData();
 				}).error(function() {
-					hui.toast('响应错误!');
+					hui.toast('无数据!');
 				});
 
 				var url2 = "http://120.25.67.15/getPEsBy";
@@ -1824,7 +1824,7 @@
 					setDiEveryDayAvg30(dixueyaAll);
 					XueYaEveryDayAvg30SetData();
 				}).error(function() {
-					hui.toast('响应错误!');
+					hui.toast('无数据!');
 				});
 
 			}

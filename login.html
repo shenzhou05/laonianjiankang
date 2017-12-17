@@ -99,8 +99,11 @@
 							<h1 style="border:0px;">用户登录</h1></div>
 
 						<div style="margin:28px; margin-bottom:15px;" class="hui-form" id="form1">
-							<div class="hui-form-items">
+							<!--<div class="hui-form-items">
 								<input type="text" id="User_email" name="User_email" class="hui-input hui-input-clear" placeholder="电子邮箱" checkType="string" />
+							</div>-->
+							<div class="hui-form-items">
+								<input type="text" id="User_name" name="User_name" class="hui-input hui-input-clear" placeholder="用户名" checkType="string" checkData="5,20" checkMsg="用户名应为5-20个字符" />
 							</div>
 							<div class="hui-form-items">
 								<input type="password" name="User_password" class="hui-input hui-pwd-eye" placeholder="密码" checkType="string" id="pwd" checkData="6,20" checkMsg="密码应为6-20个字符" />
@@ -141,16 +144,17 @@
 					return false;
 				}
 				var login = hui.getFormData('#form1');
-				var reg_email_zz = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
-				if(!reg_email_zz.test(login.User_email)) {
-					hui.toast("请输入正确的邮箱！");
-					return false;
-				}
+//				var reg_email_zz = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+//				if(!reg_email_zz.test(login.User_email)) {
+//					hui.toast("请输入正确的邮箱！");
+//					return false;
+//				}
 				login.User_password = md5(login.User_password);
 				console.log(JSON.stringify(login));
 				if(login != null) {
 					var url = "http://120.25.67.15/login";
 					$.post(url, login, function(text) {
+						console.log(text);
 						var obj = $.parseJSON(text);
 						if(obj.success == 'true') {
 							plus.storage.setItem('userid', obj.User_id.toString());
