@@ -718,10 +718,22 @@
 			"img/h4.jpg",
 			"img/h3.jpg",
 			"img/h1.jpg",
-			"img/h2.jpg"
+			"img/h2.jpg",
+			"video_help.html"
 		],
 		"refer": [
-			"index.html"
+			"index.html",
+			"video_help.html"
+		]
+	},
+	"video_help.html": {
+		"resources": [
+			"index.html",
+			"help.html"
+		],
+		"refer": [
+			"index.html",
+			"help.html"
 		]
 	}
 }

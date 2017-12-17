@@ -269,7 +269,7 @@
 					//console.log(getEmail());
 					var url = "http://120.25.67.15/login";
 					$.post(url, {
-						User_email: getEmail(),
+						User_name: userName,
 						User_password: password
 					}, function(text) {
 						console.log(text);

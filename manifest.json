@@ -846,7 +846,16 @@
 					"img/h4.jpg",
 					"img/h3.jpg",
 					"img/h1.jpg",
-					"img/h2.jpg"
+					"img/h2.jpg",
+					"video_help.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"video_help.html": {
+				"resources": [
+					"index.html",
+					"help.html"
 				],
 				"refer": [],
 				"priority": 0
