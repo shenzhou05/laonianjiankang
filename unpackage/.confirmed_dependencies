@@ -402,14 +402,16 @@
 			"disease_seach.html",
 			"news.html",
 			"js/md5.js",
-			"search_symptom.html"
+			"search_symptom.html",
+			"exam.html"
 		],
 		"refer": [
 			"login.html",
 			"news.html",
 			"personal.html",
 			"index.html",
-			"search_symptom.html"
+			"search_symptom.html",
+			"exam.html"
 		]
 	},
 	"exam.html": {

@@ -108,7 +108,7 @@ function chizi(){
                 var val = (parseInt($(this).find(".min").html())+Math.abs(vv/g)/0.4).toFixed(1);//.replace('.0','');
                 $(this).closest(".row").find('.number').text(val);
             }else if($(this).closest('.ruler').hasClass("ruler-xuetang")){
-            		$(this).closest(".row").find('.number').text((number+Math.abs(vv/(g*10))-3).toFixed(1));
+            		$(this).closest(".row").find('.number').text((parseInt($(this).find(".min").html())+Math.abs(vv/(g*10))).toFixed(1));
           			//console.log("number:"+number+"vv:"+vv+"g:"+g);
             }else{
                 $(this).closest(".row").find('.number').text(Math.ceil(parseInt($(this).find(".min").html())+(vv/g)));
@@ -142,7 +142,7 @@ function chizi(){
                 $(this).closest(".row").find('.number').text(val);
 
             }else if($(this).closest('.ruler').hasClass("ruler-xuetang")){
-            		$(this).closest(".row").find('.number').text((number+Math.abs(vv/(g*10))-3).toFixed(1));
+            		$(this).closest(".row").find('.number').text((parseInt($(this).find(".min").html())+Math.abs(vv/(g*10))).toFixed(1));
 //          		console.log("number:"+number+"vv:"+vv+"g:"+g);
             }else{
                 $(this).closest(".row").find('.number').text(Math.ceil(parseInt($(this).find(".min").html())+Math.abs(vv/g)));

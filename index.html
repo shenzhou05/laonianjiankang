@@ -5,6 +5,7 @@
 		<meta charset="UTF-8">
 		<title>主页</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+
 		<link rel="stylesheet" type="text/css" href="css/hui.css" />
 		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
@@ -142,10 +143,12 @@
 						</div>
 						<div style="display: flex;justify-content: space-between;">
 							<div onclick="click1(this)" class="abox" style="flex-basis:48.5%;background-color: #9c9c74;height: 200px;">
-								<img style="width: 28%;" src="img/search.png" /><h1 style="margin-top: 10px;">查疾病</h1>
+								<img style="width: 28%;" src="img/search.png" />
+								<h1 style="margin-top: 10px;">查疾病</h1>
 							</div>
 							<div onclick="click1(this)" class="abox" style="flex-basis:48.5%;background-color: #f7a541;height: 200px;">
-								<img style="width: 28%;" src="img/search2.png" /><h1 style="margin-top: 10px;">查症状</h1>
+								<img style="width: 28%;" src="img/search2.png" />
+								<h1 style="margin-top: 10px;">查症状</h1>
 							</div>
 						</div>
 					</div>
@@ -161,6 +164,30 @@
 		<script src="js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=thgDCOh7o3yI3xxQG8YmGi8toA9GCjhk"></script>
 		<script type="text/javascript">
+			window.screen.height=100;
+			window.screen.width=100;
+			function getInfo() {
+				var s = "";
+				s += " 网页可见区域宽：" + document.body.clientWidth + "\n";
+				s += " 网页可见区域高：" + document.body.clientHeight + "\n";
+				s += " 网页可见区域宽：" + document.body.offsetWidth + " (包括边线和滚动条的宽)" + "\n";
+				s += " 网页可见区域高：" + document.body.offsetHeight + " (包括边线的宽)" + "\n";
+				s += " 网页正文全文宽：" + document.body.scrollWidth + "\n";
+				s += " 网页正文全文高：" + document.body.scrollHeight + "\n";
+				s += " 网页被卷去的高(ff)：" + document.body.scrollTop + "\n";
+				s += " 网页被卷去的高(ie)：" + document.documentElement.scrollTop + "\n";
+				s += " 网页被卷去的左：" + document.body.scrollLeft + "\n";
+				s += " 网页正文部分上：" + window.screenTop + "\n";
+				s += " 网页正文部分左：" + window.screenLeft + "\n";
+				s += " 屏幕分辨率的高：" + window.screen.height + "\n";
+				s += " 屏幕分辨率的宽：" + window.screen.width + "\n";
+				s += " 屏幕可用工作区高度：" + window.screen.availHeight + "\n";
+				s += " 屏幕可用工作区宽度：" + window.screen.availWidth + "\n";
+				s += " 你的屏幕设置是 " + window.screen.colorDepth + " 位彩色" + "\n";
+				s += " 你的屏幕设置 " + window.screen.deviceXDPI + " 像素/英寸" + "\n";
+				console.log(s);
+			}
+			
 			function click1(obj) {
 				switch($(obj).find("h1").html()) {
 					case "登录":
@@ -170,6 +197,7 @@
 							window.open("login.html");
 						break;
 					case "查看帮助":
+						//getInfo();
 						window.open("help.html");
 						break;
 					case "体检表":

@@ -256,14 +256,14 @@
 					<div class="body_img">
 
 						<img src="img/head.jpg" alt="头部" border="0" id="head" onclick="changeSymptomToHead()">
-						<div class="upper_body_img" style="height: 209px;">
-							<img src="img/left_arm.jpg" class="upper_body_img_item" alt="左手臂" border="0" onclick="changeSymptomToArm()">
+						<div class="upper_body_img">
+							<div style="flex-basis: 33.33%;"><img style="height: 100%;" src="img/left_arm.jpg" alt="左手臂" border="0" onclick="changeSymptomToArm()"></div>
 							<div class="main_body_img upper_body_img_item">
 								<img src="img/brest.jpg" class="main_body_img_item" alt="胸部" border="0" onclick="changeSymptomToBrest()">
 								<img src="img/belly.jpg" class="main_body_img_item" alt="腹部" border="0" onclick="changeSymptomToBelly()">
 								<img src="img/shengzhi.jpg" class="main_body_img_item" alt="生殖" border="0">
 							</div>
-							<img src="img/right_arm.jpg" class="upper_body_img_item" alt="右手臂" border="0" onclick="changeSymptomToArm()">
+							<div style="flex-basis: 33.33%;"><img style="height: 100%;" src="img/right_arm.jpg" alt="右手臂" border="0" onclick="changeSymptomToArm()"></div>
 						</div>
 						<img src="img/lower_body.jpg" alt="下肢" border="0" id="leg" onclick="changeSymptomToLowerBody()">
 
@@ -324,7 +324,7 @@
 		<!--<script src="js/symptom.js"></script>-->
 		<script type="text/javascript">
 			changeSymptomToHead();
-			
+
 			var meuns = ['一键呼救'];
 			var cancel = '关闭菜单';
 			var _str = '';
@@ -512,7 +512,7 @@
 			function changeSymptomToBrest() {
 				var SyptomArray = new Array;
 				SyptomArray = ["胸部", "心绞痛", "气促", "呼吸困难", "颤动", "气喘",
-					"胸部压迫感", "心跳过缓", "胸口疼痛", "胸口不适"
+					"胸部压迫感", "心动过缓", "胸口疼痛", "胸口不适"
 				];
 				changeAllSymptom(SyptomArray);
 			}
