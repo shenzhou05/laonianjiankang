@@ -864,7 +864,8 @@
 					"css/normalize.css",
 					"js/video.min.js",
 					"css/video-js.css",
-					"img/1.jpg"
+					"img/1.jpg",
+					"test1.mp4"
 				],
 				"refer": [],
 				"priority": 0
